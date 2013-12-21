@@ -1,0 +1,9 @@
+CREATE TABLE `email_template` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`name` varchar(255),
+`message_subject` varchar(255),
+`message_title` varchar(255),
+`message_html` text,
+`message_text` text
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;

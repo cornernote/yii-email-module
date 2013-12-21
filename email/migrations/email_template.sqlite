@@ -1,0 +1,8 @@
+CREATE TABLE "email_template" (
+"id"  INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+"name" TEXT,
+"message_subject" TEXT,
+"message_title" TEXT,
+"message_html" TEXT,
+"message_text" TEXT
+);

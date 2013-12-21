@@ -1,0 +1,46 @@
+/**
+ * Application CSS
+ *
+ * @author Brett O'Donnell <cornernote@gmail.com>
+ * @author Zain Ul abidin <zainengineer@gmail.com>
+ * @copyright 2013 Mr PHP
+ * @link https://github.com/cornernote/yii-email-module
+ * @license BSD-3-Clause https://raw.github.com/cornernote/yii-email-module/master/LICENSE
+ *
+ * @package yii-email-module
+ */
+
+body {
+    padding-top: 70px;
+}
+
+#footer {
+    margin-top: 30px;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+}
+
+#footer a, #footer {
+    color: #bbb;
+}
+
+.grid-view table.table th a:after {
+    display: inline-block;
+    float: right;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.grid-view table.table th a.asc:after,
+.grid-view table.table th a:hover:after {
+    content: "\f062";
+}
+
+.grid-view table.table th a.desc:after,
+.grid-view table.table th a.asc:hover:after {
+    content: "\f063";
+}

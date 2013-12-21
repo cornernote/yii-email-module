@@ -1,0 +1,29 @@
+CREATE TABLE "email_spool" (
+"id"  INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+"transport" TEXT,
+"template" TEXT,
+"priority" INTEGER,
+"status" TEXT,
+"model_name" TEXT,
+"model_id" INTEGER,
+"to_email" TEXT,
+"to_name" TEXT,
+"from_email" TEXT,
+"from_name" TEXT,
+"message_subject" TEXT,
+"message_html" TEXT,
+"message_text" TEXT,
+"attachments" TEXT,
+"sent" INTEGER,
+"created" INTEGER
+);
+CREATE INDEX "email_spool_model" ON "email_spool" ("model_name","model_id");
+CREATE INDEX "email_spool_transport" ON "email_spool" ("transport");
+CREATE INDEX "email_spool_template" ON "email_spool" ("template");
+CREATE INDEX "email_spool_status" ON "email_spool" ("status");
+CREATE INDEX "email_spool_to_email" ON "email_spool" ("to_email");
+CREATE INDEX "email_spool_to_name" ON "email_spool" ("to_name");
+CREATE INDEX "email_spool_from_email" ON "email_spool" ("from_email");
+CREATE INDEX "email_spool_from_name" ON "email_spool" ("from_name");
+CREATE INDEX "email_spool_sent" ON "email_spool" ("sent");
+CREATE INDEX "email_spool_created" ON "email_spool" ("created");
