@@ -14,14 +14,15 @@ class EmailManagerBase extends CComponent
 {
 
     /**
-     * @var string defaults to the application name
-     */
-    public $fromName;
-
-    /**
      * @var string
      */
     public $fromEmail = 'webmaster@localhost';
+
+    /**
+     * @var string If unset the application name is used.
+     * @see setFromName
+     */
+    private $_fromName;
 
     /**
      * @var string Render method, can be one of: php, database
@@ -43,45 +44,75 @@ class EmailManagerBase extends CComponent
      */
     public function init()
     {
-        // include SwiftMailer
-        $path = Yii::getPathOfAlias('vendor') . '/swiftmailer/swiftmailer/lib';
-        require_once($path . '/classes/Swift.php');
-        Yii::registerAutoloader(array('Swift', 'autoload'));
-        require_once($path . '/swift_init.php');
-
-        // set default from name
-        if ($this->fromName === null)
-            $this->fromName = Yii::app()->name;
+        $this->registerSwiftMailerAutoloader();
     }
 
     /**
      * Allows sending a quick email.
      *
      * Eg:
-     * Yii::app()->emailManager->sendEmail('webmaster@localhost', 'subject', 'message');
+     * Yii::app()->emailManager->email('webmaster@localhost', 'subject', 'message');
      *
-     * @param $to_email
+     * @param $to
      * @param $subject
      * @param $message
-     * @param $filename
+     * @param $attachments
+     * @param $from
+     * @param $spool
      * @return bool
      */
-    public function sendEmail($to_email, $subject, $message, $attachments = array())
+    public function email($to, $subject, $message, $from = null, $attachments = array(), $spool = true)
     {
         // get the message
         $swiftMessage = Swift_Message::newInstance($subject);
+        $swiftMessage->setTo($to);
         $swiftMessage->setBody($message, 'text/html');
-        $swiftMessage->setFrom($this->fromEmail, $this->fromName);
-        $swiftMessage->setTo($to_email);
+
+        // set the from
+        if (!$from)
+            $swiftMessage->setFrom($this->fromEmail, $this->fromName);
+
+        // attach files
         foreach ($attachments as $attachment)
             $swiftMessage->attach(Swift_Attachment::fromPath($attachment));
 
-        // spool the email
+        // send the email
+        if (!$spool)
+            return Swift_Mailer::newInstance(Swift_MailTransport::newInstance())->send($swiftMessage);
+
+        // or spool the email
         $emailSpool = $this->getEmailSpool($swiftMessage);
         return $emailSpool->save(false);
+    }
 
-        // or send the email
-        //return Swift_Mailer::newInstance(Swift_MailTransport::newInstance())->send($swiftMessage);
+    /**
+     * Find pending emails and attempt to deliver them
+     */
+    public function spool($limit = 10)
+    {
+        // find all the spooled emails
+        $spools = EmailSpool::model()->findAll(array(
+            'condition' => 't.status=:status',
+            'params' => array(':status' => 'pending'),
+            'order' => 't.priority DESC, t.created ASC',
+            'limit' => $limit,
+        ));
+        foreach ($spools as $spool) {
+
+            // update status to emailing
+            $spool->status = 'processing';
+            $spool->save(false);
+
+            // build the message
+            $message = $spool->unpack($spool->message);
+
+            // send the email and update status
+            $Mailer = Swift_Mailer::newInstance(Swift_MailTransport::newInstance());
+            $spool->status = $Mailer->send($message) ? 'emailed' : 'error';
+            $spool->sent = time();
+            $spool->save(false);
+
+        }
     }
 
     /**
@@ -116,6 +147,25 @@ class EmailManagerBase extends CComponent
             $this->renderMethod = 'php';
         return call_user_func_array(array($this, 'renderEmailTemplate_' . $this->renderMethod), array($template, $viewParams, $layout));
     }
+
+    /**
+     * @param string $fromName
+     */
+    public function setFromName($fromName)
+    {
+        $this->_fromName = $fromName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFromName()
+    {
+        if ($this->fromName === null)
+            $this->fromName = Yii::app()->name;
+        return $this->_fromName;
+    }
+
 
     /**
      * @param $template string
@@ -167,35 +217,15 @@ class EmailManagerBase extends CComponent
         return $message;
     }
 
-
     /**
-     * Find pending emails and attempt to deliver them
+     * Registers the SwiftMailer autoloader
      */
-    public function processSpool($limit = 10)
+    private function registerSwiftMailerAutoloader()
     {
-        // find all the spooled emails
-        $spools = EmailSpool::model()->findAll(array(
-            'condition' => 't.status=:status',
-            'params' => array(':status' => 'pending'),
-            'order' => 't.priority DESC, t.created ASC',
-            'limit' => $limit,
-        ));
-        foreach ($spools as $spool) {
-
-            // update status to emailing
-            $spool->status = 'processing';
-            $spool->save(false);
-
-            // build the message
-            $message = $spool->unpack($spool->message);
-
-            // send the email and update status
-            $Mailer = Swift_Mailer::newInstance(Swift_MailTransport::newInstance());
-            $spool->status = $Mailer->send($message) ? 'emailed' : 'error';
-            $spool->sent = time();
-            $spool->save(false);
-
-        }
+        $path = Yii::getPathOfAlias('vendor') . '/swiftmailer/swiftmailer/lib';
+        require_once($path . '/classes/Swift.php');
+        Yii::registerAutoloader(array('Swift', 'autoload'));
+        require_once($path . '/swift_init.php');
     }
 
 }
