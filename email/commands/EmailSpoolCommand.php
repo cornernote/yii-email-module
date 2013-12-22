@@ -14,28 +14,15 @@ class EmailSpoolCommand extends CConsoleCommand
 {
 
     /**
-     * Sends live emails
+     * Sends emails
      */
-    public function actionLive()
+    public function actionIndex()
     {
         // long loop
         set_time_limit(60 * 60 * 24);
         for ($i = 0; $i < 60 * 60; $i++) {
             Yii::app()->emailManager->processSpool();
             sleep(1);
-        }
-    }
-
-    /**
-     * Sends emails to mailinator
-     */
-    public function actionMailinator()
-    {
-        // short loop
-        set_time_limit(60 * 60);
-        for ($i = 0; $i < 60 * 5; $i++) {
-            Yii::app()->emailManager->processSpool($mailinator = true);
-            sleep(10);
         }
     }
 

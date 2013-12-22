@@ -83,6 +83,10 @@ return array(
 
 			// can be one of: php, db
 			'templateType' => 'php',
+
+			// when templateType=php this is the path to the email views
+			// you may copy the default templates from email/views/emails
+			'templateType' => 'application.views.emails',
 		),
 	),
 );
@@ -91,19 +95,22 @@ return array(
 
 ## Usage
 
-Send an email:
+
+### Simple Usage
 
 ```php
 Yii::app()->emailManager->email('user@dom.ain', 'test email', '<b>Hello</b> <i>World<i>!');
 ```
 
-Build and send an email deom a template:
+### Using Templates
+
+To send more complex emails you will need to use Email Templates.
+
+Create a new component in `components/Email.php`:
 
 ```php
-class Email
-{
-	public static function sendUserWelcome($user)
-	{
+class Email {
+	public static function sendUserWelcome($user) {
 		$emailManager = Yii::app()->emailManager;
 
 		// build the templates
@@ -132,11 +139,44 @@ class Email
 }
 ```
 
-Then call it like this:
+Create a view for the subject in `views/emails/example/subject.php`:
+```php
+<?php echo 'hello' . $user->name;
+```
+
+Create a view for the heading in `views/emails/example/heading.php`:
+```php
+<?php echo 'Hi there ' . $user->name . ', Welcome to '. Yii::app()->name;
+```
+
+Create a view for the message in `views/emails/example/message.php`:
+```php
+<?php echo 'Here is an <b>awesome</b> email!';
+```
+
+Now you can send an email like this:
 
 ```php
 $user = User::model()->findByPk(123);
 Email::sendUserWelcome($user);
+```
+
+### Sending Spooled Emails
+
+Create a new yiic command in `commands/EmailSpoolCommand.php`:
+
+```php
+class EmailSpoolCommand extends CConsoleCommand {
+	public function actionIndex() {
+		Yii::app()->emailManager->processSpool();
+	}
+}
+```
+
+Now you can send the spooled emails like this:
+
+```
+yiic emailSpool
 ```
 
 
