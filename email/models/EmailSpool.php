@@ -13,14 +13,10 @@
  * @property string $status
  * @property string $model_name
  * @property integer $model_id
- * @property string $to_email
- * @property string $to_name
- * @property string $from_email
- * @property string $from_name
- * @property string $message_subject
- * @property string $message_html
- * @property string $message_text
- * @property string $attachments
+ * @property string $to_address
+ * @property string $from_address
+ * @property string $subject
+ * @property string $message
  * @property integer $sent
  * @property integer $created
  *
@@ -72,14 +68,10 @@ class EmailSpool extends EmailActiveRecord
             'status' => Yii::t('email', 'Status'),
             'model_name' => Yii::t('email', 'Model Name'),
             'model_id' => Yii::t('email', 'Model ID'),
-            'to_email' => Yii::t('email', 'To Email'),
-            'to_name' => Yii::t('email', 'To Name'),
-            'from_email' => Yii::t('email', 'From Email'),
-            'from_name' => Yii::t('email', 'From Name'),
-            'message_subject' => Yii::t('email', 'Message Subject'),
-            'message_html' => Yii::t('email', 'Message Html'),
-            'message_text' => Yii::t('email', 'Message Text'),
-            'attachments' => Yii::t('email', 'Attachments'),
+            'to_address' => Yii::t('email', 'To Address'),
+            'from_address' => Yii::t('email', 'From Address'),
+            'subject' => Yii::t('email', 'Subject'),
+            'message' => Yii::t('email', 'Message'),
             'sent' => Yii::t('email', 'Sent'),
             'created' => Yii::t('email', 'Created'),
         );
@@ -92,7 +84,7 @@ class EmailSpool extends EmailActiveRecord
     {
         $rules = array();
         if ($this->scenario == 'search') {
-            $rules[] = array('id, transport, template, priority, status, model_name, model_id, to_email, to_name, from_email, from_name, message_subject, message_html, message_text, attachments, sent, created', 'safe');
+            $rules[] = array('id, transport, template, priority, status, model_name, model_id, to_address, from_address, subject, message, sent, created', 'safe');
         }
         return $rules;
     }
@@ -112,14 +104,10 @@ class EmailSpool extends EmailActiveRecord
         $criteria->compare('t.status', $this->status, true);
         $criteria->compare('t.model_name', $this->model_name, true);
         $criteria->compare('t.model_id', $this->model_id);
-        $criteria->compare('t.to_email', $this->to_email, true);
-        $criteria->compare('t.to_name', $this->to_name, true);
-        $criteria->compare('t.from_email', $this->from_email, true);
-        $criteria->compare('t.from_name', $this->from_name, true);
-        $criteria->compare('t.message_subject', $this->message_subject, true);
-        $criteria->compare('t.message_html', $this->message_html, true);
-        $criteria->compare('t.message_text', $this->message_text, true);
-        $criteria->compare('t.attachments', $this->attachments, true);
+        $criteria->compare('t.to_address', $this->to_address, true);
+        $criteria->compare('t.from_address', $this->from_address, true);
+        $criteria->compare('t.subject', $this->subject, true);
+        $criteria->compare('t.message', $this->message, true);
         $criteria->compare('t.sent', $this->sent);
         $criteria->compare('t.created', $this->created);
 
@@ -129,6 +117,24 @@ class EmailSpool extends EmailActiveRecord
                 'defaultOrder' => 'id DESC',
             ),
         ));
+    }
+
+    /**
+     * @param $value mixed
+     * @return string
+     */
+    public static function pack($value)
+    {
+        return gzcompress(serialize($value));
+    }
+
+    /**
+     * @param $value string
+     * @return mixed
+     */
+    public static function unpack($value)
+    {
+        return unserialize(gzuncompress($value));
     }
 
 }

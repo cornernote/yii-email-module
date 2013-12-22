@@ -16,6 +16,7 @@
         }
     ],
     "require": {
+        "swiftmailer/swiftmailer": "v5.0.2",
         "yiisoft/yii": "1.1.14"
     }
 }

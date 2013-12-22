@@ -15,6 +15,7 @@ class EmailManagerExample extends EmailManagerBase
 
     /**
      * @param $user User
+     * @return bool
      */
     public function sendAccountRecover($user)
     {
@@ -22,23 +23,31 @@ class EmailManagerExample extends EmailManagerBase
         $token = EmailToken::model()->add(strtotime('+1day'), 1, get_class($user), $user->user_id);
         $url = Yii::app()->createAbsoluteUrl('/account/passwordReset', array('id' => $user->user_id, 'token' => $token));
 
-        // save EmailSpool
-        $emailSpool = $this->getEmailSpool($this->renderEmailTemplate('account_recover', array(
+        // build the templates
+        $template = 'account_recover';
+        $message = $this->buildTemplateMessage($template, array(
             'user' => $user,
             'url' => $url,
-        )));
+        ));
+
+        // get the message
+        $swiftMessage = $this->getSwiftMessage($message);
+        $swiftMessage->setFrom($this->fromEmail, $this->fromName);
+        $swiftMessage->setTo($user->email, $user->name);
+
+        // spool the email
+        $emailSpool = $this->getEmailSpool($swiftMessage, $user);
         $emailSpool->priority = 10;
-        $emailSpool->to_email = $user->email;
-        $emailSpool->to_name = $user->name;
-        $emailSpool->from_email = $this->fromEmail;
-        $emailSpool->from_name = $this->fromName;
-        $emailSpool->model_name = get_class($user);
-        $emailSpool->model_id = $user->user_id;
-        $emailSpool->save(false);
+        $emailSpool->template = $template;
+        return $emailSpool->save(false);
+
+        // or send the email
+        //return Swift_Mailer::newInstance(Swift_MailTransport::newInstance())->send($swiftMessage);
     }
 
     /**
      * @param $user User
+     * @return bool
      */
     public function sendAccountWelcome($user)
     {
@@ -46,19 +55,26 @@ class EmailManagerExample extends EmailManagerBase
         $token = EmailToken::model()->add('+30days', 1, get_class($user), $user->user_id);
         $url = Yii::app()->createAbsoluteUrl('/account/activate', array('id' => $user->user_id, 'token' => $token));
 
-        // save EmailSpool
-        $emailSpool = $this->getEmailSpool($this->renderEmailTemplate('account_welcome', array(
+        // build the templates
+        $template = 'account_welcome';
+        $message = $this->buildTemplateMessage($template, array(
             'user' => $user,
             'url' => $url,
-        )));
+        ));
+
+        // get the message
+        $swiftMessage = $this->getSwiftMessage($message);
+        $swiftMessage->setFrom($this->fromEmail, $this->fromName);
+        $swiftMessage->setTo($user->email, $user->name);
+
+        // spool the email
+        $emailSpool = $this->getEmailSpool($swiftMessage, $user);
         $emailSpool->priority = 5;
-        $emailSpool->to_email = $user->email;
-        $emailSpool->to_name = $user->name;
-        $emailSpool->from_email = $this->fromEmail;
-        $emailSpool->from_name = $this->fromName;
-        $emailSpool->model_name = get_class($user);
-        $emailSpool->model_id = $user->user_id;
-        $emailSpool->save(false);
+        $emailSpool->template = $template;
+        return $emailSpool->save(false);
+
+        // or send the email
+        //return Swift_Mailer::newInstance(Swift_MailTransport::newInstance())->send($swiftMessage);
     }
 
 }

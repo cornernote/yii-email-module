@@ -19,14 +19,12 @@ $attributes[] = array(
     'name' => 'id',
     'value' => ' emailSpool-' . $emailSpool->id,
 );
-$attributes[] = 'message_subject';
-$attributes[] = 'to_email';
-$attributes[] = 'to_name';
+$attributes[] = 'subject';
+$attributes[] = 'to_address';
+$attributes[] = 'from_address';
 $attributes[] = 'status';
 $attributes[] = 'model';
 $attributes[] = 'model_id';
-$attributes[] = 'from_email';
-$attributes[] = 'from_name';
 $attributes[] = array(
     'name' => 'model_id',
     //'value' => $emailSpool->getModelLink(),
@@ -39,7 +37,7 @@ $this->widget('zii.widgets.CDetailView', array(
 ));
 
 echo CHtml::tag('h2', array(), Yii::t('email', 'Message HTML'));
-echo $emailSpool->message_html;
+//echo $emailSpool->message;
 
 echo CHtml::tag('h2', array(), Yii::t('email', 'Message Text'));
-echo nl2br($emailSpool->message_text);
+//echo nl2br($emailSpool->message_text);

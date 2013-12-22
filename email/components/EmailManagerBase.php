@@ -10,7 +10,7 @@
  *
  * @package yii-email-module
  */
-class EmailManagerBase extends CApplicationComponent
+class EmailManagerBase extends CComponent
 {
 
     /**
@@ -38,7 +38,14 @@ class EmailManagerBase extends CApplicationComponent
      */
     public function init()
     {
-        if (!$this->fromName)
+        // include SwiftMailer
+        $path = Yii::getPathOfAlias('vendor') . '/swiftmailer/swiftmailer/lib';
+        require_once($path . '/classes/Swift.php');
+        Yii::registerAutoloader(array('Swift', 'autoload'));
+        require_once($path . '/swift_init.php');
+
+        // set default from name
+        if ($this->fromName === null)
             $this->fromName = Yii::app()->name;
     }
 
@@ -52,46 +59,64 @@ class EmailManagerBase extends CApplicationComponent
      * @param $subject
      * @param $message_text
      * @param $filename
+     * @return bool
      */
-    public function sendEmail($to_email, $subject, $message_text, $filename = null)
+    public function sendEmail($to_email, $subject, $message_text, $attachments = array())
     {
-        $emailSpool = $this->getEmailSpool(array(
+        // build the templates
+        $message = array(
             'message_subject' => $subject,
             'message_text' => $message_text,
             'message_html' => Yii::app()->format->formatNtext($message_text),
-        ));
-        $emailSpool->status = $filename ? 'attaching' : 'pending';
-        $emailSpool->from_email = $this->fromEmail;
-        $emailSpool->from_name = $this->fromName;
-        $emailSpool->to_email = $to_email;
-        $emailSpool->save(false);
+        );
 
-        if ($filename) {
-            // TODO handle attachments
-            //$attachment = new Attachment();
-            //$attachment->model = 'EmailSpool';
-            //$attachment->model_id = $emailSpool->id;
-            //$attachment->filename = $filename;
-            //$attachment->handleFileUpload = false;
+        // get the message
+        $swiftMessage = $this->getSwiftMessage($message);
+        $swiftMessage->setFrom($this->fromEmail, $this->fromName);
+        $swiftMessage->setTo($to_email);
+        foreach ($attachments as $attachment)
+            $swiftMessage->attach(Swift_Attachment::fromPath($attachment));
 
-            $emailSpool->status = 'pending';
-            $emailSpool->save(false);
-        }
+        // spool the email
+        $emailSpool = $this->getEmailSpool($swiftMessage);
+        return $emailSpool->save(false);
+
+        // or send the email
+        //return Swift_Mailer::newInstance(Swift_MailTransport::newInstance())->send($swiftMessage);
     }
 
     /**
-     * @param array $message
+     * @param Swift_Message $swiftMessage
+     * @param CActiveRecord|null $model
      * @return EmailSpool
      */
-    public function getEmailSpool($message)
+    public function getEmailSpool($swiftMessage, $model = null)
     {
         $emailSpool = new EmailSpool;
+        $emailSpool->created = time();
         $emailSpool->status = 'pending';
-        $emailSpool->template = vd($message['template']);
-        $emailSpool->message_subject = $message['message_subject'];
-        $emailSpool->message_text = $message['message_text'];
-        $emailSpool->message_html = $message['message_html'];
+        $emailSpool->subject = $swiftMessage->getSubject();
+        $emailSpool->message = $emailSpool->pack($swiftMessage);
+        $emailSpool->to_address = json_encode($swiftMessage->getTo());
+        $emailSpool->from_address = json_encode($swiftMessage->getFrom());
+        if ($model) {
+            $emailSpool->model_name = get_class($model);
+            $emailSpool->model_id = is_array($model->getPrimaryKey()) ? implode('-', $model->getPrimaryKey()) : $model->getPrimaryKey();
+        }
         return $emailSpool;
+    }
+
+
+    /**
+     * @param array $message
+     * @return Swift_Message
+     */
+    public function getSwiftMessage($message)
+    {
+        $swiftMessage = Swift_Message::newInstance($message['message_subject']);
+        $swiftMessage->setBody($message['message_text']);
+        $swiftMessage->addPart($message['message_html'], 'text/html');
+        return $swiftMessage;
     }
 
     /**
@@ -99,7 +124,7 @@ class EmailManagerBase extends CApplicationComponent
      * @param $viewParams array
      * @return array
      */
-    public function renderEmailTemplate($template, $viewParams = array(), $layout = 'layout_default')
+    public function buildTemplateMessage($template, $viewParams = array(), $layout = 'layout_default')
     {
         if (!method_exists($this, 'renderEmailTemplate_' . $this->renderMethod))
             $this->renderMethod = 'php';
@@ -120,7 +145,6 @@ class EmailManagerBase extends CApplicationComponent
 
         // parse template
         $fields = array('message_title', 'message_subject', 'message_html', 'message_text');
-        $message = array('template' => $template);
         $controller = Yii::app()->controller;
         foreach ($fields as $field) {
             $viewParams['contents'] = $controller->renderPartial($emailTemplate . '.' . str_replace('message_', '', $field), $viewParams, true);
@@ -151,7 +175,6 @@ class EmailManagerBase extends CApplicationComponent
         // parse template
         $mustache = new EmailMustache();
         $fields = array('message_title', 'message_subject', 'message_html', 'message_text');
-        $message = array('template' => $template);
         foreach ($fields as $field) {
             $viewParams['contents'] = $mustache->render($emailTemplate->$field, $viewParams);
             $viewParams[$field] = $message[$field] = $mustache->render($emailLayout->$field, $viewParams);
@@ -163,9 +186,8 @@ class EmailManagerBase extends CApplicationComponent
 
     /**
      * Find pending emails and attempt to deliver them
-     * @param bool $mailinator
      */
-    public function processSpool($mailinator = false)
+    public function processSpool()
     {
         // find all the spooled emails
         $spools = EmailSpool::model()->findAll(array(
@@ -180,30 +202,13 @@ class EmailManagerBase extends CApplicationComponent
             $spool->status = 'processing';
             $spool->save(false);
 
-            // get the to_email
-            $to_email = $mailinator ? str_replace('@', '.', $spool->to_email) . '@mailinator.com' : $spool->to_email;
-
             // build the message
-            $SM = Yii::app()->swiftMailer;
-            $message = $SM->newMessage($spool->message_subject);
-            $message->setFrom($spool->from_name ? array($spool->from_email => $spool->from_name) : array($spool->from_email));
-            $message->setTo($spool->to_name ? array($to_email => $spool->to_name) : array($to_email));
-            $message->setBody($spool->message_text);
-            $message->addPart($spool->message_html, 'text/html');
-            foreach ($spool->attachment as $attachment) {
-                $message->attach(Swift_Attachment::fromPath($attachment->filename));
-            }
+            $message = $spool->unpack($spool->message);
 
             // send the email and update status
-            $Transport = $SM->mailTransport();
-            $Mailer = $SM->mailer($Transport);
-            if ($Mailer->send($message)) {
-                $spool->status = 'emailed';
-                $spool->sent = date('Y-m-d H:i:s');
-            }
-            else {
-                $spool->status = 'error';
-            }
+            $Mailer = Swift_Mailer::newInstance(Swift_MailTransport::newInstance());
+            $spool->status = $Mailer->send($message) ? 'emailed' : 'error';
+            $spool->sent = time();
             $spool->save(false);
 
         }

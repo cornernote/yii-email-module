@@ -37,19 +37,13 @@ $columns[] = array(
     'name' => 'model_id',
 );
 $columns[] = array(
-    'name' => 'to_email',
+    'name' => 'to_address',
 );
 $columns[] = array(
-    'name' => 'to_name',
+    'name' => 'from_address',
 );
 $columns[] = array(
-    'name' => 'from_email',
-);
-$columns[] = array(
-    'name' => 'from_name',
-);
-$columns[] = array(
-    'name' => 'message_subject',
+    'name' => 'subject',
 );
 $columns[] = array(
     'name' => 'sent',
