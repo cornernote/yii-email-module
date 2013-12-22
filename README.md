@@ -16,12 +16,14 @@ Easily configurable and powerful email system with templates and email queuing.
 
 ## Features
 
-- email spool
-- email templates, php/db
-- built ontop of swiftmailer
+- Emails can be sent directly, or saved into a spool to be sent later.
+- Templates can be normal php files, or stored in the database and rendered with Mustache
+- Emails are built and send using SwiftMailer
 
 
 ## Screenshots
+
+...coming soon...
 
 
 ## Installation
