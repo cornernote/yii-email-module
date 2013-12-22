@@ -34,6 +34,11 @@ class EmailManagerBase extends CComponent
     public $templatePath = 'email.views.emails';
 
     /**
+     * @var array
+     */
+    public $templateFields = array('subject', 'heading', 'message');
+
+    /**
      *
      */
     public function init()
@@ -125,9 +130,8 @@ class EmailManagerBase extends CComponent
         $emailLayout = $this->templatePath . '.' . $layout;
 
         // parse template
-        $fields = array('subject', 'heading', 'message');
         $controller = Yii::app()->controller;
-        foreach ($fields as $field) {
+        foreach ($this->templateFields as $field) {
             $viewParams['contents'] = $controller->renderPartial($emailTemplate . '.' . $field, $viewParams, true);
             $viewParams[$field] = $message[$field] = $controller->renderPartial($emailLayout . '.' . $field, $viewParams, true);
             unset($viewParams['contents']);
@@ -155,8 +159,7 @@ class EmailManagerBase extends CComponent
 
         // parse template
         $mustache = new EmailMustache();
-        $fields = array('subject', 'heading', 'message');
-        foreach ($fields as $field) {
+        foreach ($this->templateFields as $field) {
             $viewParams['contents'] = $mustache->render($emailTemplate->$field, $viewParams);
             $viewParams[$field] = $message[$field] = $mustache->render($emailLayout->$field, $viewParams);
             unset($viewParams['contents']);
@@ -168,14 +171,14 @@ class EmailManagerBase extends CComponent
     /**
      * Find pending emails and attempt to deliver them
      */
-    public function processSpool()
+    public function processSpool($limit = 10)
     {
         // find all the spooled emails
         $spools = EmailSpool::model()->findAll(array(
             'condition' => 't.status=:status',
             'params' => array(':status' => 'pending'),
-            'order' => 't.priority DESC, t.id ASC',
-            'limit' => '10',
+            'order' => 't.priority DESC, t.created ASC',
+            'limit' => $limit,
         ));
         foreach ($spools as $spool) {
 
