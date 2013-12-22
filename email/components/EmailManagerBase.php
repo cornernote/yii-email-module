@@ -153,25 +153,6 @@ class EmailManagerBase extends CComponent
     }
 
     /**
-     * @param string $fromName
-     */
-    public function setFromName($fromName)
-    {
-        $this->_fromName = $fromName;
-    }
-
-    /**
-     * @return string
-     */
-    public function getFromName()
-    {
-        if ($this->fromName === null)
-            $this->fromName = Yii::app()->name;
-        return $this->_fromName;
-    }
-
-
-    /**
      * @param $template string
      * @param $viewParams array
      * @throws CException
@@ -230,6 +211,24 @@ class EmailManagerBase extends CComponent
         require_once($path . '/classes/Swift.php');
         Yii::registerAutoloader(array('Swift', 'autoload'));
         require_once($path . '/swift_init.php');
+    }
+
+    /**
+     * @param string $fromName
+     */
+    public function setFromName($fromName)
+    {
+        $this->_fromName = $fromName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFromName()
+    {
+        if ($this->fromName === null)
+            $this->fromName = Yii::app()->name;
+        return $this->_fromName;
     }
 
 }
