@@ -19,10 +19,9 @@ $form = $this->beginWidget('email.widgets.EmailActiveForm', array(
 echo $form->errorSummary($emailTemplate);
 
 echo $form->textFieldRow($emailTemplate, 'name');
-echo $form->textFieldRow($emailTemplate, 'message_subject');
-echo $form->textFieldRow($emailTemplate, 'message_title');
-echo $form->textAreaRow($emailTemplate, 'message_html');
-echo $form->textAreaRow($emailTemplate, 'message_text');
+echo $form->textFieldRow($emailTemplate, 'subject');
+echo $form->textFieldRow($emailTemplate, 'heading');
+echo $form->textAreaRow($emailTemplate, 'message');
 
 echo $form->getSubmitButtonRow($emailTemplate->isNewRecord ? Yii::t('email', 'Create') : Yii::t('email', 'Save'));
 $this->endWidget();

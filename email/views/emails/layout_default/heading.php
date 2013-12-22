@@ -1,9 +1,6 @@
 <?php
 /**
- * Text for Account Welcome Email
- *
- * @var $message_title string
- * @var $contents string
+ * Heading for Email Default Layout
  *
  * @author Brett O'Donnell <cornernote@gmail.com>
  * @author Zain Ul abidin <zainengineer@gmail.com>
@@ -14,5 +11,4 @@
  * @package yii-email-module
  */
 
-?>
-hello world!
+echo $contents;

@@ -53,25 +53,19 @@ class EmailManagerBase extends CComponent
      * Allows sending a quick email.
      *
      * Eg:
-     * Yii::app()->email->sendEmail('webmaster@localhost', 'subject', 'message');
+     * Yii::app()->emailManager->sendEmail('webmaster@localhost', 'subject', 'message');
      *
      * @param $to_email
      * @param $subject
-     * @param $message_text
+     * @param $message
      * @param $filename
      * @return bool
      */
-    public function sendEmail($to_email, $subject, $message_text, $attachments = array())
+    public function sendEmail($to_email, $subject, $message, $attachments = array())
     {
-        // build the templates
-        $message = array(
-            'message_subject' => $subject,
-            'message_text' => $message_text,
-            'message_html' => Yii::app()->format->formatNtext($message_text),
-        );
-
         // get the message
-        $swiftMessage = $this->getSwiftMessage($message);
+        $swiftMessage = Swift_Message::newInstance($subject);
+        $swiftMessage->setBody($message, 'text/html');
         $swiftMessage->setFrom($this->fromEmail, $this->fromName);
         $swiftMessage->setTo($to_email);
         foreach ($attachments as $attachment)
@@ -106,19 +100,6 @@ class EmailManagerBase extends CComponent
         return $emailSpool;
     }
 
-
-    /**
-     * @param array $message
-     * @return Swift_Message
-     */
-    public function getSwiftMessage($message)
-    {
-        $swiftMessage = Swift_Message::newInstance($message['message_subject']);
-        $swiftMessage->setBody($message['message_text']);
-        $swiftMessage->addPart($message['message_html'], 'text/html');
-        return $swiftMessage;
-    }
-
     /**
      * @param $template string
      * @param $viewParams array
@@ -144,11 +125,11 @@ class EmailManagerBase extends CComponent
         $emailLayout = $this->templatePath . '.' . $layout;
 
         // parse template
-        $fields = array('message_title', 'message_subject', 'message_html', 'message_text');
+        $fields = array('subject', 'heading', 'message');
         $controller = Yii::app()->controller;
         foreach ($fields as $field) {
-            $viewParams['contents'] = $controller->renderPartial($emailTemplate . '.' . str_replace('message_', '', $field), $viewParams, true);
-            $viewParams[$field] = $message[$field] = $controller->renderPartial($emailLayout . '.' . str_replace('message_', '', $field), $viewParams, true);
+            $viewParams['contents'] = $controller->renderPartial($emailTemplate . '.' . $field, $viewParams, true);
+            $viewParams[$field] = $message[$field] = $controller->renderPartial($emailLayout . '.' . $field, $viewParams, true);
             unset($viewParams['contents']);
         }
         return $message;
@@ -174,7 +155,7 @@ class EmailManagerBase extends CComponent
 
         // parse template
         $mustache = new EmailMustache();
-        $fields = array('message_title', 'message_subject', 'message_html', 'message_text');
+        $fields = array('subject', 'heading', 'message');
         foreach ($fields as $field) {
             $viewParams['contents'] = $mustache->render($emailTemplate->$field, $viewParams);
             $viewParams[$field] = $message[$field] = $mustache->render($emailLayout->$field, $viewParams);

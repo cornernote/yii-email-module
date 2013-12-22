@@ -127,7 +127,7 @@ class EmailWebController extends CController
         }
         if (!$items)
             return '';
-        $items[] = array('label' => $this->pageHeading);
+        $items[] = array('label' => $this->pageTitle);
         return $this->widget('zii.widgets.CMenu', array(
             'items' => $items,
             'htmlOptions' => array('class' => 'breadcrumb'),

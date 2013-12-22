@@ -31,7 +31,9 @@ class EmailManagerExample extends EmailManagerBase
         ));
 
         // get the message
-        $swiftMessage = $this->getSwiftMessage($message);
+        $swiftMessage = Swift_Message::newInstance($message['subject']);
+        $swiftMessage->setBody($message['message'], 'text/html');
+        //$swiftMessage->addPart($message['text'], 'text/plain');
         $swiftMessage->setFrom($this->fromEmail, $this->fromName);
         $swiftMessage->setTo($user->email, $user->name);
 
@@ -63,7 +65,9 @@ class EmailManagerExample extends EmailManagerBase
         ));
 
         // get the message
-        $swiftMessage = $this->getSwiftMessage($message);
+        $swiftMessage = Swift_Message::newInstance($message['subject']);
+        $swiftMessage->setBody($message['message'], 'text/html');
+        //$swiftMessage->addPart($message['text'], 'text/plain');
         $swiftMessage->setFrom($this->fromEmail, $this->fromName);
         $swiftMessage->setTo($user->email, $user->name);
 

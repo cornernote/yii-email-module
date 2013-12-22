@@ -1,8 +1,8 @@
 <?php
 /**
- * Html for Account Welcome Email
+ * Message for Email Default Layout
  *
- * @var $message_title string
+ * @var $heading string
  * @var $contents string
  *
  * @author Brett O'Donnell <cornernote@gmail.com>
@@ -13,6 +13,6 @@
  *
  * @package yii-email-module
  */
-?>
 
-<strong>hello world!</strong>
+echo CHtml::tag('h1', array(), $heading);
+echo $contents;

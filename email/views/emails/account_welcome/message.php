@@ -1,6 +1,9 @@
 <?php
 /**
- * Title for Account Welcome Email
+ * Message for Account Welcome Email
+ *
+ * @var $user User
+ * @var $url string
  *
  * @author Brett O'Donnell <cornernote@gmail.com>
  * @author Zain Ul abidin <zainengineer@gmail.com>
@@ -10,5 +13,6 @@
  *
  * @package yii-email-module
  */
+?>
 
-echo Yii::t('email', 'Thanks for joining') . ' ' . Yii::app()->name . '!';
+<strong>hello world!</strong>

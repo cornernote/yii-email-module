@@ -8,10 +8,9 @@
  * Table email_template
  * @property integer $id
  * @property string $name
- * @property string $message_subject
- * @property string $message_title
- * @property string $message_html
- * @property string $message_text
+ * @property string $subject
+ * @property string $heading
+ * @property string $message
  *
  * @see CActiveRecord
  * @method EmailTemplate find() find($condition, array $params = array())
@@ -53,10 +52,9 @@ class EmailTemplate extends EmailActiveRecord
         return array(
             'id' => Yii::t('email', 'ID'),
             'name' => Yii::t('email', 'Name'),
-            'message_subject' => Yii::t('email', 'Message Subject'),
-            'message_title' => Yii::t('email', 'Message Title'),
-            'message_html' => Yii::t('email', 'Message Html'),
-            'message_text' => Yii::t('email', 'Message Text'),
+            'subject' => Yii::t('email', 'Subject'),
+            'heading' => Yii::t('email', 'Heading'),
+            'message' => Yii::t('email', 'Message'),
         );
     }
 
@@ -67,11 +65,11 @@ class EmailTemplate extends EmailActiveRecord
     {
         $rules = array();
         if ($this->scenario == 'search') {
-            $rules[] = array('id, name, message_subject, message_title, message_html, message_text', 'safe');
+            $rules[] = array('id, name, subject, heading, message', 'safe');
         }
         if (in_array($this->scenario, array('create', 'update'))) {
-            $rules[] = array('name, message_subject, message_title, message_html, message_text', 'required');
-            $rules[] = array('name, message_subject', 'length', 'max' => 255);
+            $rules[] = array('name, subject, heading, message', 'required');
+            $rules[] = array('name, subject', 'length', 'max' => 255);
         }
         return $rules;
     }
@@ -86,10 +84,9 @@ class EmailTemplate extends EmailActiveRecord
 
         $criteria->compare('t.id', $this->id);
         $criteria->compare('t.name', $this->name, true);
-        $criteria->compare('t.message_subject', $this->message_subject, true);
-        $criteria->compare('t.message_title', $this->message_title, true);
-        $criteria->compare('t.message_html', $this->message_html, true);
-        $criteria->compare('t.message_text', $this->message_text, true);
+        $criteria->compare('t.subject', $this->subject, true);
+        $criteria->compare('t.heading', $this->heading, true);
+        $criteria->compare('t.message', $this->message, true);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,

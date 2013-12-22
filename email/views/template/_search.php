@@ -21,10 +21,9 @@ $form->searchToggle('emailTemplate-grid-search', 'emailTemplate-grid');
 
 echo $form->textFieldRow($emailTemplate, 'id');
 echo $form->textFieldRow($emailTemplate, 'name');
-echo $form->textFieldRow($emailTemplate, 'message_subject');
-echo $form->textFieldRow($emailTemplate, 'message_title');
-echo $form->textFieldRow($emailTemplate, 'message_html');
-echo $form->textFieldRow($emailTemplate, 'message_text');
+echo $form->textFieldRow($emailTemplate, 'subject');
+echo $form->textFieldRow($emailTemplate, 'heading');
+echo $form->textFieldRow($emailTemplate, 'message');
 
 echo $form->getSubmitButtonRow(Yii::t('email', 'Search'));
 

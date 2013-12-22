@@ -13,31 +13,57 @@
  */
 $this->pageTitle = Yii::t('email', 'Spool ID-:id', array(':id' => $emailSpool->id));
 
-// details
 $attributes = array();
 $attributes[] = array(
     'name' => 'id',
-    'value' => ' emailSpool-' . $emailSpool->id,
 );
-$attributes[] = 'subject';
-$attributes[] = 'to_address';
-$attributes[] = 'from_address';
-$attributes[] = 'status';
-$attributes[] = 'model';
-$attributes[] = 'model_id';
+$attributes[] = array(
+    'name' => 'transport',
+);
+$attributes[] = array(
+    'name' => 'template',
+);
+$attributes[] = array(
+    'name' => 'priority',
+);
+$attributes[] = array(
+    'name' => 'status',
+);
+$attributes[] = array(
+    'name' => 'model_name',
+);
 $attributes[] = array(
     'name' => 'model_id',
-    //'value' => $emailSpool->getModelLink(),
-    'type' => 'raw',
 );
-$attributes[] = 'sent';
+$attributes[] = array(
+    'name' => 'to_address',
+);
+$attributes[] = array(
+    'name' => 'from_address',
+);
+$attributes[] = array(
+    'name' => 'subject',
+);
+$attributes[] = array(
+    'name' => 'sent',
+    'value' => $emailSpool->sent ? Yii::app()->format->formatDatetime($emailSpool->sent) : null,
+);
+$attributes[] = array(
+    'name' => 'created',
+    'value' => Yii::app()->format->formatDatetime($emailSpool->created),
+);
 $this->widget('zii.widgets.CDetailView', array(
     'data' => $emailSpool,
     'attributes' => $attributes,
 ));
 
-echo CHtml::tag('h2', array(), Yii::t('email', 'Message HTML'));
-//echo $emailSpool->message;
+// message
+echo CHtml::tag('h2', array(), Yii::t('email', 'Message'));
+echo CHtml::tag('pre', array(), $emailSpool->swiftMessage->getBody());
 
-echo CHtml::tag('h2', array(), Yii::t('email', 'Message Text'));
-//echo nl2br($emailSpool->message_text);
+// other parts
+foreach ($emailSpool->swiftMessage->getChildren() as $child) {
+    /** @var Swift_MimePart $child */
+    echo CHtml::tag('h2', array(), $child->getContentType());
+    echo CHtml::tag('pre', array(), $child->getBody());
+}

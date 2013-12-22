@@ -22,10 +22,10 @@ $columns[] = array(
     'name' => 'name',
 );
 $columns[] = array(
-    'name' => 'message_subject',
+    'name' => 'subject',
 );
 $columns[] = array(
-    'name' => 'message_title',
+    'name' => 'heading',
 );
 
 // grid

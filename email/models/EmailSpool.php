@@ -36,6 +36,8 @@
  *
  * --- END ModelDoc ---
  *
+ * @property Swift_Message $swiftMessage
+ *
  * @author Brett O'Donnell <cornernote@gmail.com>
  * @author Zain Ul abidin <zainengineer@gmail.com>
  * @copyright 2013 Mr PHP
@@ -135,6 +137,15 @@ class EmailSpool extends EmailActiveRecord
     public static function unpack($value)
     {
         return unserialize(gzuncompress($value));
+    }
+
+    /**
+     * @return Swift_Message
+     */
+    public function getSwiftMessage()
+    {
+        Yii::app()->getComponent('emailManager');
+        return $this->unpack($this->message);
     }
 
 }

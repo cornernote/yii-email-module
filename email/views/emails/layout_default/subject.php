@@ -1,6 +1,8 @@
 <?php
 /**
- * Subject for Default Layout
+ * Subject for Email Default Layout
+ *
+ * @var $contents string
  *
  * @author Brett O'Donnell <cornernote@gmail.com>
  * @author Zain Ul abidin <zainengineer@gmail.com>

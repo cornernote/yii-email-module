@@ -1,16 +1,9 @@
 CREATE TABLE `email_template` (
 `id` int(11) NOT NULL AUTO_INCREMENT,
 `name` varchar(255),
-`message_subject` varchar(255),
-`message_title` varchar(255),
-`message_html` text,
-`message_text` text
+`subject` varchar(255),
+`heading` varchar(255),
+`message` text
 PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;
-INSERT INTO `email_template` VALUES (1, 'layout_default', '{{contents}}', '{{contents}}', '<h1>{{message_title}}</h1>
-{{{contents}}}', '{{message_title}}
-
-------------
-
-{{contents}}
-');
+INSERT INTO `email_template` VALUES (1, 'layout_default', '{{contents}}', '{{contents}}', '<h1>{{heading}}</h1>{{{contents}}}');
