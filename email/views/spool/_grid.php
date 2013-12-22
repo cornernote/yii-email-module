@@ -52,15 +52,6 @@ $columns[] = array(
     'name' => 'message_subject',
 );
 $columns[] = array(
-    'name' => 'message_html',
-);
-$columns[] = array(
-    'name' => 'message_text',
-);
-$columns[] = array(
-    'name' => 'attachments',
-);
-$columns[] = array(
     'name' => 'sent',
 );
 $columns[] = array(

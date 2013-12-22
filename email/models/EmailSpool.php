@@ -71,7 +71,7 @@ class EmailSpool extends EmailActiveRecord
             'priority' => Yii::t('email', 'Priority'),
             'status' => Yii::t('email', 'Status'),
             'model_name' => Yii::t('email', 'Model Name'),
-            'model_id' => Yii::t('email', 'Model'),
+            'model_id' => Yii::t('email', 'Model ID'),
             'to_email' => Yii::t('email', 'To Email'),
             'to_name' => Yii::t('email', 'To Name'),
             'from_email' => Yii::t('email', 'From Email'),

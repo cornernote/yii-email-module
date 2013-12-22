@@ -19,8 +19,8 @@ class EmailManagerExample extends EmailManagerBase
     public function sendAccountRecover($user)
     {
         // get recovery temp login link
-        $token = Token::model()->add('+1day', 1, $relation);
-        $url = Yii::app()->createAbsoluteUrl('/account/passwordReset', array('id' => $user->id, 'token' => $token));
+        $token = EmailToken::model()->add(strtotime('+1day'), 1, get_class($user), $user->user_id);
+        $url = Yii::app()->createAbsoluteUrl('/account/passwordReset', array('id' => $user->user_id, 'token' => $token));
 
         // save EmailSpool
         $emailSpool = $this->getEmailSpool($this->renderEmailTemplate('account_recover', array(
@@ -32,8 +32,8 @@ class EmailManagerExample extends EmailManagerBase
         $emailSpool->to_name = $user->name;
         $emailSpool->from_email = $this->fromEmail;
         $emailSpool->from_name = $this->fromName;
-        $emailSpool->model = get_class($user);
-        $emailSpool->model_id = $user->id;
+        $emailSpool->model_name = get_class($user);
+        $emailSpool->model_id = $user->user_id;
         $emailSpool->save(false);
     }
 
@@ -43,8 +43,8 @@ class EmailManagerExample extends EmailManagerBase
     public function sendAccountWelcome($user)
     {
         // get activation token
-        $token = Token::model()->add('+30days', 1, $relation);
-        $url = Yii::app()->createAbsoluteUrl('/account/activate', array('id' => $user->id, 'token' => $token));
+        $token = EmailToken::model()->add('+30days', 1, get_class($user), $user->user_id);
+        $url = Yii::app()->createAbsoluteUrl('/account/activate', array('id' => $user->user_id, 'token' => $token));
 
         // save EmailSpool
         $emailSpool = $this->getEmailSpool($this->renderEmailTemplate('account_welcome', array(
@@ -56,8 +56,8 @@ class EmailManagerExample extends EmailManagerBase
         $emailSpool->to_name = $user->name;
         $emailSpool->from_email = $this->fromEmail;
         $emailSpool->from_name = $this->fromName;
-        $emailSpool->model = get_class($user);
-        $emailSpool->model_id = $user->id;
+        $emailSpool->model_name = get_class($user);
+        $emailSpool->model_id = $user->user_id;
         $emailSpool->save(false);
     }
 

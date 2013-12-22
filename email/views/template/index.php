@@ -21,10 +21,10 @@ $items[] = array('label' => Yii::t('email', 'Create'), 'url' => array('create'),
 $items[] = array('label' => Yii::t('email', 'Search'), 'url' => '#', 'linkOptions' => array('class' => 'emailTemplate-grid-search btn btn-default'));
 if (Yii::app()->user->getState('index.emailTemplate') != $this->createUrl('index'))
     $items[] = array('label' => Yii::t('email', 'Reset Filters'), 'url' => array('index'), 'linkOptions' => array('class' => 'btn btn-default'));
-$this->pageTitle .= $this->widget('zii.widgets.CMenu', array(
-    'items' => $items,
-    'htmlOptions' => array('class' => 'list-inline pull-right'),
-), true);
+$this->pageHeading = $this->pageTitle . $this->widget('zii.widgets.CMenu', array(
+        'items' => $items,
+        'htmlOptions' => array('class' => 'list-inline pull-right'),
+    ), true);
 
 // search
 $this->renderPartial('_search', array(
@@ -34,5 +34,4 @@ $this->renderPartial('_search', array(
 // grid
 $this->renderPartial('_grid', array(
     'emailTemplate' => $emailTemplate,
-    'dataProvider' => isset($dataProvider) ? $dataProvider : null,
 ));

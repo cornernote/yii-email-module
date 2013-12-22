@@ -6,3 +6,10 @@ CREATE TABLE "email_template" (
 "message_html" TEXT,
 "message_text" TEXT
 );
+INSERT INTO "email_template" VALUES (1, 'layout_default', '{{contents}}', '{{contents}}', '<h1>{{message_title}}</h1>
+{{{contents}}}', '{{message_title}}
+
+------------
+
+{{contents}}
+');

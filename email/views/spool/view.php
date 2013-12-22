@@ -11,14 +11,9 @@
  *
  * @package yii-email-module
  */
-$this->pageTitle = $emailSpool->getName();
-
-$this->renderPartial('/emailSpool/_menu', array(
-    'emailSpool' => $emailSpool,
-));
+$this->pageTitle = Yii::t('email', 'Spool ID-:id', array(':id' => $emailSpool->id));
 
 // details
-ob_start();
 $attributes = array();
 $attributes[] = array(
     'name' => 'id',
@@ -42,15 +37,9 @@ $this->widget('zii.widgets.CDetailView', array(
     'data' => $emailSpool,
     'attributes' => $attributes,
 ));
-$details = ob_get_clean();
 
-// tabs
-// TODO render email
-//$this->widget('bootstrap.widgets.TbTabs', array(
-//    'type' => 'pills', // 'tabs' or 'pills'
-//    'tabs' => array(
-//        array('label' => Yii::t('email', 'Details'), 'content' => $details, 'active' => true),
-//        array('label' => Yii::t('email', 'HTML Message'), 'content' => $emailSpool->message_html),
-//        array('label' => Yii::t('email', 'Text Message'), 'content' => nl2br($emailSpool->message_text)),
-//    ),
-//));
+echo CHtml::tag('h2', array(), Yii::t('email', 'Message HTML'));
+echo $emailSpool->message_html;
+
+echo CHtml::tag('h2', array(), Yii::t('email', 'Message Text'));
+echo nl2br($emailSpool->message_text);
