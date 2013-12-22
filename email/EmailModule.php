@@ -40,6 +40,13 @@ class EmailModule extends CWebModule
     );
 
     /**
+     * @var array Use this to define access rules for the module.
+     */
+    public $controllerFilters = array(
+        'emailAccess' => array('email.components.EmailAccessFilter'),
+    );
+
+    /**
      * @var array Map of model info including relations and behaviors.
      */
     public $modelMap = array();
@@ -134,22 +141,6 @@ class EmailModule extends CWebModule
                 ),
             ),
         ), false);
-    }
-
-
-    /**
-     * @param CController $controller
-     * @param CAction $action
-     * @return bool
-     */
-    public function beforeControllerAction($controller, $action)
-    {
-        if (!parent::beforeControllerAction($controller, $action))
-            return false;
-        $route = $controller->id . '/' . $action->id;
-        if (!in_array(Yii::app()->user->getName(), $this->adminUsers) && $route !== 'default/error')
-            throw new CHttpException(403, 'You are not allowed to access this page.');
-        return true;
     }
 
     /**
