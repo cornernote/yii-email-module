@@ -1,6 +1,6 @@
 <?php
 /**
- * EmailManagerBase
+ * EmailManager
  *
  * @author Brett O'Donnell <cornernote@gmail.com>
  * @author Zain Ul abidin <zainengineer@gmail.com>
@@ -10,7 +10,7 @@
  *
  * @package yii-email-module
  */
-class EmailManagerBase extends CComponent
+class EmailManager extends CComponent
 {
 
     /**
@@ -48,10 +48,10 @@ class EmailManagerBase extends CComponent
     }
 
     /**
-     * Allows sending a quick email.
+     * Send an email.
      *
      * Eg:
-     * Yii::app()->emailManager->email('webmaster@localhost', 'subject', 'message');
+     * Yii::app()->emailManager->email('user@dom.ain', 'test email', '<b>Hello</b> <i>World<i>!');
      *
      * @param $to
      * @param $subject
@@ -86,7 +86,7 @@ class EmailManagerBase extends CComponent
     }
 
     /**
-     * Find pending emails and attempt to deliver them
+     * Process pending EmailSpool records.
      */
     public function spool($limit = 10)
     {
