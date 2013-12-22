@@ -25,12 +25,12 @@ class EmailManagerBase extends CComponent
     private $_fromName;
 
     /**
-     * @var string Render method, can be one of: php, database
+     * @var string Template type, can be one of: php, db
      */
-    public $renderMethod = 'php';
+    public $templateType = 'php';
 
     /**
-     * @var string when renderMethod=php this is the path to the email views
+     * @var string when templateType=php this is the path to the email views
      */
     public $templatePath = 'email.views.emails';
 
@@ -116,6 +116,8 @@ class EmailManagerBase extends CComponent
     }
 
     /**
+     * Creates an EmailSpool based on a Swift_Message.
+     * Can optionally relate the EmailSpool to a model_id and model_name by passing an CActiveRecord into $model.
      * @param Swift_Message $swiftMessage
      * @param CActiveRecord|null $model
      * @return EmailSpool
@@ -137,15 +139,17 @@ class EmailManagerBase extends CComponent
     }
 
     /**
+     * Builds a template using the selected build method.
      * @param $template string
      * @param $viewParams array
      * @return array
      */
     public function buildTemplateMessage($template, $viewParams = array(), $layout = 'layout_default')
     {
-        if (!method_exists($this, 'renderEmailTemplate_' . $this->renderMethod))
-            $this->renderMethod = 'php';
-        return call_user_func_array(array($this, 'renderEmailTemplate_' . $this->renderMethod), array($template, $viewParams, $layout));
+        $method = 'buildTemplateMessage_' . $this->templateType;
+        if (!method_exists($this, $method))
+            $this->templateType = 'php';
+        return call_user_func_array(array($this, $method), array($template, $viewParams, $layout));
     }
 
     /**
@@ -173,7 +177,7 @@ class EmailManagerBase extends CComponent
      * @throws CException
      * @return array
      */
-    private function renderEmailTemplate_php($template, $viewParams = array(), $layout = 'layout_default')
+    private function buildTemplateMessage_php($template, $viewParams = array(), $layout = 'layout_default')
     {
         // setup path to layout and template
         $emailTemplate = $this->templatePath . '.' . $template;
@@ -195,7 +199,7 @@ class EmailManagerBase extends CComponent
      * @throws CException
      * @return array
      */
-    private function renderEmailTemplate_database($template, $viewParams = array(), $layout = 'layout_default')
+    private function buildTemplateMessage_db($template, $viewParams = array(), $layout = 'layout_default')
     {
         // load template
         $emailTemplate = EmailTemplate::model()->findByAttributes(array('name' => $template));
