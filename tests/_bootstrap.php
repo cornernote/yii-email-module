@@ -13,12 +13,15 @@
 
 // define paths
 define('BASE_PATH', realpath(__DIR__));
-define('VENDOR_PATH', realpath(__DIR__ . '/../../vendor'));
+define('VENDOR_PATH', realpath(__DIR__ . '/../vendor'));
 define('YII_PATH', realpath(VENDOR_PATH . '/yiisoft/yii/framework'));
 
-echo BASE_PATH . "\n";
-echo VENDOR_PATH . "\n";
-echo YII_PATH . "\n";
+if (!is_dir(VENDOR_PATH)) {
+    die ("You must set up the project dependencies, run the following commands:
+wget http://getcomposer.org/composer.phar
+php composer.phar install
+");
+}
 
 // disable Yii error handling logic
 defined('YII_ENABLE_EXCEPTION_HANDLER') or define('YII_ENABLE_EXCEPTION_HANDLER', false);
