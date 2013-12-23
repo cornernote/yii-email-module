@@ -14,6 +14,9 @@
 return array(
     'basePath' => BASE_PATH,
     'runtimePath' => realpath(BASE_PATH . '/_runtime'),
+    'import' => array(
+        //'system.test',
+    ),
     'aliases' => array(
         'email' => realpath(BASE_PATH . '/../email'),
     ),
