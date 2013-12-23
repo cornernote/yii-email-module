@@ -2,9 +2,7 @@
 
 Easily configurable and powerful email system with templates and email queuing.
 
-[![Build Status](https://travis-ci.org/cornernote/yii-email-module.png?branch=master)](https://travis-ci.org/cornernote/yii-email-module)
-
-[![Project Stats](https://www.ohloh.net/p/yii-audit-module/widgets/project_thin_badge.gif)](https://www.ohloh.net/p/yii-audit-module)
+[![Build Status](https://travis-ci.org/cornernote/yii-email-module.png?branch=master)](https://travis-ci.org/cornernote/yii-email-module) [![Project Stats](https://www.ohloh.net/p/yii-audit-module/widgets/project_thin_badge.gif)](https://www.ohloh.net/p/yii-audit-module)
 
 
 ### Contents
@@ -191,7 +189,7 @@ yiic emailSpool
 - Author: Brett O'Donnell <cornernote@gmail.com>
 - Author: Zain Ul abidin <zainengineer@gmail.com>
 - Source Code: https://github.com/cornernote/yii-email-module
-- Copyright © 2013 Mr PHP <info@mrphp.com.au>
+- Copyright Â© 2013 Mr PHP <info@mrphp.com.au>
 - License: BSD-3-Clause https://raw.github.com/cornernote/yii-email-module/master/LICENSE
 
 
