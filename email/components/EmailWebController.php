@@ -63,7 +63,7 @@ class EmailWebController extends CController
     }
 
     /**
-     * @return string
+     * @return array
      */
     public function getBreadcrumbs()
     {

@@ -23,6 +23,7 @@ return array(
         ),
         'emailManager' => array(
             'class' => 'email.components.EmailManager',
+            'controllerFilters' => array(),
         ),
     ),
     'modules' => array(

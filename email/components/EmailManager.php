@@ -142,6 +142,7 @@ class EmailManager extends CComponent
      * Builds a template using the selected build method.
      * @param $template string
      * @param $viewParams array
+     * @param string $layout
      * @return array
      */
     public function buildTemplateMessage($template, $viewParams = array(), $layout = 'layout_default')
@@ -155,7 +156,7 @@ class EmailManager extends CComponent
     /**
      * @param $template string
      * @param $viewParams array
-     * @throws CException
+     * @param string $layout
      * @return array
      */
     private function buildTemplateMessage_php($template, $viewParams = array(), $layout = 'layout_default')
@@ -165,6 +166,7 @@ class EmailManager extends CComponent
         $emailLayout = $this->templatePath . '.' . $layout;
 
         // parse template
+        $message = array();
         $controller = Yii::app()->controller;
         foreach ($this->templateFields as $field) {
             $viewParams['contents'] = $controller->renderPartial($emailTemplate . '.' . $field, $viewParams, true);
@@ -177,6 +179,7 @@ class EmailManager extends CComponent
     /**
      * @param $template string
      * @param $viewParams array
+     * @param string $layout
      * @throws CException
      * @return array
      */
@@ -193,6 +196,7 @@ class EmailManager extends CComponent
             throw new CException('missing EmailTemplate - ' . $layout);
 
         // parse template
+        $message = array();
         $mustache = new EmailMustache();
         foreach ($this->templateFields as $field) {
             $viewParams['contents'] = $mustache->render($emailTemplate->$field, $viewParams);
@@ -226,8 +230,8 @@ class EmailManager extends CComponent
      */
     public function getFromName()
     {
-        if ($this->fromName === null)
-            $this->fromName = Yii::app()->name;
+        if ($this->_fromName === null)
+            $this->_fromName = Yii::app()->name;
         return $this->_fromName;
     }
 

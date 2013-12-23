@@ -148,17 +148,7 @@ class EmailModule extends CWebModule
      */
     public function getDefaultModelMap()
     {
-        return array(
-            'EmailSpool' => array(
-                'relations' => array(
-                    'emailAttachment' => array(
-                        'CHasManyRelation',
-                        'EmailAttachment',
-                        'email_spool_id',
-                    ),
-                ),
-            ),
-        );
+        return array();
     }
 
     /**

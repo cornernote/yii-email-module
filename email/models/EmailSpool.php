@@ -20,9 +20,6 @@
  * @property integer $sent
  * @property integer $created
  *
- * Relations
- * @property EmailAttachment[] $emailAttachment
- *
  * @see CActiveRecord
  * @method EmailSpool find() find($condition, array $params = array())
  * @method EmailSpool findByPk() findByPk($pk, $condition = '', array $params = array())
@@ -50,6 +47,7 @@ class EmailSpool extends EmailActiveRecord
 {
 
     /**
+     * @param string $className
      * @return EmailSpool
      */
     public static function model($className = __CLASS__)

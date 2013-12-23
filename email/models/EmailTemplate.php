@@ -37,6 +37,7 @@ class EmailTemplate extends EmailActiveRecord
 {
 
     /**
+     * @param string $className
      * @return EmailTemplate
      */
     public static function model($className = __CLASS__)

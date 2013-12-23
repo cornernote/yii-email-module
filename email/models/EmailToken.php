@@ -40,6 +40,7 @@ class EmailToken extends EmailActiveRecord
 {
 
     /**
+     * @param string $className
      * @return EmailToken
      */
     public static function model($className = __CLASS__)
