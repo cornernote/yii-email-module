@@ -24,6 +24,10 @@ return array(
         'emailManager' => array(
             'class' => 'email.components.EmailManager',
         ),
+        'urlManager' => array(
+            'urlFormat' => 'path',
+            'showScriptName' => false,
+        ),
     ),
     'modules' => array(
         'email' => array(
