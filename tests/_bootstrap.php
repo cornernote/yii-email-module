@@ -18,7 +18,7 @@ define('VENDOR_PATH', realpath(__DIR__ . '/../../vendor'));
 define('YII_PATH', realpath(VENDOR_PATH . '/yiisoft/yii/framework'));
 
 if (!is_dir(VENDOR_PATH)) {
-    die (print_r(glob(realpath(__DIR__) . '/*'), true));
+    die (print_r(glob(realpath(__DIR__ . '/..') . '/*'), true));
 }
 
 // disable Yii error handling logic
