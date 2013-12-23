@@ -12,6 +12,6 @@ services:
 
 before_script:
   - composer install
-#  - cd tests
+  - wget http://codeception.com/codecept.phar
 
-#script: phpunit --colors --no-globals-backup framework
+script: php codecept.phar run

@@ -19,7 +19,6 @@
         "swiftmailer/swiftmailer": "v5.0.2"
     },
     "require-dev": {
-        "yiisoft/yii": "1.1.14",
-		"codeception/codeception": "*"
+        "yiisoft/yii": "1.1.14"
     }	
 }
