@@ -13,7 +13,8 @@
 
 // define paths
 define('BASE_PATH', realpath(__DIR__));
-define('VENDOR_PATH', realpath(__DIR__ . '/../vendor'));
+//define('VENDOR_PATH', realpath(__DIR__ . '/../vendor'));
+define('VENDOR_PATH', realpath('/home/travis/build/cornernote/vendor'));
 define('YII_PATH', realpath(VENDOR_PATH . '/yiisoft/yii/framework'));
 
 if (!is_dir(VENDOR_PATH)) {
