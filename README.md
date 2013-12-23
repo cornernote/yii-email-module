@@ -2,7 +2,7 @@
 
 Easily configurable and powerful email system with templates and email queuing.
 
-[![Build Status](https://travis-ci.org/cornernote/yii-email-module.png?branch=master)](https://travis-ci.org/cornernote/yii-email-module) [![Project Stats](https://www.ohloh.net/p/yii-audit-module/widgets/project_thin_badge.gif)](https://www.ohloh.net/p/yii-audit-module)
+[![Build Status](https://travis-ci.org/cornernote/yii-email-module.png?branch=master)](https://travis-ci.org/cornernote/yii-email-module) [![Project Stats](https://www.ohloh.net/p/yii-email-module/widgets/project_thin_badge.gif)](https://www.ohloh.net/p/yii-email-module)
 
 
 ### Contents
@@ -60,7 +60,7 @@ return array(
 			// if you downloaded into modules
 			//'class' => 'application.modules.email.EmailModule',
 
-			// add a list of users who can access the audit module
+			// add a list of users who can access the email module
 			'adminUsers' => array('admin'),
 
 			// set this to false in production to improve performance
