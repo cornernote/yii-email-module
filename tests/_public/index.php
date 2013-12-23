@@ -12,10 +12,13 @@
  */
 
 // define paths
-define('BASE_PATH', realpath(__DIR__));
-define('VENDOR_PATH', realpath(__DIR__ . '/../vendor'));
+define('BASE_PATH', realpath(__DIR__ . '/..'));
+define('VENDOR_PATH', realpath(BASE_PATH . '/../vendor'));
 define('YII_PATH', realpath(VENDOR_PATH . '/yiisoft/yii/framework'));
+
+// debug
+define('YII_DEBUG', true);
 
 // create application
 require_once(YII_PATH . '/yii.php');
-Yii::createApplication('CWebApplication', BASE_PATH . '/_config.php');
+Yii::createWebApplication(BASE_PATH . '/_config.php')->run();
