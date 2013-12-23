@@ -1,12 +1,12 @@
 <VirtualHost *:80>
         ServerAdmin webmaster@localhost
  
-        DocumentRoot PUBLIC_PATH
+        DocumentRoot ${PUBLIC_PATH}
         <Directory />
                 Options FollowSymLinks
                 AllowOverride All
         </Directory>
-        <Directory PUBLIC_PATH >
+        <Directory ${PUBLIC_PATH}>
                 Options Indexes FollowSymLinks MultiViews
                 AllowOverride All
                 Order allow,deny
