@@ -13,20 +13,15 @@
 
 // define paths
 define('BASE_PATH', realpath(__DIR__));
-//define('VENDOR_PATH', realpath('/home/travis/build/cornernote/vendor'));
-define('VENDOR_PATH', realpath(__DIR__ . '/../../vendor'));
+define('VENDOR_PATH', realpath(__DIR__ . '/../vendor'));
 define('YII_PATH', realpath(VENDOR_PATH . '/yiisoft/yii/framework'));
-
-if (!is_dir(VENDOR_PATH)) {
-    die (print_r(glob(realpath(__DIR__ . '/..') . '/*'), true));
-}
 
 // disable Yii error handling logic
 defined('YII_ENABLE_EXCEPTION_HANDLER') or define('YII_ENABLE_EXCEPTION_HANDLER', false);
 defined('YII_ENABLE_ERROR_HANDLER') or define('YII_ENABLE_ERROR_HANDLER', false);
 
 // create application
-require_once(YII_PATH . '/Yii.php');
+require_once(YII_PATH . '/yii.php');
 Yii::createApplication('CWebApplication', array(
     'basePath' => BASE_PATH,
     'runtimePath' => realpath(BASE_PATH . '/_runtime'),
