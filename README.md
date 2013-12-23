@@ -4,6 +4,8 @@ Easily configurable and powerful email system with templates and email queuing.
 
 [![Build Status](https://travis-ci.org/cornernote/yii-email-module.png?branch=master)](https://travis-ci.org/cornernote/yii-email-module)
 
+[![Project Stats](https://www.ohloh.net/p/yii-audit-module/widgets/project_thin_badge.gif)](https://www.ohloh.net/p/yii-audit-module)
+
 
 ### Contents
 
