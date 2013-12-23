@@ -13,15 +13,12 @@
 
 // define paths
 define('BASE_PATH', realpath(__DIR__));
-//define('VENDOR_PATH', realpath(__DIR__ . '/../vendor'));
-define('VENDOR_PATH', realpath('/home/travis/build/cornernote/vendor'));
+//define('VENDOR_PATH', realpath('/home/travis/build/cornernote/vendor'));
+define('VENDOR_PATH', realpath(__DIR__ . '/../../vendor'));
 define('YII_PATH', realpath(VENDOR_PATH . '/yiisoft/yii/framework'));
 
 if (!is_dir(VENDOR_PATH)) {
-    die ("You must set up the project dependencies, run the following commands:
-wget http://getcomposer.org/composer.phar
-php composer.phar install
-");
+    die (print_r(glob(realpath(__DIR__) . '/*'), true));
 }
 
 // disable Yii error handling logic
