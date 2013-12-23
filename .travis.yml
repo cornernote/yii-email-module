@@ -8,10 +8,13 @@ php:
 
 services:
 #  - redis-server
-#  - memcached
+  - memcached
 
 before_script:
   - composer install
   - wget http://codeception.com/codecept.phar
+  - sudo apt-get install apache2
+  - sudo a2enmod rewrite
+  - sudo service apache2 restart
 
 script: php codecept.phar run
