@@ -1,17 +1,16 @@
 language: php
 
 php:
-  - 5.2
+#  - 5.2
   - 5.3
-  - 5.4
-  - 5.5
+#  - 5.4
+#  - 5.5
 
 services:
-  - redis-server
-  - memcached
+#  - redis-server
+#  - memcached
 
-before_script:
-  - mysql -e 'create database test;'
-  - cd tests
+#before_script:
+#  - cd tests
 
-script: phpunit --colors --no-globals-backup framework
+#script: phpunit --colors --no-globals-backup framework
