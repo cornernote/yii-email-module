@@ -24,10 +24,10 @@ defined('YII_ENABLE_ERROR_HANDLER') or define('YII_ENABLE_ERROR_HANDLER', false)
 require_once(YII_PATH . '/Yii.php');
 Yii::createApplication('CWebApplication', array(
     'basePath' => BASE_PATH,
-    'runtimePath' => realpath(BASE_PATH . '/runtime'),
+    'runtimePath' => realpath(BASE_PATH . '/_runtime'),
     'components' => array(
         'assetManager' => array(
-            'basePath' => realpath(BASE_PATH . '/assets'),
+            'basePath' => realpath(BASE_PATH . '/_assets'),
         ),
     )
 ));
