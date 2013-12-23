@@ -13,7 +13,7 @@
 
 // define paths
 define('BASE_PATH', realpath(__DIR__));
-define('VENDOR_PATH', realpath(dirname(__DIR__) . '/vendor'));
+define('VENDOR_PATH', realpath(__DIR__ . '/../../vendor'));
 define('YII_PATH', realpath(VENDOR_PATH . '/yiisoft/yii/framework'));
 
 // disable Yii error handling logic
