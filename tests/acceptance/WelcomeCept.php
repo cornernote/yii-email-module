@@ -1,5 +1,5 @@
 <?php
 $I = new WebGuy($scenario);
-$I->wantTo('ensure that frontpage works');
+$I->wantTo('ensure modules default action works');
 $I->amOnPage('/index.php?r=email');
-$I->see('You are not allowed to access this page');
+$I->see('You may use the following tools to help manage email within your application.');

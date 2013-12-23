@@ -23,13 +23,12 @@ return array(
         ),
         'emailManager' => array(
             'class' => 'email.components.EmailManager',
-            'controllerFilters' => array(),
         ),
     ),
     'modules' => array(
         'email' => array(
             'class' => 'email.EmailModule',
-            'adminUsers' => array('admin'),
+            'controllerFilters' => array(),
         ),
     ),
 );
