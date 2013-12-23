@@ -9,7 +9,7 @@ php:
 before_script:
   - composer install
   - wget http://codeception.com/codecept.phar
-  - chown a+w tests/_runtime tests/_public/assets
+  - chmod a+w tests/_runtime tests/_public/assets
   - sudo apt-get install -y apache2 php5
   - sudo a2enmod rewrite
   - echo "export PUBLIC_PATH=`pwd`/tests/_public/" | sudo tee -a /etc/apache2/envvars > /dev/null
