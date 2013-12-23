@@ -18,5 +18,14 @@ return array(
         'assetManager' => array(
             'basePath' => realpath(BASE_PATH . '/_public/assets'),
         ),
-    )
+        'emailManager' => array(
+            'class' => 'email.components.EmailManager',
+        ),
+    ),
+    'modules' => array(
+        'email' => array(
+            'class' => 'email.EmailModule',
+            'adminUsers' => array('admin'),
+        ),
+    ),
 );
