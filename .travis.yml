@@ -16,8 +16,9 @@ before_script:
   - wget http://codeception.com/codecept.phar
   - sudo apt-get install apache2
   - sudo a2enmod rewrite
-  - echo "export PUBLIC_PATH=/home/cornernote/yii-email-module/tests/_public/" | sudo tee -a /etc/apache2/envvars > /dev/null
-  - echo "$(curl -fsSL https://raw.github.com/cornernote/yii-email-module/master/tests/_apache/sites-available/default)" | sudo tee /etc/apache2/sites-available/default > /dev/null
+  - echo "export PUBLIC_PATH=`pwd`/tests/_public/" | sudo tee -a /etc/apache2/envvars > /dev/null
+  - sudo cp tests/_apache/sites-available/default /etc/apache2/sites-available/default
+  - cat /etc/apache2/sites-available/default
   - sudo service apache2 restart
 
 script: php codecept.phar run
