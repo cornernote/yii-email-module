@@ -16,6 +16,10 @@ define('BASE_PATH', realpath(__DIR__));
 define('VENDOR_PATH', realpath(__DIR__ . '/../../vendor'));
 define('YII_PATH', realpath(VENDOR_PATH . '/yiisoft/yii/framework'));
 
+echo BASE_PATH . "\n";
+echo VENDOR_PATH . "\n";
+echo YII_PATH . "\n";
+
 // disable Yii error handling logic
 defined('YII_ENABLE_EXCEPTION_HANDLER') or define('YII_ENABLE_EXCEPTION_HANDLER', false);
 defined('YII_ENABLE_ERROR_HANDLER') or define('YII_ENABLE_ERROR_HANDLER', false);
