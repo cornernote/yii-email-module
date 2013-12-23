@@ -14,6 +14,9 @@
 return array(
     'basePath' => BASE_PATH,
     'runtimePath' => realpath(BASE_PATH . '/_runtime'),
+    'aliases' => array(
+        'email' => realpath(BASE_PATH . '/../email'),
+    ),
     'components' => array(
         'assetManager' => array(
             'basePath' => realpath(BASE_PATH . '/_public/assets'),
