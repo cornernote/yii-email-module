@@ -16,4 +16,7 @@ before_script:
   - sudo cp tests/_apache/sites-available/default /etc/apache2/sites-available/default
   - sudo service apache2 restart
 
+after_script:
+  - cat tests/_log/*
+
 script: php codecept.phar run
