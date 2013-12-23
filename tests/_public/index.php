@@ -1,6 +1,6 @@
 <?php
 /**
- * Global Test Bootstrap
+ * Test Web Entry Script
  *
  * @author Brett O'Donnell <cornernote@gmail.com>
  * @author Zain Ul abidin <zainengineer@gmail.com>
@@ -15,10 +15,6 @@
 define('BASE_PATH', realpath(__DIR__));
 define('VENDOR_PATH', realpath(__DIR__ . '/../vendor'));
 define('YII_PATH', realpath(VENDOR_PATH . '/yiisoft/yii/framework'));
-
-// disable Yii error handling logic
-defined('YII_ENABLE_EXCEPTION_HANDLER') or define('YII_ENABLE_EXCEPTION_HANDLER', false);
-defined('YII_ENABLE_ERROR_HANDLER') or define('YII_ENABLE_ERROR_HANDLER', false);
 
 // create application
 require_once(YII_PATH . '/yii.php');
