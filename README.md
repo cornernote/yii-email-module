@@ -90,7 +90,7 @@ return array(
 
 			// when templateType=php this is the path to the email views
 			// you may copy the default templates from email/views/emails
-			'templateType' => 'application.views.emails',
+			'templatePath' => 'application.views.emails',
 		),
 	),
 );
