@@ -8,10 +8,10 @@ php:
 
 services:
   - redis-server
+  - memcached
 
 before_script:
-#  - ./tests/travis/composer_setup.sh
-  - ./tests/travis/mysql_setup.sh
+  - mysql -e 'create database test;'
   - cd tests
 
-script: ./tests/travis/run_tests.sh
+script: phpunit --colors --no-globals-backup framework
