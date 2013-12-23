@@ -1,0 +1,17 @@
+language: php
+
+php:
+  - 5.2
+  - 5.3
+  - 5.4
+  - 5.5
+
+services:
+  - redis-server
+
+before_script:
+#  - ./tests/travis/composer_setup.sh
+  - ./tests/travis/mysql_setup.sh
+  - cd tests
+
+script: ./tests/travis/run_tests.sh
