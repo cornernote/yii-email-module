@@ -11,7 +11,7 @@ services:
   - memcached
 
 before_script:
-  - echo pwd
+  - pwd
   - composer install
   - wget http://codeception.com/codecept.phar
   - sudo apt-get install apache2
