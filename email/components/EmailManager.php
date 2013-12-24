@@ -211,7 +211,9 @@ class EmailManager extends CComponent
      */
     private function registerSwiftMailerAutoloader()
     {
-        $path = Yii::getPathOfAlias('vendor') . '/swiftmailer/swiftmailer/lib';
+        $path = Yii::getPathOfAlias('swiftMailer');
+        if (!$path)
+            throw new CException('The alias swiftMailer does not have a path.');
         require_once($path . '/classes/Swift.php');
         Yii::registerAutoloader(array('Swift', 'autoload'));
         require_once($path . '/swift_init.php');

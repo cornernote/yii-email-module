@@ -20,6 +20,7 @@ return array(
     ),
     'aliases' => array(
         'email' => realpath(BASE_PATH . '/../email'),
+        'swiftMailer' => realpath(BASE_PATH . '/../vendor/swiftmailer/swiftmailer/lib'),
     ),
     'components' => array(
         'assetManager' => array(

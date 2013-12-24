@@ -76,7 +76,7 @@ class EmailSpoolTest extends \Codeception\TestCase\Test
         ));
     }
 
-    public function find()
+    protected function find()
     {
         $emailSpool = EmailSpool::model()->findByPk($this->emailSpool->id);
         $this->assertEquals($emailSpool->transport, 'the transport');
@@ -91,7 +91,7 @@ class EmailSpoolTest extends \Codeception\TestCase\Test
         $this->assertEquals($emailSpool->message, 'the message');
     }
 
-    public function update()
+    protected function update()
     {
         $date = time();
         $emailSpool = EmailSpool::model()->findByPk($this->emailSpool->id);
@@ -125,7 +125,7 @@ class EmailSpoolTest extends \Codeception\TestCase\Test
         ));
     }
 
-    public function search()
+    protected function search()
     {
         $emailSpool = new EmailSpool('search');
         $emailSpool->transport = 'the transport changed';

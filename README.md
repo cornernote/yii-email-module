@@ -70,6 +70,17 @@ return array(
 );
 ```
 
+Add swiftMailer to the `aliases` in your yii configuration:
+
+```php
+return array(
+	'aliases' => array(
+        // path to the SwiftMailer lib folder
+        'swiftMailer' => '/path/to/vendor/swiftmailer/swiftmailer/lib',
+	),
+);
+```
+
 Add `EmailManager` to the `components` section in your yii configuration:
 
 ```php
