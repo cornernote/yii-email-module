@@ -15,5 +15,5 @@ modules:
         - WebHelper
     config:
         PhpBrowser:
-            #url: 'http://localhost/'
-            url: 'http://localhost/_github/yii-email-module/tests/_public/'
+            url: 'http://localhost/'
+            #url: 'http://localhost/_github/yii-email-module/tests/_public/'
