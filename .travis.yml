@@ -8,7 +8,7 @@ php:
 before_script:
   - composer install
   - wget http://codeception.com/codecept.phar
-  - sqlite3 tests/_runtime/test.db
+  - sqlite3 tests/_runtime/test.db ""
   - chmod a+w tests/_runtime tests/_public/assets
   - sudo apt-get update
   - sudo apt-get install -y apache2 php5 php5-sqlite
