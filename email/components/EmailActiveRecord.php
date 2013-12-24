@@ -58,23 +58,21 @@ class EmailActiveRecord extends CActiveRecord
     }
 
     /**
-     * @throws Exception
+     * Creates the DB table.
+     * @throws CException
      */
     public function createTable()
     {
         $db = $this->getDbConnection();
         $file = Yii::getPathOfAlias('email.migrations') . '/' . $this->tableName() . '.' . $db->getDriverName();
         $pdo = $this->getDbConnection()->pdoInstance;
-        if (!file_exists($file)) {
-            throw new Exception('File ' . $file . ' was not found');
-        }
-        $sqlStream = file_get_contents($file);
-        $sqlStream = rtrim($sqlStream);
-        $newStream = preg_replace_callback("/\((.*)\)/", create_function('$matches', 'return str_replace(";"," $$$ ",$matches[0]);'), $sqlStream);
-        $sqlArray = explode(";", $newStream);
-        foreach ($sqlArray as $value) {
-            if (!empty($value)) {
-                $sql = str_replace(" $$$ ", ";", $value) . ";";
+        $sql = file_get_contents($file);
+        $sql = rtrim($sql);
+        $sqls = preg_replace_callback("/\((.*)\)/", create_function('$matches', 'return str_replace(";"," $$$ ",$matches[0]);'), $sql);
+        $sqls = explode(";", $sqls);
+        foreach ($sqls as $sql) {
+            if (!empty($sql)) {
+                $sql = str_replace(" $$$ ", ";", $sql) . ";";
                 $pdo->exec($sql);
             }
         }
@@ -82,7 +80,6 @@ class EmailActiveRecord extends CActiveRecord
 
     /**
      * Guess the table name based on the class
-     *
      * @return string the associated database table name
      */
     public function tableName()
@@ -95,7 +92,6 @@ class EmailActiveRecord extends CActiveRecord
 
     /**
      * Returns the relations used for the model
-     *
      * @return array
      * @see EmailModule::modelMap
      */
@@ -109,7 +105,6 @@ class EmailActiveRecord extends CActiveRecord
 
     /**
      * Returns the behaviors used for the model
-     *
      * @return array
      * @see EmailModule::modelMap
      */
