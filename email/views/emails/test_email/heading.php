@@ -1,9 +1,8 @@
 <?php
 /**
- * Subject for Account Welcome Email
+ * Heading for Test Email
  *
- * @var $user User
- * @var $url string
+ * @var $foo string
  *
  * @author Brett O'Donnell <cornernote@gmail.com>
  * @author Zain Ul abidin <zainengineer@gmail.com>
@@ -14,4 +13,4 @@
  * @package yii-email-module
  */
 
-echo Yii::t('email', 'Welcome to') . ' ' . Yii::app()->name;
+echo 'test subject ' . $foo;

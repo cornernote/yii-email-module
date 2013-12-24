@@ -57,19 +57,26 @@ class EmailActiveRecord extends CActiveRecord
         return self::$_md[$className];
     }
 
-
     /**
-     * Creates the DB table.
+     * @throws Exception
      */
-    protected function createTable()
+    public function createTable()
     {
         $db = $this->getDbConnection();
         $file = Yii::getPathOfAlias('email.migrations') . '/' . $this->tableName() . '.' . $db->getDriverName();
-        $sqls = explode(';', file_get_contents($file));
-        foreach ($sqls as $sql) {
-            $sql = trim($sql);
-            if ($sql)
-                $db->createCommand($sql)->execute();
+        $pdo = $this->getDbConnection()->pdoInstance;
+        if (!file_exists($file)) {
+            throw new Exception('File ' . $file . ' was not found');
+        }
+        $sqlStream = file_get_contents($file);
+        $sqlStream = rtrim($sqlStream);
+        $newStream = preg_replace_callback("/\((.*)\)/", create_function('$matches', 'return str_replace(";"," $$$ ",$matches[0]);'), $sqlStream);
+        $sqlArray = explode(";", $newStream);
+        foreach ($sqlArray as $value) {
+            if (!empty($value)) {
+                $sql = str_replace(" $$$ ", ";", $value) . ";";
+                $pdo->exec($sql);
+            }
         }
     }
 
@@ -116,7 +123,7 @@ class EmailActiveRecord extends CActiveRecord
 
     /**
      * @throws CDbException
-     * @return mixed
+     * @return CDbConnection
      */
     public function getDbConnection()
     {

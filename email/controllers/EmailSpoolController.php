@@ -3,6 +3,8 @@
 /**
  * EmailSpoolController
  *
+ * @method EmailSpool loadModel() loadModel($id, $model = null)
+ *
  * @author Brett O'Donnell <cornernote@gmail.com>
  * @author Zain Ul abidin <zainengineer@gmail.com>
  * @copyright 2013 Mr PHP
@@ -51,6 +53,17 @@ class EmailSpoolController extends EmailWebController
         $this->render('view', array(
             'emailSpool' => $emailSpool,
         ));
+    }
+
+    /**
+     * Preview
+     * @param $id
+     */
+    public function actionPreview($id)
+    {
+        $emailSpool = $this->loadModel($id);
+
+        echo $emailSpool->swiftMessage->getBody();
     }
 
 }

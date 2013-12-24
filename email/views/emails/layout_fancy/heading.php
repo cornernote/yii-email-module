@@ -1,6 +1,6 @@
 <?php
 /**
- * Heading for Email Default Layout
+ * Heading for Email Fancy Layout
  *
  * @var $contents string
  *

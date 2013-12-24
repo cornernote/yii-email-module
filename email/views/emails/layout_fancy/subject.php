@@ -1,9 +1,8 @@
 <?php
 /**
- * Message for Account Welcome Email
+ * Subject for Email Fancy Layout
  *
- * @var $user User
- * @var $url string
+ * @var $contents string
  *
  * @author Brett O'Donnell <cornernote@gmail.com>
  * @author Zain Ul abidin <zainengineer@gmail.com>
@@ -13,6 +12,5 @@
  *
  * @package yii-email-module
  */
-?>
 
-<strong>hello world!</strong>
+echo $contents;

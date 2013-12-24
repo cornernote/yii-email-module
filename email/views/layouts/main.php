@@ -16,10 +16,13 @@ $cs->coreScriptPosition = CClientScript::POS_HEAD;
 $cs->scriptMap = array();
 $baseUrl = $this->module->assetsUrl;
 $cs->registerCoreScript('jquery');
-$cs->registerScriptFile($baseUrl . '/js/bootstrap.min.js');
-$cs->registerCssFile($baseUrl . '/css/bootstrap.min.css');
-$cs->registerCssFile($baseUrl . '/css/font-awesome.min.css');
+$cs->registerScriptFile($baseUrl . '/bootstrap/js/bootstrap.min.js');
+$cs->registerCssFile($baseUrl . '/bootstrap/css/bootstrap.min.css');
+$cs->registerCssFile($baseUrl . '/font-awesome/css/font-awesome.min.css');
+$cs->registerScriptFile($baseUrl . '/fancybox/jquery.fancybox.pack.js');
+$cs->registerCssFile($baseUrl . '/fancybox/jquery.fancybox.css');
 $cs->registerCssFile($baseUrl . '/css/main.css');
+$cs->registerScriptFile($baseUrl . '/js/main.js');
 ?>
 <!DOCTYPE html>
 <html>
@@ -73,9 +76,14 @@ $cs->registerCssFile($baseUrl . '/css/main.css');
 <?php echo $content; ?>
 
 <div id="footer" class="container small text-center">
-    <?php if (Yii::app()->hasModule('audit')) $this->renderPartial('audit.views.request.__footer'); ?>
-    <br/><?php echo EmailModule::powered(); ?>
-    <br/>A product of <a href="http://mrphp.com.au">Mr PHP</a>.
+    <?php
+    if (Yii::app()->hasModule('audit')) {
+        $this->renderPartial('audit.views.request.__footer');
+        echo '<br/>';
+    }
+    echo EmailModule::powered();
+    echo '<br/>A product of <a href="http://mrphp.com.au">Mr PHP</a>.';
+    ?>
 </div>
 
 </body>

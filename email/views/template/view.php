@@ -17,6 +17,7 @@ $this->pageTitle = Yii::t('email', 'Template ID-:id', array(':id' => $emailTempl
 // links
 $items = array();
 $items[] = array('label' => Yii::t('email', 'Update'), 'url' => array('update', 'id' => $emailTemplate->id), 'linkOptions' => array('class' => 'btn btn-default'));
+$items[] = array('label' => Yii::t('email', 'Preview'), 'url' => array('preview', 'id' => $emailTemplate->id), 'linkOptions' => array('class' => 'btn btn-default fancybox', 'data-fancybox-type' => 'iframe'));
 $this->pageHeading = $this->pageTitle . $this->widget('zii.widgets.CMenu', array(
         'items' => $items,
         'htmlOptions' => array('class' => 'list-inline pull-right'),
@@ -44,4 +45,4 @@ $this->widget('zii.widgets.CDetailView', array(
 
 // message
 echo CHtml::tag('h2', array(), Yii::t('email', 'Message'));
-echo CHtml::tag('pre', array(), $emailTemplate->message);
+echo CHtml::tag('pre', array(), CHtml::encode($emailTemplate->message));

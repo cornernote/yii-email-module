@@ -3,6 +3,8 @@
 /**
  * EmailTemplateController
  *
+ * @method EmailTemplate loadModel() loadModel($id, $model = null)
+ *
  * @author Brett O'Donnell <cornernote@gmail.com>
  * @author Zain Ul abidin <zainengineer@gmail.com>
  * @copyright 2013 Mr PHP
@@ -51,6 +53,17 @@ class EmailTemplateController extends EmailWebController
         $this->render('view', array(
             'emailTemplate' => $emailTemplate,
         ));
+    }
+
+    /**
+     * Preview
+     * @param $id
+     */
+    public function actionPreview($id)
+    {
+        $emailTemplate = $this->loadModel($id);
+
+        echo $emailTemplate->message;
     }
 
     /**

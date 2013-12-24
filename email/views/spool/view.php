@@ -13,6 +13,14 @@
  */
 $this->pageTitle = Yii::t('email', 'Spool ID-:id', array(':id' => $emailSpool->id));
 
+// links
+$items = array();
+$items[] = array('label' => Yii::t('email', 'Preview'), 'url' => array('preview', 'id' => $emailSpool->id), 'linkOptions' => array('class' => 'btn btn-default fancybox', 'data-fancybox-type' => 'iframe'));
+$this->pageHeading = $this->pageTitle . $this->widget('zii.widgets.CMenu', array(
+        'items' => $items,
+        'htmlOptions' => array('class' => 'list-inline pull-right'),
+    ), true);
+
 $attributes = array();
 $attributes[] = array(
     'name' => 'id',
@@ -59,11 +67,11 @@ $this->widget('zii.widgets.CDetailView', array(
 
 // message
 echo CHtml::tag('h2', array(), Yii::t('email', 'Message'));
-echo CHtml::tag('pre', array(), $emailSpool->swiftMessage->getBody());
+echo CHtml::tag('pre', array(), CHtml::encode($emailSpool->swiftMessage->getBody()));
 
 // other parts
 foreach ($emailSpool->swiftMessage->getChildren() as $child) {
     /** @var Swift_MimePart $child */
     echo CHtml::tag('h2', array(), $child->getContentType());
-    echo CHtml::tag('pre', array(), $child->getBody());
+    echo CHtml::tag('pre', array(), CHtml::encode($child->getBody()));
 }

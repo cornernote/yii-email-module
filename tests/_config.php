@@ -22,6 +22,9 @@ return array(
         'email' => realpath(BASE_PATH . '/../email'),
         'swiftMailer' => realpath(BASE_PATH . '/../vendor/swiftmailer/swiftmailer/lib'),
     ),
+    'controllerMap' => array(
+        'site' => 'application._components.SiteController',
+    ),
     'components' => array(
         'assetManager' => array(
             'basePath' => realpath(BASE_PATH . '/_public/assets'),

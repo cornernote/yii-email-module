@@ -1,8 +1,8 @@
 <?php
 /**
- * Heading for Email Default Layout
+ * Subject for Test Email
  *
- * @var $contents string
+ * @var $foo string
  *
  * @author Brett O'Donnell <cornernote@gmail.com>
  * @author Zain Ul abidin <zainengineer@gmail.com>
@@ -13,4 +13,4 @@
  * @package yii-email-module
  */
 
-echo $contents;
+echo 'test subject ' . $foo;

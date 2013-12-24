@@ -26,6 +26,11 @@ $this->pageHeading = $this->pageTitle . $this->widget('zii.widgets.CMenu', array
         'htmlOptions' => array('class' => 'list-inline pull-right'),
     ), true);
 
+// message if wrong templateType
+if (Yii::app()->emailManager->templateType != 'db') {
+    echo CHtml::tag('div', array('class' => 'alert alert-danger'), Yii::t('email', 'EmailManager.templateType is not set to db, these templates will not be used.'));
+}
+
 // search
 $this->renderPartial('_search', array(
     'emailTemplate' => $emailTemplate,
