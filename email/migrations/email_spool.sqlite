@@ -5,7 +5,7 @@ CREATE TABLE "email_spool" (
 "priority" INTEGER,
 "status" TEXT,
 "model_name" TEXT,
-"model_id" INTEGER,
+"model_id" TEXT,
 "to_address" TEXT,
 "from_address" TEXT,
 "subject" TEXT,

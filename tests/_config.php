@@ -15,7 +15,8 @@ return array(
     'basePath' => BASE_PATH,
     'runtimePath' => realpath(BASE_PATH . '/_runtime'),
     'import' => array(
-        //'system.test',
+        'email.components.*',
+        'email.models.*',
     ),
     'aliases' => array(
         'email' => realpath(BASE_PATH . '/../email'),
@@ -23,6 +24,9 @@ return array(
     'components' => array(
         'assetManager' => array(
             'basePath' => realpath(BASE_PATH . '/_public/assets'),
+        ),
+        'db' => array(
+            'connectionString' => 'sqlite:' . realpath(BASE_PATH . '/_runtime') . '/db.db',
         ),
         'emailManager' => array(
             'class' => 'email.components.EmailManager',
@@ -35,6 +39,7 @@ return array(
     'modules' => array(
         'email' => array(
             'class' => 'email.EmailModule',
+            'connectionID' => 'db',
             'controllerFilters' => array(),
         ),
     ),

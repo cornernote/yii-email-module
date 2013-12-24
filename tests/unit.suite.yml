@@ -5,4 +5,10 @@
 
 class_name: CodeGuy
 modules:
-    enabled: [CodeHelper]
+  enabled: [Db, CodeHelper]
+  config:
+    Db:
+      dsn: 'sqlite:tests/_runtime/db.db'
+      dump: 'tests/_data/dump.sql'
+      populate: true
+      cleanup: false

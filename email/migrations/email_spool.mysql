@@ -5,7 +5,7 @@ CREATE TABLE `email_spool` (
 `priority` int(11),
 `status` varchar(32),
 `model_name` varchar(255),
-`model_id` int(11),
+`model_id` varchar(255),
 `to_address` varchar(255),
 `from_address` varchar(255),
 `subject` varchar(255),

@@ -1,6 +1,6 @@
 <?php
 /**
- * SpoolController Test
+ * EmailSpoolController Test
  *
  * @var $scenario \Codeception\Scenario
  *

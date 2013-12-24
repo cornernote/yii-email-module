@@ -1,6 +1,6 @@
 <?php
 /**
- * TemplateController Test
+ * EmailTemplateController Test
  *
  * @var $scenario \Codeception\Scenario
  *

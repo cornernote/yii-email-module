@@ -11,10 +11,15 @@
  * @package yii-email-module
  */
 
+// only run once
+if (defined('APP_DEFINED'))
+    return;
+define('APP_DEFINED', true);
+
 // define paths
-define('BASE_PATH', realpath(__DIR__));
-define('VENDOR_PATH', realpath(BASE_PATH . '/../vendor'));
-define('YII_PATH', realpath(VENDOR_PATH . '/yiisoft/yii/framework'));
+defined('BASE_PATH') or define('BASE_PATH', realpath(__DIR__ . '/..'));
+defined('VENDOR_PATH') or define('VENDOR_PATH', realpath(BASE_PATH . '/../vendor'));
+defined('YII_PATH') or define('YII_PATH', realpath(VENDOR_PATH . '/yiisoft/yii/framework'));
 
 // disable Yii error handling logic
 defined('YII_ENABLE_EXCEPTION_HANDLER') or define('YII_ENABLE_EXCEPTION_HANDLER', false);
