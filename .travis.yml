@@ -10,6 +10,7 @@ before_script:
   - wget http://codeception.com/codecept.phar
   - sqlite3 tests/_runtime/test.db ""
   - chmod a+w tests/_runtime tests/_public/assets
+  - ls -la tests/_runtime
   - sudo apt-get update
   - sudo apt-get install -y apache2 php5 php5-sqlite
   - sudo a2enmod rewrite
@@ -18,6 +19,7 @@ before_script:
   - sudo service apache2 restart
 
 after_script:
+  - ls -la tests/_runtime
   - cat tests/_log/*
 
 script: php codecept.phar run
