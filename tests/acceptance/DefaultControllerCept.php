@@ -26,4 +26,4 @@ $I->click('Template');
 $I->see('Templates');
 
 $I->click('Email');
-$I->see('You may use the following tools to help manage email within your application.');
+$I->see('You may use the following tools');
