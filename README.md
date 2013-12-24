@@ -133,7 +133,6 @@ class Email {
 		$template = 'user_welcome';
 		$message = $emailManager->buildTemplateMessage($template, array(
 			'user' => $user,
-			'url' => $url,
 		));
 
 		// get the message
