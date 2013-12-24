@@ -26,7 +26,7 @@ return array(
             'basePath' => realpath(BASE_PATH . '/_public/assets'),
         ),
         'db' => array(
-            'connectionString' => 'sqlite:' . realpath(BASE_PATH . '/_runtime') . '/db.db',
+            'connectionString' => 'sqlite:' . realpath(BASE_PATH . '/_runtime') . '/test.db',
         ),
         'emailManager' => array(
             'class' => 'email.components.EmailManager',
