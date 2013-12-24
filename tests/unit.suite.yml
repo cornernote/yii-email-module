@@ -9,6 +9,6 @@ modules:
   config:
     Db:
       dsn: 'sqlite:tests/_runtime/test.db'
-      #dump: 'tests/_data/dump.sql'
+      dump: 'tests/_data/dump.sql'
       populate: true
       cleanup: false
