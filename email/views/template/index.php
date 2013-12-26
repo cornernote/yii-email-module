@@ -16,12 +16,10 @@ Yii::app()->user->setState('index.emailTemplate', Yii::app()->request->requestUr
 $this->pageTitle = Yii::t('email', 'Templates');
 
 // links
-$items = array();
-$items[] = array('label' => Yii::t('email', 'Create'), 'url' => array('create'), 'linkOptions' => array('class' => 'btn btn-default'));
-$items[] = array('label' => Yii::t('email', 'Search'), 'url' => '#', 'linkOptions' => array('class' => 'emailTemplate-grid-search btn btn-default'));
+$this->menu[] = array('label' => Yii::t('email', 'Create'), 'url' => array('create'), 'linkOptions' => array('class' => 'btn btn-default'));
+$this->menu[] = array('label' => Yii::t('email', 'Search'), 'url' => '#', 'linkOptions' => array('class' => 'emailTemplate-grid-search btn btn-default'));
 if (Yii::app()->user->getState('index.emailTemplate') != $this->createUrl('index'))
-    $items[] = array('label' => Yii::t('email', 'Reset Filters'), 'url' => array('index'), 'linkOptions' => array('class' => 'btn btn-default'));
-$this->pageHeading .= TbHtml::pills($items, array('class' => 'pull-right'));
+    $this->menu[] = array('label' => Yii::t('email', 'Reset Filters'), 'url' => array('index'), 'linkOptions' => array('class' => 'btn btn-default'));
 
 // message if wrong templateType
 if (Yii::app()->emailManager->templateType != 'db') {

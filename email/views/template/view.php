@@ -15,10 +15,8 @@
 $this->pageTitle = Yii::t('email', 'Template ID-:id', array(':id' => $emailTemplate->id));
 
 // links
-$items = array();
-$items[] = array('label' => Yii::t('email', 'Update'), 'url' => array('update', 'id' => $emailTemplate->id), 'linkOptions' => array('class' => 'btn btn-default'));
-$items[] = array('label' => Yii::t('email', 'Preview'), 'url' => array('preview', 'id' => $emailTemplate->id), 'linkOptions' => array('class' => 'btn btn-default fancybox', 'data-fancybox-type' => 'iframe'));
-$this->pageHeading .= TbHtml::pills($items, array('class' => 'pull-right'));
+$this->menu[] = array('label' => Yii::t('email', 'Update'), 'url' => array('update', 'id' => $emailTemplate->id), 'linkOptions' => array('class' => 'btn btn-default'));
+$this->menu[] = array('label' => Yii::t('email', 'Preview'), 'url' => array('preview', 'id' => $emailTemplate->id), 'linkOptions' => array('class' => 'btn btn-default fancybox', 'data-fancybox-type' => 'iframe'));
 
 // details
 $attributes = array();
