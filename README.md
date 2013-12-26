@@ -5,7 +5,7 @@ Easily configurable and powerful email system with templates and email queuing.
 
 [![Mr PHP](https://raw.github.com/cornernote/mrphp-assets/master/img/code-banner.png)](http://mrphp.com.au) [![Project Stats](https://www.ohloh.net/p/yii-email-module/widgets/project_thin_badge.gif)](https://www.ohloh.net/p/yii-email-module)
 
-[![Latest Stable Version](https://poser.pugx.org/mrphp/yii-email-module/v/stable.png)](https://packagist.org/packages/mrphp/yii-email-module) [![Build Status](https://travis-ci.org/cornernote/yii-email-module.png?branch=master)](https://travis-ci.org/cornernote/yii-email-module)
+[![Latest Stable Version](https://poser.pugx.org/cornernote/yii-email-module/v/stable.png)](https://packagist.org/packages/cornernote/yii-email-module) [![Build Status](https://travis-ci.org/cornernote/yii-email-module.png?branch=master)](https://travis-ci.org/cornernote/yii-email-module)
 
 
 ### Contents
@@ -40,7 +40,7 @@ Please download using ONE of the following methods:
 
 ```
 curl http://getcomposer.org/installer | php
-php composer.phar require mrphp/yii-email-module
+php composer.phar require cornernote/yii-email-module
 ```
 
 
@@ -59,7 +59,7 @@ return array(
 	'modules' => array(
 		'email' => array(
 			// path to the EmailModule class
-			'class' => 'vendor.mrphp.yii-email-module.email.EmailModule',
+			'class' => 'vendor.cornernote.yii-email-module.email.EmailModule',
 			// if you downloaded into modules
 			//'class' => 'application.modules.email.EmailModule',
 
@@ -209,6 +209,6 @@ yiic emailSpool
 ## Links
 
 - [Yii Extension](http://www.yiiframework.com/extension/yii-email-module)
-- [Composer Package](https://packagist.org/packages/mrphp/yii-email-module)
+- [Composer Package](https://packagist.org/packages/cornernote/yii-email-module)
 - [MrPHP](http://mrphp.com.au)
 
