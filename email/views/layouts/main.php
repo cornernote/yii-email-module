@@ -19,8 +19,8 @@ $baseUrl = $this->module->assetsUrl;
 $cs->registerCoreScript('jquery');
 Yii::app()->bootstrap->register();
 $cs->registerCssFile($baseUrl . '/font-awesome/css/font-awesome.min.css');
-$cs->registerScriptFile($baseUrl . '/fancybox/jquery.fancybox.pack.js');
-$cs->registerCssFile($baseUrl . '/fancybox/jquery.fancybox.css');
+$cs->registerScriptFile($baseUrl . '/fancybox2/jquery.fancybox.pack.js');
+$cs->registerCssFile($baseUrl . '/fancybox2/jquery.fancybox.css');
 $cs->registerCssFile($baseUrl . '/css/main.css');
 $cs->registerScriptFile($baseUrl . '/js/main.js');
 ?>
