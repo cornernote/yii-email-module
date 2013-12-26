@@ -1,5 +1,5 @@
 {
-    "name": "mrphp/yii-email-module",
+    "name": "cornernote/yii-email-module",
     "description": "Easily configurable and powerful email system with templates and email queuing.",
     "type": "library",
     "license": "BSD-3-Clause",
