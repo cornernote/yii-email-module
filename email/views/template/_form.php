@@ -18,10 +18,10 @@ $form = $this->beginWidget('email.widgets.EmailActiveForm', array(
 ));
 echo $form->errorSummary($emailTemplate);
 
-echo $form->textFieldRow($emailTemplate, 'name');
-echo $form->textFieldRow($emailTemplate, 'subject');
-echo $form->textFieldRow($emailTemplate, 'heading');
-echo $form->textAreaRow($emailTemplate, 'message');
+echo $form->textFieldControlGroup($emailTemplate, 'name');
+echo $form->textFieldControlGroup($emailTemplate, 'subject');
+echo $form->textFieldControlGroup($emailTemplate, 'heading');
+echo $form->textAreaControlGroup($emailTemplate, 'message');
 
 echo $form->getSubmitButtonRow($emailTemplate->isNewRecord ? Yii::t('email', 'Create') : Yii::t('email', 'Save'));
 $this->endWidget();

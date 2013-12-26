@@ -17,9 +17,11 @@ return array(
     'import' => array(
         'email.components.*',
         'email.models.*',
+        'bootstrap.helpers.TbHtml',
     ),
     'aliases' => array(
         'email' => realpath(BASE_PATH . '/../email'),
+        'bootstrap' => realpath(BASE_PATH . '/../vendor/crisu83/yiistrap'),
         'swiftMailer' => realpath(BASE_PATH . '/../vendor/swiftmailer/swiftmailer/lib'),
     ),
     'controllerMap' => array(
@@ -28,6 +30,9 @@ return array(
     'components' => array(
         'assetManager' => array(
             'basePath' => realpath(BASE_PATH . '/_public/assets'),
+        ),
+        'bootstrap' => array(
+            'class' => 'bootstrap.components.TbApi',
         ),
         'db' => array(
             'connectionString' => 'sqlite:' . realpath(BASE_PATH . '/_runtime') . '/test.db',
@@ -45,6 +50,15 @@ return array(
             'class' => 'email.EmailModule',
             'connectionID' => 'db',
             'controllerFilters' => array(),
+        ),
+        'gii' => array(
+            'class' => 'system.gii.GiiModule',
+            'generatorPaths' => array(
+                'vendor.cornernote.gii-modeldoc-generator',
+                'bootstrap.gii',
+            ),
+            'ipFilters' => array('127.0.0.1'),
+            'password' => false,
         ),
     ),
 );

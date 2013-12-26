@@ -18,10 +18,7 @@ $this->pageTitle = Yii::t('email', 'Template ID-:id', array(':id' => $emailTempl
 $items = array();
 $items[] = array('label' => Yii::t('email', 'Update'), 'url' => array('update', 'id' => $emailTemplate->id), 'linkOptions' => array('class' => 'btn btn-default'));
 $items[] = array('label' => Yii::t('email', 'Preview'), 'url' => array('preview', 'id' => $emailTemplate->id), 'linkOptions' => array('class' => 'btn btn-default fancybox', 'data-fancybox-type' => 'iframe'));
-$this->pageHeading = $this->pageTitle . $this->widget('zii.widgets.CMenu', array(
-        'items' => $items,
-        'htmlOptions' => array('class' => 'list-inline pull-right'),
-    ), true);
+$this->pageHeading .= TbHtml::pills($items, array('class' => 'pull-right'));
 
 // details
 $attributes = array();

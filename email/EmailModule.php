@@ -110,34 +110,34 @@ class EmailModule extends CWebModule
                 if (empty($this->modelMap[$method][$name]))
                     $this->modelMap[$method][$name] = $options;
 
-        // setup components
+//        // setup components
         Yii::app()->setComponents(array(
             'widgetFactory' => array(
                 'class' => 'system.web.CWidgetFactory',
                 'widgets' => array(
-                    'CListView' => array(
-                        'pagerCssClass' => 'pagination-wrap',
-                    ),
-                    'CGridView' => array(
-                        'itemsCssClass' => 'table table-condensed table-striped',
-                        'pagerCssClass' => 'pagination-wrap',
-                    ),
+//                    'CListView' => array(
+//                        'pagerCssClass' => 'pagination-wrap',
+//                    ),
+//                    'CGridView' => array(
+//                        'itemsCssClass' => 'table table-condensed table-striped',
+//                        'pagerCssClass' => 'pagination-wrap',
+//                    ),
                     'CDetailView' => array(
                         'htmlOptions' => array(
                             'class' => 'table table-condensed table-striped',
                         ),
                     ),
-                    'CLinkPager' => array(
-                        'header' => false,
-                        'hiddenPageCssClass' => 'disabled',
-                        'firstPageLabel' => '<i class="fa fa-fast-backward"></i>',
-                        'lastPageLabel' => '<i class="fa fa-fast-forward"></i>',
-                        'nextPageLabel' => '<i class="fa fa-forward"></i>',
-                        'prevPageLabel' => '<i class="fa fa-backward"></i>',
-                        'htmlOptions' => array(
-                            'class' => 'pagination',
-                        ),
-                    ),
+//                    'CLinkPager' => array(
+//                        'header' => false,
+//                        'hiddenPageCssClass' => 'disabled',
+//                        'firstPageLabel' => '<i class="fa fa-fast-backward"></i>',
+//                        'lastPageLabel' => '<i class="fa fa-fast-forward"></i>',
+//                        'nextPageLabel' => '<i class="fa fa-forward"></i>',
+//                        'prevPageLabel' => '<i class="fa fa-backward"></i>',
+//                        'htmlOptions' => array(
+//                            'class' => 'pagination',
+//                        ),
+//                    ),
                 ),
             ),
         ), false);

@@ -22,10 +22,12 @@ class EmailTemplateController extends EmailWebController
      */
     public function beforeRender($view)
     {
+        if (!parent::beforeRender($view))
+            return false;
         if ($view != 'index')
             $this->addBreadcrumb(Yii::t('email', 'Templates'), Yii::app()->user->getState('index.emailTemplate', array('template/index')));
 
-        return parent::beforeRender($view);
+        return true;
     }
 
     /**

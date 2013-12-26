@@ -29,7 +29,7 @@ $columns[] = array(
 );
 
 // grid
-$this->widget('zii.widgets.grid.CGridView', array(
+$this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'emailTemplate-grid',
     'dataProvider' => $emailTemplate->search(),
     'filter' => $emailTemplate,

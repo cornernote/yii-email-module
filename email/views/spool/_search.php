@@ -15,23 +15,24 @@
 /** @var EmailActiveForm $form */
 $form = $this->beginWidget('email.widgets.EmailActiveForm', array(
     'method' => 'get',
+    'layout' => TbHtml::FORM_LAYOUT_HORIZONTAL,
     'htmlOptions' => array('style' => 'display:none;'),
 ));
 $form->searchToggle('emailSpool-grid-search', 'emailSpool-grid');
 
-echo $form->textFieldRow($emailSpool, 'id');
-echo $form->textFieldRow($emailSpool, 'transport');
-echo $form->textFieldRow($emailSpool, 'template');
-echo $form->textFieldRow($emailSpool, 'priority');
-echo $form->textFieldRow($emailSpool, 'status');
-echo $form->textFieldRow($emailSpool, 'model_name');
-echo $form->textFieldRow($emailSpool, 'model_id');
-echo $form->textFieldRow($emailSpool, 'to_address');
-echo $form->textFieldRow($emailSpool, 'from_address');
-echo $form->textFieldRow($emailSpool, 'subject');
-echo $form->textFieldRow($emailSpool, 'message');
-echo $form->textFieldRow($emailSpool, 'sent');
-echo $form->textFieldRow($emailSpool, 'created');
+echo $form->textFieldControlGroup($emailSpool, 'id');
+echo $form->textFieldControlGroup($emailSpool, 'transport');
+echo $form->textFieldControlGroup($emailSpool, 'template');
+echo $form->textFieldControlGroup($emailSpool, 'priority');
+echo $form->textFieldControlGroup($emailSpool, 'status');
+echo $form->textFieldControlGroup($emailSpool, 'model_name');
+echo $form->textFieldControlGroup($emailSpool, 'model_id');
+echo $form->textFieldControlGroup($emailSpool, 'to_address');
+echo $form->textFieldControlGroup($emailSpool, 'from_address');
+echo $form->textFieldControlGroup($emailSpool, 'subject');
+echo $form->textFieldControlGroup($emailSpool, 'message');
+echo $form->textFieldControlGroup($emailSpool, 'sent');
+echo $form->textFieldControlGroup($emailSpool, 'created');
 
 echo $form->getSubmitButtonRow(Yii::t('email', 'Search'));
 

@@ -16,9 +16,10 @@
         }
     ],
     "require": {
-        "swiftmailer/swiftmailer": "v5.0.2"
+        "crisu83/yiistrap": ">=1.0.0",
+        "swiftmailer/swiftmailer": ">=v5.0.0"
     },
     "require-dev": {
         "yiisoft/yii": "1.1.14"
-    }	
+    }
 }

@@ -22,10 +22,12 @@ class EmailSpoolController extends EmailWebController
      */
     public function beforeRender($view)
     {
+        if (!parent::beforeRender($view))
+            return false;
         if ($view != 'index')
             $this->addBreadcrumb(Yii::t('email', 'Spools'), Yii::app()->user->getState('index.emailSpool', array('spool/index')));
 
-        return parent::beforeRender($view);
+        return true;
     }
 
     /**

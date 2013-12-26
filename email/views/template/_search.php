@@ -15,15 +15,16 @@
 /** @var EmailActiveForm $form */
 $form = $this->beginWidget('email.widgets.EmailActiveForm', array(
     'method' => 'get',
+    'layout' => TbHtml::FORM_LAYOUT_HORIZONTAL,
     'htmlOptions' => array('style' => 'display:none;'),
 ));
 $form->searchToggle('emailTemplate-grid-search', 'emailTemplate-grid');
 
-echo $form->textFieldRow($emailTemplate, 'id');
-echo $form->textFieldRow($emailTemplate, 'name');
-echo $form->textFieldRow($emailTemplate, 'subject');
-echo $form->textFieldRow($emailTemplate, 'heading');
-echo $form->textFieldRow($emailTemplate, 'message');
+echo $form->textFieldControlGroup($emailTemplate, 'id');
+echo $form->textFieldControlGroup($emailTemplate, 'name');
+echo $form->textFieldControlGroup($emailTemplate, 'subject');
+echo $form->textFieldControlGroup($emailTemplate, 'heading');
+echo $form->textFieldControlGroup($emailTemplate, 'message');
 
 echo $form->getSubmitButtonRow(Yii::t('email', 'Search'));
 

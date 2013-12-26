@@ -53,7 +53,7 @@ $columns[] = array(
 );
 
 // grid
-$this->widget('zii.widgets.grid.CGridView', array(
+$this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'emailSpool-grid',
     'dataProvider' => $emailSpool->search(),
     'filter' => $emailSpool,

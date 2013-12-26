@@ -21,10 +21,7 @@ $items[] = array('label' => Yii::t('email', 'Create'), 'url' => array('create'),
 $items[] = array('label' => Yii::t('email', 'Search'), 'url' => '#', 'linkOptions' => array('class' => 'emailTemplate-grid-search btn btn-default'));
 if (Yii::app()->user->getState('index.emailTemplate') != $this->createUrl('index'))
     $items[] = array('label' => Yii::t('email', 'Reset Filters'), 'url' => array('index'), 'linkOptions' => array('class' => 'btn btn-default'));
-$this->pageHeading = $this->pageTitle . $this->widget('zii.widgets.CMenu', array(
-        'items' => $items,
-        'htmlOptions' => array('class' => 'list-inline pull-right'),
-    ), true);
+$this->pageHeading .= TbHtml::pills($items, array('class' => 'pull-right'));
 
 // message if wrong templateType
 if (Yii::app()->emailManager->templateType != 'db') {

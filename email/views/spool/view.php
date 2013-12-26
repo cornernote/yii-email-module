@@ -16,10 +16,7 @@ $this->pageTitle = Yii::t('email', 'Spool ID-:id', array(':id' => $emailSpool->i
 // links
 $items = array();
 $items[] = array('label' => Yii::t('email', 'Preview'), 'url' => array('preview', 'id' => $emailSpool->id), 'linkOptions' => array('class' => 'btn btn-default fancybox', 'data-fancybox-type' => 'iframe'));
-$this->pageHeading = $this->pageTitle . $this->widget('zii.widgets.CMenu', array(
-        'items' => $items,
-        'htmlOptions' => array('class' => 'list-inline pull-right'),
-    ), true);
+$this->pageHeading = $this->pageTitle . TbHtml::pills($items, array('class' => 'pull-right'));
 
 $attributes = array();
 $attributes[] = array(
