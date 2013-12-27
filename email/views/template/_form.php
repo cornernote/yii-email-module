@@ -15,13 +15,14 @@
 /** @var EmailActiveForm $form */
 $form = $this->beginWidget('email.widgets.EmailActiveForm', array(
     'id' => 'emailTemplate-form',
+    'layout' => TbHtml::FORM_LAYOUT_HORIZONTAL,
 ));
 echo $form->errorSummary($emailTemplate);
 
-echo $form->textFieldControlGroup($emailTemplate, 'name');
-echo $form->textFieldControlGroup($emailTemplate, 'subject');
-echo $form->textFieldControlGroup($emailTemplate, 'heading');
-echo $form->textAreaControlGroup($emailTemplate, 'message');
+echo $form->textFieldControlGroup($emailTemplate, 'name', array('class' => 'input-block-level'));
+echo $form->textFieldControlGroup($emailTemplate, 'subject', array('class' => 'input-block-level'));
+echo $form->textFieldControlGroup($emailTemplate, 'heading', array('class' => 'input-block-level'));
+echo $form->textAreaControlGroup($emailTemplate, 'message', array('class' => 'input-block-level', 'rows' => 10));
 
 echo $form->getSubmitButtonRow($emailTemplate->isNewRecord ? Yii::t('email', 'Create') : Yii::t('email', 'Save'));
 $this->endWidget();

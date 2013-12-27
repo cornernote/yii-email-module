@@ -18,24 +18,21 @@ $columns[] = array(
     'value' => 'CHtml::link($data->id, array("spool/view", "id" => $data->id))',
     'type' => 'raw',
 );
-$columns[] = array(
-    'name' => 'transport',
-);
+//$columns[] = array(
+//    'name' => 'transport',
+//);
 $columns[] = array(
     'name' => 'template',
 );
-$columns[] = array(
-    'name' => 'priority',
-);
-$columns[] = array(
-    'name' => 'status',
-);
-$columns[] = array(
-    'name' => 'model_name',
-);
-$columns[] = array(
-    'name' => 'model_id',
-);
+//$columns[] = array(
+//    'name' => 'priority',
+//);
+//$columns[] = array(
+//    'name' => 'model_name',
+//);
+//$columns[] = array(
+//    'name' => 'model_id',
+//);
 $columns[] = array(
     'name' => 'to_address',
 );
@@ -46,10 +43,16 @@ $columns[] = array(
     'name' => 'subject',
 );
 $columns[] = array(
+    'name' => 'status',
+    'filter' => array('pending' => Yii::t('email', 'Pending'), 'emailed' => Yii::t('email', 'Emailed'), 'error' => Yii::t('email', 'Error')),
+);
+$columns[] = array(
     'name' => 'sent',
+    'value' => '$data->sent ? Yii::app()->format->formatDatetime($data->sent) : null',
 );
 $columns[] = array(
     'name' => 'created',
+    'value' => 'Yii::app()->format->formatDatetime($data->created)',
 );
 
 // grid

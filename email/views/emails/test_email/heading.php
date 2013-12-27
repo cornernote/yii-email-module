@@ -13,4 +13,4 @@
  * @package yii-email-module
  */
 
-echo 'test subject ' . $foo;
+echo 'test heading ' . $foo;

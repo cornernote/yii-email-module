@@ -31,7 +31,7 @@ class SiteController extends CController
         $emailManager = Yii::app()->emailManager;
 
         // build the templates
-        $template = 'test';
+        $template = 'test_email';
         $viewParams = array(
             'foo' => 'bar',
         );

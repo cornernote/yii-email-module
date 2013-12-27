@@ -64,7 +64,7 @@ class EmailTemplateController extends EmailWebController
     public function actionPreview($id)
     {
         $emailTemplate = $this->loadModel($id);
-
+        echo CHtml::tag('div', array('style' => 'font-family: Arial; font-weight: bold;'), $emailTemplate->subject) . '<hr/>';
         echo $emailTemplate->message;
     }
 

@@ -28,7 +28,26 @@ Easily configurable and powerful email system with templates and email queuing.
 
 ## Screenshots
 
-...coming soon...
+Yii Email Module Homepage:
+![home](https://raw.github.com/cornernote/yii-email-module/master/screenshot/home.png)
+
+Spool List
+![Requests](https://raw.github.com/cornernote/yii-email-module/master/screenshot/spools.png)
+
+Spool View
+![Request](https://raw.github.com/cornernote/yii-email-module/master/screenshot/spool.png)
+
+Spool Preview
+![Request](https://raw.github.com/cornernote/yii-email-module/master/screenshot/spool-preview.png)
+
+Template List
+![Requests](https://raw.github.com/cornernote/yii-email-module/master/screenshot/templates.png)
+
+Template View
+![Request](https://raw.github.com/cornernote/yii-email-module/master/screenshot/template.png)
+
+Template Preview
+![Request](https://raw.github.com/cornernote/yii-email-module/master/screenshot/template-preview.png)
 
 
 ## Installation

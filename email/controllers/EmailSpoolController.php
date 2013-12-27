@@ -64,7 +64,7 @@ class EmailSpoolController extends EmailWebController
     public function actionPreview($id)
     {
         $emailSpool = $this->loadModel($id);
-
+        echo CHtml::tag('div', array('style' => 'font-family: Arial; font-weight: bold;'), $emailSpool->subject) . '<hr/>';
         echo $emailSpool->swiftMessage->getBody();
     }
 
