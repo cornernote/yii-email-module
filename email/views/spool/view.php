@@ -58,6 +58,9 @@ $attributes[] = array(
 $this->widget('zii.widgets.CDetailView', array(
     'data' => $emailSpool,
     'attributes' => $attributes,
+    'htmlOptions' => array(
+        'class' => 'table table-condensed table-striped',
+    ),
 ));
 
 // message

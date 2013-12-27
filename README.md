@@ -12,6 +12,7 @@ Easily configurable and powerful email system with templates and email queuing.
 
 [Features](#features)  
 [Screenshots](#screenshots)  
+[Requirements](#requirements)  
 [Installation](#installation)  
 [Configuration](#configuration)  
 [Usage](#usage)  
@@ -28,7 +29,35 @@ Easily configurable and powerful email system with templates and email queuing.
 
 ## Screenshots
 
-...coming soon...
+Yii Email Module Homepage:
+![home](https://raw.github.com/cornernote/yii-email-module/master/screenshot/home.png)
+
+Spool List
+![Requests](https://raw.github.com/cornernote/yii-email-module/master/screenshot/spools.png)
+
+Spool View
+![Request](https://raw.github.com/cornernote/yii-email-module/master/screenshot/spool.png)
+
+Spool Preview
+![Request](https://raw.github.com/cornernote/yii-email-module/master/screenshot/spool-preview.png)
+
+Template List
+![Requests](https://raw.github.com/cornernote/yii-email-module/master/screenshot/templates.png)
+
+Template View
+![Request](https://raw.github.com/cornernote/yii-email-module/master/screenshot/template.png)
+
+Template Preview
+![Request](https://raw.github.com/cornernote/yii-email-module/master/screenshot/template-preview.png)
+
+
+## Requirements
+
+This is a Yii module, which requires the [Yii Framework](http://www.yiiframework.com).
+
+In addition the following are required:
+* [YiiStrap](http://www.getyiistrap.com) for the interface elements.  Please follow their Getting Started giude to setup the aliases and components for your application.
+* [SwiftMailer](http://swiftmailer.org/) to send emails.  Please download and setup an alias as per the swiftMailer section in the Configuration below.
 
 
 ## Installation
