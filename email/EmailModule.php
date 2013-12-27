@@ -109,20 +109,6 @@ class EmailModule extends CWebModule
             foreach ($data as $name => $options)
                 if (empty($this->modelMap[$method][$name]))
                     $this->modelMap[$method][$name] = $options;
-
-        // setup components
-        Yii::app()->setComponents(array(
-            'widgetFactory' => array(
-                'class' => 'system.web.CWidgetFactory',
-                'widgets' => array(
-                    'CDetailView' => array(
-                        'htmlOptions' => array(
-                            'class' => 'table table-condensed table-striped',
-                        ),
-                    ),
-                ),
-            ),
-        ), false);
     }
 
     /**
@@ -180,18 +166,6 @@ class EmailModule extends CWebModule
     public function setAssetsUrl($value)
     {
         $this->_assetsUrl = $value;
-    }
-
-    /**
-     * @param $user_id
-     * @param null $labelPrefix
-     * @return int|string
-     */
-    public function userViewLink($user_id, $labelPrefix = null)
-    {
-        if (!$this->userViewUrl)
-            return $user_id;
-        return str_replace('--user_id--', $user_id, CHtml::link($labelPrefix . '--user_id--', $this->userViewUrl));
     }
 
 }
