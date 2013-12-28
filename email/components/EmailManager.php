@@ -94,18 +94,29 @@ class EmailManager extends CComponent
         // set the from
         if (!$from)
             $swiftMessage->setFrom($this->fromEmail, $this->fromName);
+        else
+            $swiftMessage->setFrom($from);
 
         // attach files
         foreach ($attachments as $attachment)
             $swiftMessage->attach(Swift_Attachment::fromPath($attachment));
 
-        //send by smpt use username and password
-        if($this->smtp_host && $this->smtp_user){
-            $transport = Swift_SmtpTransport::newInstance($this->smtp_host, $this->smtp_port)
-                    ->setUsername($this->smtp_user)
-                    ->setPassword($this->smtp_password);
-            return $transport->send($swiftMessage);
-        }
+        return $this->emailSwiftMessage($swiftMessage, $spool);
+
+    }
+    
+    /**
+     * Send a SwiftMessage.
+     *
+     * Eg:
+     * Yii::app()->emailManager->emailSwiftMessage($swiftMessage);
+     *
+     * @param $swiftMessage
+     * @param $spool
+     * @return bool
+     */
+    public function emailSwiftMessage($swiftMessage, $spool = true)
+    {
 
         //send by smpt with out username and password
         if($this->smtp_host){

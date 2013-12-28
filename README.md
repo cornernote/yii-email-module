@@ -215,7 +215,7 @@ class Email {
 		return $emailSpool->save(false);
 
 		// or send the email
-		//return Swift_Mailer::newInstance(Swift_MailTransport::newInstance())->send($swiftMessage);
+		//return echo Yii::app()->emailManager->emailSwiftMessage($swiftMessage);;
 	}
 }
 ```
