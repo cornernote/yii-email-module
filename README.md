@@ -138,6 +138,41 @@ return array(
 	),
 );
 ```
+Add `EmailManager` with smtp configurationa to the `components` section in your yii configuration:
+
+```php
+return array(
+	'components' => array(
+		'emailManager' => array(
+			// path to the EmailManager class
+			'class' => 'email.components.EmailManager',
+
+            // SMTP HOST
+            'smtp_host' => 'smtp.host.domain',
+
+            // SMTP PORT - default 25
+            'smtp_port' => '25',
+
+            // SMTP USER NAME AND PASSWORD - optional
+            'smtp_smtp_user' => 'user777',
+            'smtpsmtp_passwordport' => 'secretpassword',
+
+			// set this to false in production to improve performance
+			'fromEmail' => 'webmaster@your.dom.ain',
+
+			// set this to false in production to improve performance
+			'fromName' => 'Your Name',
+
+			// can be one of: php, db
+			'templateType' => 'php',
+
+			// when templateType=php this is the path to the email views
+			// you may copy the default templates from email/views/emails
+			'templatePath' => 'application.views.emails',
+		),
+	),
+);
+```
 
 
 ## Usage

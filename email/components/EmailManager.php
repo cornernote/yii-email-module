@@ -40,6 +40,29 @@ class EmailManager extends CComponent
     public $templateFields = array('subject', 'heading', 'message');
 
     /**
+     * @var string
+     */
+    public $smtp_host = FALSE;
+
+    /**
+     * @var string
+     */
+    public $smtp_port = 25;
+    
+    /**
+     * SMTP USER NAME
+     * @var string 
+     */
+    public $smtp_user = FALSE;
+    
+    /**
+     * SMTP PASSWORD
+     * @var string 
+     */
+    public $smtp_password = '';
+
+    
+    /**
      *
      */
     public function init()
@@ -76,6 +99,21 @@ class EmailManager extends CComponent
         foreach ($attachments as $attachment)
             $swiftMessage->attach(Swift_Attachment::fromPath($attachment));
 
+        //send by smpt use username and password
+        if($this->smtp_host && $this->smtp_user){
+            $transport = Swift_SmtpTransport::newInstance($this->smtp_host, $this->smtp_port)
+                    ->setUsername($this->smtp_user)
+                    ->setPassword($this->smtp_password);
+            return $transport->send($swiftMessage);
+        }
+
+        //send by smpt with out username and password
+        if($this->smtp_host){
+            $transport = Swift_SmtpTransport::newInstance($this->smtp_host, $this->smtp_port);
+            $mailer = Swift_Mailer::newInstance($transport);
+            return $mailer->send($swiftMessage);
+        }
+        
         // send the email
         if (!$spool)
             return Swift_Mailer::newInstance(Swift_MailTransport::newInstance())->send($swiftMessage);
