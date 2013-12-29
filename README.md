@@ -201,7 +201,7 @@ class Email {
 		$emailSpool = $emailManager->getEmailSpool($swiftMessage, $user);
 		$emailSpool->priority = 10;
 		$emailSpool->template = $template;
-		$emailSpool->transport = 'mySmtpTransport';
+		$emailSpool->transport = 'smtp'; // send using smtp
 		return $emailSpool->save(false);
 
 		// or send the email
