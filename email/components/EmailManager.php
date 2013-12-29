@@ -123,14 +123,6 @@ class EmailManager extends CComponent
         if (!isset($this->transports[$transport]))
             throw new CException(Yii::t('email', 'Transport :transport is not configured.', array(':transport' => $transport)));
 
-        //get default config
-        if($transport == 'default'){
-            $transport = $this->transports['default'];
-            if (!isset($this->transports[$transport]))
-                throw new CException(Yii::t('email', 'Transport :transport is not configured.', array(':transport' => $transport)));
-            
-        }
-        
         // get transport options
         $options = $this->transports[$transport];
 
