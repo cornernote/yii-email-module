@@ -95,6 +95,10 @@ return array(
 			// add a list of users who can access the email module
 			'adminUsers' => array('admin'),
 
+            //ID of the {@link CDbConnection} application component. If not set,
+            // a SQLite3 database will be automatically created and used.
+            'connectionID' => 'db',
+
 			// set this to false in production to improve performance
 			'autoCreateTables' => true,
 		),
