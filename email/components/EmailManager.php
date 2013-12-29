@@ -16,6 +16,11 @@ class EmailManager extends CComponent
     /**
      * @var string
      */
+    public $swiftMailerPath;
+
+    /**
+     * @var string
+     */
     public $fromEmail = 'webmaster@localhost';
 
     /**
@@ -282,9 +287,9 @@ class EmailManager extends CComponent
      */
     private function registerSwiftMailerAutoloader()
     {
-        $path = Yii::getPathOfAlias('swiftMailer');
+        $path = realpath($this->swiftMailerPath);
         if (!$path)
-            throw new CException('The alias swiftMailer does not have a path.');
+            throw new CException('The EmailManager.swiftMailerPath is invalid.');
         require_once($path . '/classes/Swift.php');
         Yii::registerAutoloader(array('Swift', 'autoload'));
         require_once($path . '/swift_init.php');

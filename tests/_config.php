@@ -22,7 +22,6 @@ return array(
     'aliases' => array(
         'email' => realpath(BASE_PATH . '/../email'),
         'bootstrap' => realpath(BASE_PATH . '/../vendor/crisu83/yiistrap'),
-        'swiftMailer' => realpath(BASE_PATH . '/../vendor/swiftmailer/swiftmailer/lib'),
     ),
     'controllerMap' => array(
         'site' => 'application._components.SiteController',
@@ -39,6 +38,7 @@ return array(
         ),
         'emailManager' => array(
             'class' => 'email.components.EmailManager',
+            'swiftMailerPath' => realpath(BASE_PATH . '/../vendor/swiftmailer/swiftmailer/lib'),
         ),
         'urlManager' => array(
             'urlFormat' => 'path',
