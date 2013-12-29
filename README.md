@@ -87,7 +87,7 @@ Add yii-email-module to the `modules` in your yii configuration:
 return array(
 	'modules' => array(
 		'email' => array(
-			// path to the EmailModule class
+		// path to the EmailModule class
 			'class' => 'vendor.cornernote.yii-email-module.email.EmailModule',
 			// if you downloaded into modules
 			//'class' => 'application.modules.email.EmailModule',
@@ -95,9 +95,9 @@ return array(
 			// add a list of users who can access the email module
 			'adminUsers' => array('admin'),
 
-            //ID of the {@link CDbConnection} application component. If not set,
-            // a SQLite3 database will be automatically created and used.
-            'connectionID' => 'db',
+			// ID of the CDbConnection application component. If not set,
+			// a SQLite3 database will be automatically created and used.
+			'connectionID' => 'db',
 
 			// set this to false in production to improve performance
 			'autoCreateTables' => true,
