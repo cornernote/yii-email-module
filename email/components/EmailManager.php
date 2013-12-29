@@ -40,28 +40,14 @@ class EmailManager extends CComponent
     public $templateFields = array('subject', 'heading', 'message');
 
     /**
-     * @var string
+     * @var
      */
-    public $smtp_host = FALSE;
+    public $transports = array(
+        'default' => array(
+            'class' => 'Swift_MailTransport',
+        ),
+    );
 
-    /**
-     * @var string
-     */
-    public $smtp_port = 25;
-    
-    /**
-     * SMTP USER NAME
-     * @var string 
-     */
-    public $smtp_user = FALSE;
-    
-    /**
-     * SMTP PASSWORD
-     * @var string 
-     */
-    public $smtp_password = '';
-
-    
     /**
      *
      */
@@ -79,12 +65,13 @@ class EmailManager extends CComponent
      * @param $to
      * @param $subject
      * @param $message
-     * @param $attachments
      * @param $from
-     * @param $spool
+     * @param array $attachments
+     * @param null|string $transport
+     * @param bool $spool
      * @return bool
      */
-    public function email($to, $subject, $message, $from = null, $attachments = array(), $spool = true)
+    public function email($to, $subject, $message, $from = null, $attachments = array(), $transport = 'default', $spool = true)
     {
         // get the message
         $swiftMessage = Swift_Message::newInstance($subject);
@@ -101,65 +88,91 @@ class EmailManager extends CComponent
         foreach ($attachments as $attachment)
             $swiftMessage->attach(Swift_Attachment::fromPath($attachment));
 
-        return $this->emailSwiftMessage($swiftMessage, $spool);
-
-    }
-    
-    /**
-     * Send a SwiftMessage.
-     *
-     * Eg:
-     * Yii::app()->emailManager->emailSwiftMessage($swiftMessage);
-     *
-     * @param $swiftMessage
-     * @param $spool
-     * @return bool
-     */
-    public function emailSwiftMessage($swiftMessage, $spool = true)
-    {
-
-        //send by smpt with out username and password
-        if($this->smtp_host){
-            $transport = Swift_SmtpTransport::newInstance($this->smtp_host, $this->smtp_port);
-            $mailer = Swift_Mailer::newInstance($transport);
-            return $mailer->send($swiftMessage);
-        }
-        
         // send the email
         if (!$spool)
-            return Swift_Mailer::newInstance(Swift_MailTransport::newInstance())->send($swiftMessage);
+            return $this->deliver($swiftMessage, $transport);
 
         // or spool the email
         $emailSpool = $this->getEmailSpool($swiftMessage);
+        $emailSpool->transport = $transport;
         return $emailSpool->save(false);
     }
 
     /**
-     * Process pending EmailSpool records.
+     * Deliver a message using a Swift_Transport class.
+     *
+     * Eg:
+     * Yii::app()->emailManager->deliver($swiftMessage);
+     *
+     * @param $swiftMessage
+     * @param string $transport
+     * @throws CException
+     * @return bool
+     */
+    public function deliver($swiftMessage, $transport = 'default')
+    {
+        if (!isset($this->transports[$transport]))
+            throw new CException(Yii::t('email', 'Transport :transport is not configured.', array(':transport' => $transport)));
+
+        // get transport options
+        $options = $this->transports[$transport];
+
+        // get transport class
+        if (isset($options['class'])) {
+            $class = $options['class'];
+            unset($options['class']);
+        }
+        else {
+            throw new CException(Yii::t('email', 'Transport :transport does not have a class.', array(':transport' => $transport)));
+        }
+
+        // get transport setters
+        if (isset($options['setters'])) {
+            $setters = $options['setters'];
+            unset($options['setters']);
+        }
+        else {
+            $setters = array();
+        }
+
+        // create a new transport using class, options and setters
+        $swiftTransport = call_user_func_array($class . '::newInstance', $options);
+        foreach ($setters as $k => $v) {
+            call_user_func_array(array($swiftTransport, 'set' . ucfirst($k)), array($v));
+        }
+
+        // send the message using the transport
+        return Swift_Mailer::newInstance($swiftTransport)->send($swiftMessage);
+    }
+
+    /**
+     * Deliver pending EmailSpool records.
      */
     public function spool($limit = 10)
     {
         // find all the spooled emails
-        $spools = EmailSpool::model()->findAll(array(
+        $emailSpools = EmailSpool::model()->findAll(array(
             'condition' => 't.status=:status',
             'params' => array(':status' => 'pending'),
             'order' => 't.priority DESC, t.created ASC',
             'limit' => $limit,
         ));
-        foreach ($spools as $spool) {
+        foreach ($emailSpools as $emailSpool) {
 
             // update status to emailing
-            $spool->status = 'processing';
-            $spool->save(false);
+            $emailSpool->status = 'processing';
+            $emailSpool->save(false);
 
             // build the message
-            $message = $spool->unpack($spool->message);
+            $swiftMessage = $emailSpool->unpack($emailSpool->message);
 
-            // send the email and update status
-            $Mailer = Swift_Mailer::newInstance(Swift_MailTransport::newInstance());
-            $spool->status = $Mailer->send($message) ? 'emailed' : 'error';
-            $spool->sent = time();
-            $spool->save(false);
+            // send the email
+            $sent = $this->deliver($swiftMessage, $emailSpool->transport);
+
+            // update status and save
+            $emailSpool->status = $sent ? 'emailed' : 'error';
+            $emailSpool->sent = time();
+            $emailSpool->save(false);
 
         }
     }
