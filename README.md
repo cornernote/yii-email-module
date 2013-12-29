@@ -107,8 +107,8 @@ Add swiftMailer to the `aliases` in your yii configuration:
 ```php
 return array(
 	'aliases' => array(
-        // path to the SwiftMailer lib folder
-        'swiftMailer' => '/path/to/vendor/swiftmailer/swiftmailer/lib',
+		// path to the SwiftMailer lib folder
+		'swiftMailer' => '/path/to/vendor/swiftmailer/swiftmailer/lib',
 	),
 );
 ```
@@ -144,18 +144,19 @@ Add `EmailManager` with smtp configurationa to the `components` section in your 
 return array(
 	'components' => array(
 		'emailManager' => array(
+
 			// path to the EmailManager class
 			'class' => 'email.components.EmailManager',
 
-            // SMTP HOST
-            'smtp_host' => 'smtp.host.domain',
+			// SMTP HOST
+			'smtp_host' => 'smtp.host.domain',
 
-            // SMTP PORT - default 25
-            'smtp_port' => '25',
+			// SMTP PORT - default 25
+			'smtp_port' => '25',
 
-            // SMTP USER NAME AND PASSWORD - optional
-            'smtp_smtp_user' => 'user777',
-            'smtpsmtp_passwordport' => 'secretpassword',
+			// SMTP USER NAME AND PASSWORD - optional
+			'smtp_smtp_user' => 'user777',
+			'smtpsmtp_passwordport' => 'secretpassword',
 
 			// set this to false in production to improve performance
 			'fromEmail' => 'webmaster@your.dom.ain',
@@ -169,6 +170,30 @@ return array(
 			// when templateType=php this is the path to the email views
 			// you may copy the default templates from email/views/emails
 			'templatePath' => 'application.views.emails',
+
+			// email transport methods
+			'transports' => array(
+
+				// the default transport
+				'default' => array(
+					// can be Swift_MailTransport or Swift_SmtpTransport
+					'class' => 'Swift_MailTransport',
+				),
+
+				// another transport, can be named anything
+				'mySmtpTransport' => array(
+					// if you use smtp you may need to define the host, port, security and setters
+					'class' => 'Swift_SmtpTransport',
+					'host' => 'localhost',
+					'port' => 25,
+					'security' => null,
+					'setters' => array(
+						'username' => 'your_username',
+						'password' => 'your_password',
+					),
+				),
+			),
+
 		),
 	),
 );
@@ -212,10 +237,11 @@ class Email {
 		$emailSpool = $emailManager->getEmailSpool($swiftMessage, $user);
 		$emailSpool->priority = 10;
 		$emailSpool->template = $template;
+		$emailSpool->transport = 'mySmtpTransport';
 		return $emailSpool->save(false);
 
 		// or send the email
-		//return echo Yii::app()->emailManager->emailSwiftMessage($swiftMessage);;
+		//return echo Yii::app()->emailManager->deliver($swiftMessage, 'mySmtpTransport');
 	}
 }
 ```
