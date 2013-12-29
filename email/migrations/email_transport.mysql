@@ -6,6 +6,6 @@ CREATE TABLE `email_transport` (
 `smtp_port` int(11),
 `smtp_security` varchar(255),
 `smtp_username` varchar(255),
-`smtp_password` varchar(255)
+`smtp_password` varchar(255),
 PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;
