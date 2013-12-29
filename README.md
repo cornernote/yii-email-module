@@ -139,10 +139,12 @@ return array(
 			'transports' => array(
 
 				// the default transport
-				'default' => array(
-					// can be Swift_MailTransport or Swift_SmtpTransport
-					'class' => 'Swift_MailTransport',
-				),
+                // can be Swift_MailTransport or mySmtpTransport
+				'default' => 'Swift_MailTransport',
+
+                'Swift_MailTransport' => array(
+                    'class' => 'Swift_MailTransport',
+                ),  
 
 				// another transport, can be named anything
 				'mySmtpTransport' => array(
