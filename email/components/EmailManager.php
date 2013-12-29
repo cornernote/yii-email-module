@@ -40,10 +40,15 @@ class EmailManager extends CComponent
     public $templateFields = array('subject', 'heading', 'message');
 
     /**
-     * @var
+     * @var string
+     */
+    public $defaultTransport = 'mail';
+
+    /**
+     * @var array
      */
     public $transports = array(
-        'default' => array(
+        'mail' => array(
             'class' => 'Swift_MailTransport',
         ),
     );
@@ -58,20 +63,21 @@ class EmailManager extends CComponent
 
     /**
      * Send an email.
+     * Email addresses can be formatted as a string 'user@dom.ain' or as an array('user@dom.ain'=>'User name').
      *
      * Eg:
      * Yii::app()->emailManager->email('user@dom.ain', 'test email', '<b>Hello</b> <i>World<i>!');
      *
-     * @param $to
-     * @param $subject
-     * @param $message
-     * @param $from
+     * @param string|array $to
+     * @param string $subject
+     * @param string $message
+     * @param string|array $from
      * @param array $attachments
-     * @param null|string $transport
+     * @param string $transport
      * @param bool $spool
      * @return bool
      */
-    public function email($to, $subject, $message, $from = null, $attachments = array(), $transport = 'default', $spool = true)
+    public function email($to, $subject, $message, $from = null, $attachments = array(), $transport = null, $spool = true)
     {
         // get the message
         $swiftMessage = Swift_Message::newInstance($subject);
@@ -109,8 +115,11 @@ class EmailManager extends CComponent
      * @throws CException
      * @return bool
      */
-    public function deliver($swiftMessage, $transport = 'default')
+    public function deliver($swiftMessage, $transport = null)
     {
+        // get the transport
+        if (!$transport)
+            $transport = $this->defaultTransport;
         if (!isset($this->transports[$transport]))
             throw new CException(Yii::t('email', 'Transport :transport is not configured.', array(':transport' => $transport)));
 

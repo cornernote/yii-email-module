@@ -135,19 +135,21 @@ return array(
 			// you may copy the default templates from email/views/emails
 			'templatePath' => 'application.views.emails',
 
+			// the default transport to use, for this example you can use "mail" or "smtp"
+			// see below for defining new transports
+			'defaultTransport' => 'mail',
+
 			// email transport methods
 			'transports' => array(
 
-				// the default transport
-                // can be Swift_MailTransport or mySmtpTransport
-				'default' => 'Swift_MailTransport',
+				// mail transport
+				'mail' => array(
+					// can be Swift_MailTransport or Swift_SmtpTransport
+					'class' => 'Swift_MailTransport',
+				),
 
-                'Swift_MailTransport' => array(
-                    'class' => 'Swift_MailTransport',
-                ),  
-
-				// another transport, can be named anything
-				'mySmtpTransport' => array(
+				// smtp transport
+				'smtp' => array(
 					// if you use smtp you may need to define the host, port, security and setters
 					'class' => 'Swift_SmtpTransport',
 					'host' => 'localhost',
