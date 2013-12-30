@@ -87,7 +87,7 @@ Add yii-email-module to the `modules` in your yii configuration:
 return array(
 	'modules' => array(
 		'email' => array(
-		// path to the EmailModule class
+			// path to the EmailModule class
 			'class' => 'vendor.cornernote.yii-email-module.email.EmailModule',
 			// if you downloaded into modules
 			//'class' => 'application.modules.email.EmailModule',
@@ -101,6 +101,10 @@ return array(
 
 			// set this to false in production to improve performance
 			'autoCreateTables' => true,
+
+			// this is only required if you do not want YiiStrap in your app config
+			// for example, if you are running YiiBooster
+			'yiiStrapPath' => '/path/to/yiistrap',
 		),
 	),
 );

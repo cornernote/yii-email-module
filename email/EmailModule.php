@@ -57,6 +57,11 @@ class EmailModule extends CWebModule
     public $adminUsers = array();
 
     /**
+     * @var string
+     */
+    public $yiiStrapPath;
+
+    /**
      * @var CDbConnection the DB connection instance
      */
     private $_db;
@@ -109,6 +114,22 @@ class EmailModule extends CWebModule
             foreach ($data as $name => $options)
                 if (empty($this->modelMap[$method][$name]))
                     $this->modelMap[$method][$name] = $options;
+
+        // when in module
+        $route = explode('/', Yii::app()->urlManager->parseUrl(Yii::app()->request));
+        if ($route[0] == 'email') {
+            // setup yiiStrap components
+            if ($this->yiiStrapPath) {
+                Yii::setPathOfAlias('bootstrap', realpath($this->yiiStrapPath));
+                Yii::import('bootstrap.helpers.TbHtml');
+                Yii::app()->setComponents(array(
+                    'bootstrap' => array(
+                        'class' => 'bootstrap.components.TbApi',
+                    ),
+                ), false);
+            }
+        }
+
     }
 
     /**
