@@ -27,4 +27,6 @@ defined('YII_ENABLE_ERROR_HANDLER') or define('YII_ENABLE_ERROR_HANDLER', false)
 
 // create application
 require_once(YII_PATH . '/yii.php');
-Yii::createWebApplication(BASE_PATH . '/_config.php');
+$config = require(BASE_PATH . '/_config.php');
+unset($config['controllerMap']);
+Yii::createConsoleApplication($config);

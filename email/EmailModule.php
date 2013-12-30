@@ -115,18 +115,21 @@ class EmailModule extends CWebModule
                 if (empty($this->modelMap[$method][$name]))
                     $this->modelMap[$method][$name] = $options;
 
-        // when in module
-        $route = explode('/', Yii::app()->urlManager->parseUrl(Yii::app()->request));
-        if ($route[0] == 'email') {
-            // setup yiiStrap components
-            if ($this->yiiStrapPath) {
-                Yii::setPathOfAlias('bootstrap', realpath($this->yiiStrapPath));
-                Yii::import('bootstrap.helpers.TbHtml');
-                Yii::app()->setComponents(array(
-                    'bootstrap' => array(
-                        'class' => 'bootstrap.components.TbApi',
-                    ),
-                ), false);
+        // when in web application
+        if (Yii::app() instanceof CWebApplication) {
+            // and in this module
+            $route = explode('/', Yii::app()->urlManager->parseUrl(Yii::app()->request));
+            if ($route[0] == $this->id) {
+                // setup yiiStrap components
+                if ($this->yiiStrapPath) {
+                    Yii::setPathOfAlias('bootstrap', realpath($this->yiiStrapPath));
+                    Yii::import('bootstrap.helpers.TbHtml');
+                    Yii::app()->setComponents(array(
+                        'bootstrap' => array(
+                            'class' => 'bootstrap.components.TbApi',
+                        ),
+                    ), false);
+                }
             }
         }
 
