@@ -265,7 +265,7 @@ Each of the **template** parts is rendered (`subject`, `heading` and `message`),
 This allows features such as:
 - Consistent pretty message layouts
 - Your templates remain light with no need for any layout code
-- Easily change email templates, for example, send the same email in December with an xmas template
+- Easily change email layouts, for example, send the same email template in December with an xmas layout
 - Ability to prepend/append to the subject or heading at a more global level (for example if you want your site name in every email subject, you can set your layout subject to "{{subject}} - My Awesome Site"
 
 For an example, let's take a look at a layout and template for a `subject` part:
