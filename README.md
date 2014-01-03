@@ -16,6 +16,7 @@ Easily configurable and powerful email system with templates and email queuing.
 [Installation](#installation)  
 [Configuration](#configuration)  
 [Usage](#usage)  
+[FAQ](#FAQ)  
 [License](#license)  
 [Links](#links)  
 
@@ -253,6 +254,42 @@ Now you can send the spooled emails like this:
 ```
 yiic emailSpool
 ```
+
+
+## FAQ
+
+### What is the difference between a template and a layout?
+
+Each of the *template* parts is rendered (subject/heading/message), and then those parts become variables in the *layout*.  Let's take a look at a layout and template for an email subject:
+
+*LAYOUT SUBJECT*
+```
+{{subject}} - My Awesome Site
+```
+
+*TEMPLATE SUBJECT*
+```
+Welcome {{user.username}}
+```
+
+*GENERATED SUBJECT*
+```
+Welcome cornernote - My Awesome Site
+```
+
+As you can see, the {{subject}} variable in the *layout* gets replaced by the parsed subject from the *template*.
+
+
+### Do the variables {{subject}}, {{heading}} and {{message}} need to be defined when calling buildTemplateMessage() function?
+
+No, these variables will be created internally based on your the 3 parts of the *template* (subject, heading and message), which will be passed into the *layout*.
+
+
+### Why does HTML code get replaced htmlencoded output when using db templates rendered with Mustache?
+
+Mustache replaces `{{variables}}` with the htmlencoded value of the variable, unless you use `{{{tripple_culry_braces}}}`.  
+- `{{double_curly_braces}}` will be htmlencoded
+- `{{{tripple_culry_braces}}}` will allow html
 
 
 ## License
