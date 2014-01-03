@@ -8,4 +8,8 @@
 
 class_name: TestGuy
 modules:
-    enabled: [TestHelper]
+    enabled: [PhpBrowser, TestHelper]
+    config:
+        PhpBrowser:
+            url: 'http://localhost/'
+            #url: 'http://localhost/_github/yii-email-module/tests/_public/'
