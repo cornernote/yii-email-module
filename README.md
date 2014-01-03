@@ -260,29 +260,29 @@ yiic emailSpool
 
 ### What is the difference between a template and a layout?
 
-Each of the _template_ parts is rendered (subject/heading/message), and then those parts become variables in the _layout_.  Let's take a look at a layout and template for an email subject:
+Each of the **template** parts is rendered (subject/heading/message), and then those parts become variables in the **layout**.  Let's take a look at a layout and template for an email subject:
 
-_LAYOUT SUBJECT_
+**LAYOUT SUBJECT**
 ```
 {{subject}} - My Awesome Site
 ```
 
-_TEMPLATE SUBJECT_
+**TEMPLATE SUBJECT**
 ```
 Welcome {{user.username}}
 ```
 
-_GENERATED SUBJECT_
+**GENERATED SUBJECT**
 ```
 Welcome cornernote - My Awesome Site
 ```
 
-As you can see, the {{subject}} variable in the _layout_ gets replaced by the parsed subject from the _template_.
+As you can see, the {{subject}} variable in the **layout** gets replaced by the parsed subject from the **template**.
 
 
 ### Do the variables {{subject}}, {{heading}} and {{message}} need to be defined when calling buildTemplateMessage() function?
 
-No, these variables will be created internally based on your the 3 parts of the _template_ (subject, heading and message), which will be passed into the _layout_.
+No, these variables will be created internally based on your the 3 parts of the **template** (subject, heading and message), which will be passed into the **layout**.
 
 
 ### Why does HTML code get replaced htmlencoded output when using db templates rendered with Mustache?
