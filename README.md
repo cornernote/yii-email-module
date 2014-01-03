@@ -260,7 +260,7 @@ yiic emailSpool
 
 ### What is the difference between a template and a layout?
 
-Each of the **template** parts is rendered (subject/heading/message), and then those parts become variables in the **layout**.  Let's take a look at a layout and template for an email subject:
+Each of the **template** parts is rendered (`subject`, `heading` and `message`), and then those parts become variables in the **layout**.  Let's take a look at a layout and template for a `subject` part:
 
 **LAYOUT SUBJECT**
 ```
@@ -277,22 +277,22 @@ Welcome {{user.username}}
 Welcome cornernote - My Awesome Site
 ```
 
-As you can see, the {{subject}} variable in the **layout** gets replaced by the parsed subject from the **template**.
+As you can see, the `subject` in the **layout** gets replaced by the parsed `subject` from the **template**.
 
 
-### Do layout variables {{subject}}, {{heading}} and {{message}} need to be defined when calling buildTemplateMessage() function?
+### Do layout variables `subject`, `heading` and `message` need to be defined when calling `buildTemplateMessage()` function?
 
-No, these variables will be created internally based on your the 3 parts of the **template** (subject, heading and message), which will be passed into the **layout**.
+No, these variables will be created internally based on your the 3 parts of the **template** (`subject`, `heading` and `message`), which will be passed into the **layout**.
 
 
 ### Are there any other variables automatically available to the **layout**?
 
-Apart from the variables created by the parts (subject/heading/message), there are no other variables available to the **layout**, however you can extend EmailManager to add your own variables:
+Apart from the variables created by the parts (`subject`, `heading` and `message`), there are no other variables available to the **layout**, however you can extend the `EmailManager` class to add your own global variables:
 
 ```php
 class MyEmailManager extends EmailManager {
 	public function buildTemplateMessage($template, $viewParams = array(), $layout = 'layout_default') {
-		$viewParams['siteName'] = Yii::app()->name;
+		$viewParams['appName'] = Yii::app()->name;
 		return parent::buildTemplateMessage($template, $viewParams, $layout);
 	}
 }
