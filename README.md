@@ -280,9 +280,35 @@ Welcome cornernote - My Awesome Site
 As you can see, the {{subject}} variable in the **layout** gets replaced by the parsed subject from the **template**.
 
 
-### Do the variables {{subject}}, {{heading}} and {{message}} need to be defined when calling buildTemplateMessage() function?
+### Do layout variables {{subject}}, {{heading}} and {{message}} need to be defined when calling buildTemplateMessage() function?
 
 No, these variables will be created internally based on your the 3 parts of the **template** (subject, heading and message), which will be passed into the **layout**.
+
+
+### Are there any other variables automatically available to the **layout**?
+
+Apart from the variables created by the parts (subject/heading/message), there are no other variables available to the **layout**, however you can extend EmailManager to add your own variables:
+
+```php
+class MyEmailManager extends EmailManager {
+	public function buildTemplateMessage($template, $viewParams = array(), $layout = 'layout_default') {
+		$viewParams['siteName'] = Yii::app()->name;
+		return parent::buildTemplateMessage($template, $viewParams, $layout);
+	}
+}
+```
+
+Don't forget to update the class path in your yii config:
+```php
+return array(
+	'components' => array(
+		'emailManager' => array(
+			// path to the MyEmailManager class
+			'class' => 'application.components.MyEmailManager',
+		),
+	),
+),
+```
 
 
 ### Why does HTML code get replaced htmlencoded output when using db templates rendered with Mustache?
