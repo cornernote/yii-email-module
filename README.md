@@ -262,14 +262,14 @@ yiic emailSpool
 
 Each of the **template** parts is rendered (`subject`, `heading` and `message`), and then those parts become variables in the **layout**.  Let's take a look at a layout and template for a `subject` part:
 
-**LAYOUT SUBJECT**
-```
-{{subject}} - My Awesome Site
-```
-
 **TEMPLATE SUBJECT**
 ```
 Welcome {{user.username}}
+```
+
+**LAYOUT SUBJECT**
+```
+{{subject}} - My Awesome Site
 ```
 
 **GENERATED SUBJECT**
