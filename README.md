@@ -260,7 +260,15 @@ yiic emailSpool
 
 ### What is the difference between a template and a layout?
 
-Each of the **template** parts is rendered (`subject`, `heading` and `message`), and then those parts become variables in the **layout**.  Let's take a look at a layout and template for a `subject` part:
+Each of the **template** parts is rendered (`subject`, `heading` and `message`), and then those parts become variables in the **layout**.  
+
+This allows features such as:
+- Consistent pretty message layouts
+- Your templates remain light with no need for any layout code
+- Easily change email templates, for example, send the same email in December with an xmas template
+- Ability to prepend/append to the subject or heading at a more global level (for example if you want your site name in every email subject, you can set your layout subject to "{{subject}} - My Awesome Site"
+
+For an example, let's take a look at a layout and template for a `subject` part:
 
 **TEMPLATE SUBJECT**
 ```
