@@ -16,7 +16,7 @@ Easily configurable and powerful email system with templates and email queuing.
 [Installation](#installation)  
 [Configuration](#configuration)  
 [Usage](#usage)  
-[FAQ](#FAQ)  
+[FAQ](#faq)  
 [License](#license)  
 [Links](#links)  
 
