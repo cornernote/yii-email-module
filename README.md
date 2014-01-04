@@ -98,7 +98,7 @@ return array(
 Download the [latest version](https://github.com/cornernote/yii-email-module/archive/master.zip) and move the `email` folder into your `protected/modules` folder.
 
 In addition the following are required:
-* [YiiStrap](http://www.getyiistrap.com) for the interface elements.  Please follow their Getting Started giude to setup the aliases and components for your application.
+* [YiiStrap](http://www.getyiistrap.com) for the interface elements.  Please follow their Getting Started guide to setup the aliases and components for your application.
 * [SwiftMailer](http://swiftmailer.org/) to send emails.  Please download and setup the swiftMailerPath as per the Configuration below.
 * [MustachePHP](https://github.com/bobthecow/mustache.php) to render database templates.  Please download and setup the mustachePath as per the Configuration below.
 
