@@ -3,23 +3,17 @@
 Easily configurable and powerful email system with templates and email queuing.
 
 
-[![Mr PHP](https://raw.github.com/cornernote/mrphp-assets/master/img/code-banner.png)](http://mrphp.com.au) [![Project Stats](https://www.ohloh.net/p/yii-email-module/widgets/project_thin_badge.gif)](https://www.ohloh.net/p/yii-email-module)
-
-[![Latest Stable Version](https://poser.pugx.org/cornernote/yii-email-module/v/stable.png)](https://packagist.org/packages/cornernote/yii-email-module) [![Build Status](https://travis-ci.org/cornernote/yii-email-module.png?branch=master)](https://travis-ci.org/cornernote/yii-email-module) [![Dependencies Check](https://depending.in/cornernote/yii-email-module.png)](https://depending.in/cornernote/yii-email-module)
-
-
-
 ### Contents
 
 [Features](#features)  
 [Screenshots](#screenshots)  
-[Requirements](#requirements)  
-[Installation](#installation)  
+[Requirements](#requirements)
+[Installation](#installation)
 [Configuration](#configuration)  
 [Usage](#usage)  
 [FAQ](#faq)  
-[License](#license)  
-[Links](#links)  
+[Resources](#resources)
+[License](#license)
 
 
 ## Features
@@ -380,6 +374,18 @@ Mustache replaces `{{variables}}` with the htmlencoded value of the variable, un
 - `{{{tripple_culry_braces}}}` will allow html
 
 
+## Resources
+
+[![Mr PHP](https://raw.github.com/cornernote/mrphp-assets/master/img/code-banner.png)](http://mrphp.com.au) [![Yii Extension](https://raw.github.com/cornernote/mrphp-assets/master/vendor/yii/yii-extension-16.png)](http://www.yiiframework.com/extension/yii-email-module) [![Project Stats](https://www.ohloh.net/p/yii-email-module/widgets/project_thin_badge.gif)](https://www.ohloh.net/p/yii-email-module)
+
+[![Latest Stable Version](https://poser.pugx.org/cornernote/yii-email-module/v/stable.png)](https://packagist.org/packages/cornernote/yii-email-module) [![Build Status](https://travis-ci.org/cornernote/yii-email-module.png?branch=master)](https://travis-ci.org/cornernote/yii-email-module) [![Dependencies Check](https://depending.in/cornernote/yii-email-module.png)](https://depending.in/cornernote/yii-email-module)
+
+- [YiiStrap](http://getyiistrap.com/)
+- [SwiftMailer](http://swiftmailer.org/)
+- [MustachePHP](https://github.com/bobthecow/mustache.php)
+- [Lockrun](https://github.com/pushcx/lockrun)
+
+
 ## License
 
 - Author: Brett O'Donnell <cornernote@gmail.com>
@@ -387,13 +393,3 @@ Mustache replaces `{{variables}}` with the htmlencoded value of the variable, un
 - Source Code: https://github.com/cornernote/yii-email-module
 - Copyright © 2013 Mr PHP <info@mrphp.com.au>
 - License: BSD-3-Clause https://raw.github.com/cornernote/yii-email-module/master/LICENSE
-
-
-## Links
-
-- [Yii Extension](http://www.yiiframework.com/extension/yii-email-module)
-- [Composer Package](https://packagist.org/packages/cornernote/yii-email-module)
-- [SwiftMailer](http://swiftmailer.org/)
-- [MustachePHP](https://github.com/bobthecow/mustache.php)
-- [MrPHP](http://mrphp.com.au)
-
