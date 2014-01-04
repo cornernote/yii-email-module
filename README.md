@@ -185,6 +185,16 @@ return array(
 );
 ```
 
+To use the commands that are included with yii-email-manager, add the following to the `commandMap` section of your yiic configuration:
+
+```php
+return array(
+	'commandMap' => array(
+		'emailSpool' => 'email.commands.EmailSpoolCommand',
+	),
+);
+```
+
 
 ## Usage
 
@@ -280,21 +290,21 @@ Email::sendUserWelcome($user);
 
 ### Sending Spooled Emails
 
-Create a new yiic command in `commands/EmailSpoolCommand.php`:
-
-```php
-class EmailSpoolCommand extends CConsoleCommand {
-	public function actionIndex() {
-		Yii::app()->emailManager->processSpool();
-	}
-}
-```
-
-Now you can send the spooled emails like this:
+You can send the spooled emails using the yiic command:
 
 ```
 yiic emailSpool
 ```
+
+### Automatically Sending
+
+Setup [lockrun](https://github.com/pushcx/lockrun) for overlap protection.  This allows us to setup a cron job that will run every minute, with no risk of a new process starting if an existing process is running.
+
+Add the following to your crontab:
+```
+* * * * * /usr/local/bin/lockrun --idempotent --lockfile=/path/to/app/runtime/emailSpool.lock -- /path/to/yiic emailSpool loop > /dev/null 2>&1
+```
+
 
 ### Extending EEmailManager
 
@@ -325,9 +335,8 @@ class EmailManager extends EEmailManager {
 ```
 
 
-
-
 ## FAQ
+
 
 ### What is the difference between a template and a layout?
 
