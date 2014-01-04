@@ -82,6 +82,16 @@ php composer.phar require cornernote/yii-email-module:*           // latest rele
 php composer.phar require cornernote/yii-email-module:dev-master  // development version
 ```
 
+Add the `vendor` folder to the `aliases` in your yii configuration:
+
+```php
+return array(
+	'aliases' => array(
+		'vendor' => '/path/to/vendor',
+	),
+);
+```
+
 
 ### Manual Installation
 
@@ -89,8 +99,8 @@ Download the [latest version](https://github.com/cornernote/yii-email-module/arc
 
 In addition the following are required:
 * [YiiStrap](http://www.getyiistrap.com) for the interface elements.  Please follow their Getting Started giude to setup the aliases and components for your application.
-* [SwiftMailer](http://swiftmailer.org/) to send emails.  Please download and setup the path as per the swiftMailer section in the Configuration below.
-* [MustachePHP](https://github.com/bobthecow/mustache.php) to render database templates.  Please download and setup the path as per the mustache section in the Configuration below.
+* [SwiftMailer](http://swiftmailer.org/) to send emails.  Please download and setup the swiftMailerPath as per the Configuration below.
+* [MustachePHP](https://github.com/bobthecow/mustache.php) to render database templates.  Please download and setup the mustachePath as per the Configuration below.
 
 
 ## Configuration
