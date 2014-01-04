@@ -111,14 +111,14 @@ return array(
 );
 ```
 
-Add `EmailManager` to the `components` section in your yii configuration:
+Add `EEmailManager` to the `components` section in your yii configuration:
 
 ```php
 return array(
 	'components' => array(
 		'emailManager' => array(
-			// path to the EmailManager class
-			'class' => 'email.components.EmailManager',
+			// path to the EEmailManager class
+			'class' => 'email.components.EEmailManager',
 
 			// path to the SwiftMailer lib folder
 			'swiftMailerPath' => '/path/to/vendor/swiftmailer/swiftmailer/lib',
@@ -295,10 +295,10 @@ No, these variables will be created internally based on your the 3 parts of the 
 
 ### Are there any other variables automatically available to the **layout**?
 
-Apart from the variables created by the parts (`subject`, `heading` and `message`), there are no other variables available to the **layout**, however you can extend the `EmailManager` class to add your own global variables:
+Apart from the variables created by the parts (`subject`, `heading` and `message`), there are no other variables available to the **layout**, however you can extend the `EEmailManager` class to add your own global variables:
 
 ```php
-class MyEmailManager extends EmailManager {
+class EmailManager extends EEmailManager {
 	public function buildTemplateMessage($template, $viewParams = array(), $layout = 'layout_default') {
 		$viewParams['appName'] = Yii::app()->name;
 		return parent::buildTemplateMessage($template, $viewParams, $layout);
@@ -311,8 +311,8 @@ Don't forget to update the class path in your yii config:
 return array(
 	'components' => array(
 		'emailManager' => array(
-			// path to the MyEmailManager class
-			'class' => 'application.components.MyEmailManager',
+			// path to the EmailManager class
+			'class' => 'application.components.EmailManager',
 		),
 	),
 ),
