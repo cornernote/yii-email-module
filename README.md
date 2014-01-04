@@ -80,16 +80,6 @@ Download the [latest version](https://github.com/cornernote/yii-email-module/arc
 
 ## Configuration
 
-If you installed with composer, you should set an alias to your `vendor` folder in your yii configuration:
-
-```php
-return array(
-	'aliases' => array(
-		'vendor' => '/path/to/vendor',
-	),
-);
-```
-
 Add yii-email-module to the `modules` in your yii configuration:
 
 ```php
@@ -97,9 +87,7 @@ return array(
 	'modules' => array(
 		'email' => array(
 			// path to the EmailModule class
-			'class' => 'vendor.cornernote.yii-email-module.email.EmailModule',
-			// if you downloaded into modules
-			//'class' => 'application.modules.email.EmailModule',
+			'class' => '/path/to/vendor/cornernote/yii-email-module/email/EmailModule',
 
 			// add a list of users who can access the email module
 			'adminUsers' => array('admin'),
@@ -199,11 +187,13 @@ return array(
 Yii::app()->emailManager->email('user@dom.ain', 'test email', '<b>Hello</b> <i>World<i>!');
 ```
 
+
 ### Using Templates
 
 To send more complex emails you will need to use Email Templates.
 
-### Component
+
+#### Component
 
 Create a new component in `components/Email.php`:
 
@@ -238,7 +228,8 @@ class Email {
 }
 ```
 
-### PHP Templates
+
+#### PHP Templates
 
 Subject `views/emails/example/subject.php`:
 ```php
@@ -255,7 +246,8 @@ Message `views/emails/example/message.php`:
 <?php echo 'Here is an <b>awesome</b> email!';
 ```
 
-### DB Templates
+
+#### DB Templates
 
 Subject
 ```
@@ -273,7 +265,7 @@ Here is an <b>awesome</b> email!
 ```
 
 
-### Sending the Email
+#### Sending the Email
 
 Now you can send an email like this:
 
@@ -282,6 +274,7 @@ $user = User::model()->findByPk(123);
 Email::sendUserWelcome($user);
 ```
 
+
 ### Sending Spooled Emails
 
 You can send the spooled emails using the yiic command:
@@ -289,6 +282,7 @@ You can send the spooled emails using the yiic command:
 ```
 yiic emailSpool
 ```
+
 
 ### Automatically Sending
 

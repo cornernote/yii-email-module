@@ -115,24 +115,8 @@ class EmailModule extends CWebModule
                 if (empty($this->modelMap[$method][$name]))
                     $this->modelMap[$method][$name] = $options;
 
-        // when in web application
-        if (Yii::app() instanceof CWebApplication) {
-            // and in this module
-            $route = explode('/', Yii::app()->urlManager->parseUrl(Yii::app()->request));
-            if ($route[0] == $this->id) {
-                // setup yiiStrap components
-                if ($this->yiiStrapPath) {
-                    Yii::setPathOfAlias('bootstrap', realpath($this->yiiStrapPath));
-                    Yii::import('bootstrap.helpers.TbHtml');
-                    Yii::app()->setComponents(array(
-                        'bootstrap' => array(
-                            'class' => 'bootstrap.components.TbApi',
-                        ),
-                    ), false);
-                }
-            }
-        }
-
+        // init yiiStrap
+        $this->initYiiStrap();
     }
 
     /**
@@ -190,6 +174,37 @@ class EmailModule extends CWebModule
     public function setAssetsUrl($value)
     {
         $this->_assetsUrl = $value;
+    }
+
+    /**
+     * Setup yiiStrap, works even if YiiBooster is used in main app.
+     */
+    public function initYiiStrap()
+    {
+        // check that we are in a web application
+        if (!(Yii::app() instanceof CWebApplication))
+            return;
+        // and in this module
+        $route = explode('/', Yii::app()->urlManager->parseUrl(Yii::app()->request));
+        if ($route[0] != $this->id)
+            return;
+        // and yiiStrap is not configured
+        if (Yii::getPathOfAlias('bootstrap') && file_exists(Yii::getPathOfAlias('bootstrap.helpers') . '/TbHtml.php'))
+            return;
+        // try to guess yiiStrapPath
+        if ($this->yiiStrapPath === null)
+            $this->yiiStrapPath = Yii::getPathOfAlias('vendor.crisu83.yiistrap');
+        // check for valid path
+        if (!realpath($this->yiiStrapPath))
+            return;
+        // setup yiiStrap components
+        Yii::setPathOfAlias('bootstrap', realpath($this->yiiStrapPath));
+        Yii::import('bootstrap.helpers.TbHtml');
+        Yii::app()->setComponents(array(
+            'bootstrap' => array(
+                'class' => 'bootstrap.components.TbApi',
+            ),
+        ), false);
     }
 
 }
