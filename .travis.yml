@@ -22,7 +22,7 @@ before_script:
 after_script:
   - ls -la tests/_runtime
   - cat tests/_log/*
-  - cat /var/log/apache2/error.log
-  - cat /var/log/apache2/access.log
+  - sudo cat /var/log/apache2/error.log
+  - sudo cat /var/log/apache2/access.log
 
 script: php codecept.phar run
