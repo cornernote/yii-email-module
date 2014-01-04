@@ -85,7 +85,7 @@ Download the [latest version](https://github.com/cornernote/yii-email-module/arc
 
 ## Configuration
 
-If you installed with composer, you should set an alias to your `vendor` folder:
+If you installed with composer, you should set an alias to your `vendor` folder in your yii configuration:
 
 ```php
 return array(
