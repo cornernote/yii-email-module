@@ -255,6 +255,36 @@ Now you can send the spooled emails like this:
 yiic emailSpool
 ```
 
+### Extending EEmailManager
+
+Before extending you should check the available configuration options.  In many occasions you can configure the `EEmailManager` class to behave as you require.
+
+If you wish to extend for more complex functionality, you can simply update the class path in your yii config to point to your own `EmailManager` class, all the other configuration options will still be available:
+
+```php
+return array(
+	'components' => array(
+		'emailManager' => array(
+			// path to the EmailManager class
+			'class' => 'application.components.EmailManager',
+		),
+	),
+),
+```
+
+For example, to make the app name available to all templates and layouts, you can override `buildTemplateMessage()`:
+
+```php
+class EmailManager extends EEmailManager {
+	public function buildTemplateMessage($template, $viewParams = array(), $layout = 'layout_default') {
+		$viewParams['appName'] = Yii::app()->name;
+		return parent::buildTemplateMessage($template, $viewParams, $layout);
+	}
+}
+```
+
+
+
 
 ## FAQ
 
@@ -291,32 +321,6 @@ As you can see, the `subject` in the **layout** gets replaced by the parsed `sub
 ### Do layout variables `subject`, `heading` and `message` need to be defined when calling `buildTemplateMessage()` function?
 
 No, these variables will be created internally based on your the 3 parts of the **template** (`subject`, `heading` and `message`), which will be passed into the **layout**.
-
-
-### Are there any other variables automatically available to the **layout**?
-
-Apart from the variables created by the parts (`subject`, `heading` and `message`), there are no other variables available to the **layout**, however you can extend the `EEmailManager` class to add your own global variables:
-
-```php
-class EmailManager extends EEmailManager {
-	public function buildTemplateMessage($template, $viewParams = array(), $layout = 'layout_default') {
-		$viewParams['appName'] = Yii::app()->name;
-		return parent::buildTemplateMessage($template, $viewParams, $layout);
-	}
-}
-```
-
-Don't forget to update the class path in your yii config:
-```php
-return array(
-	'components' => array(
-		'emailManager' => array(
-			// path to the EmailManager class
-			'class' => 'application.components.EmailManager',
-		),
-	),
-),
-```
 
 
 ### Why does HTML code get replaced htmlencoded output when using db templates rendered with Mustache?
