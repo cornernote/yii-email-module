@@ -21,6 +21,7 @@ return array(
     ),
     'aliases' => array(
         'email' => realpath(BASE_PATH . '/../email'),
+        'vendor' => realpath(BASE_PATH . '/../vendor'),
         'bootstrap' => realpath(BASE_PATH . '/../vendor/crisu83/yiistrap'),
     ),
     'controllerMap' => array(

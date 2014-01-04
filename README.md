@@ -58,7 +58,10 @@ This is a Yii module, which requires the [Yii Framework](http://www.yiiframework
 
 In addition the following are required:
 * [YiiStrap](http://www.getyiistrap.com) for the interface elements.  Please follow their Getting Started giude to setup the aliases and components for your application.
-* [SwiftMailer](http://swiftmailer.org/) to send emails.  Please download and setup an alias as per the swiftMailer section in the Configuration below.
+* [SwiftMailer](http://swiftmailer.org/) to send emails.  Please download and setup the path as per the swiftMailer section in the Configuration below.
+* [MustachePHP](https://github.com/bobthecow/mustache.php) to render database templates.  Please download and setup the path as per the mustache section in the Configuration below.
+
+**Please Note**: All requirements are automatically downloaded into the correct location when using composer.  There is no need to download additional files or set paths to third party files.
 
 
 ## Installation
@@ -81,6 +84,16 @@ Download the [latest version](https://github.com/cornernote/yii-email-module/arc
 
 
 ## Configuration
+
+If you installed with composer, you should set an alias to your `vendor` folder:
+
+```php
+return array(
+	'aliases' => array(
+		'vendor' => '/path/to/vendor',
+	),
+);
+```
 
 Add yii-email-module to the `modules` in your yii configuration:
 
@@ -122,6 +135,9 @@ return array(
 
 			// path to the SwiftMailer lib folder
 			'swiftMailerPath' => '/path/to/vendor/swiftmailer/swiftmailer/lib',
+
+			// path to the Mustache src folder
+			'mustachePath' => '/path/to/vendor/mustache/mustache/src',
 
 			// set this to false in production to improve performance
 			'fromEmail' => 'webmaster@your.dom.ain',
@@ -182,6 +198,8 @@ Yii::app()->emailManager->email('user@dom.ain', 'test email', '<b>Hello</b> <i>W
 
 To send more complex emails you will need to use Email Templates.
 
+### Component
+
 Create a new component in `components/Email.php`:
 
 ```php
@@ -215,20 +233,42 @@ class Email {
 }
 ```
 
-Create a view for the subject in `views/emails/example/subject.php`:
+### PHP Templates
+
+Subject `views/emails/example/subject.php`:
 ```php
 <?php echo 'hello' . $user->name;
 ```
 
-Create a view for the heading in `views/emails/example/heading.php`:
+Heading `views/emails/example/heading.php`:
 ```php
 <?php echo 'Hi there ' . $user->name . ', Welcome to '. Yii::app()->name;
 ```
 
-Create a view for the message in `views/emails/example/message.php`:
+Message `views/emails/example/message.php`:
 ```php
 <?php echo 'Here is an <b>awesome</b> email!';
 ```
+
+### DB Templates
+
+Subject
+```
+hello {{user.name}}
+```
+
+Heading
+```
+Hi there {{user.name}}, Welcome to {{appName}}
+```
+
+Message
+```
+Here is an <b>awesome</b> email!
+```
+
+
+### Sending the Email
 
 Now you can send an email like this:
 
@@ -343,5 +383,7 @@ Mustache replaces `{{variables}}` with the htmlencoded value of the variable, un
 
 - [Yii Extension](http://www.yiiframework.com/extension/yii-email-module)
 - [Composer Package](https://packagist.org/packages/cornernote/yii-email-module)
+- [SwiftMailer](http://swiftmailer.org/)
+- [MustachePHP](https://github.com/bobthecow/mustache.php)
 - [MrPHP](http://mrphp.com.au)
 

@@ -21,6 +21,11 @@ class EEmailManager extends CComponent
     /**
      * @var string
      */
+    public $mustachePath;
+
+    /**
+     * @var string
+     */
     public $fromEmail = 'webmaster@localhost';
 
     /**
@@ -64,6 +69,7 @@ class EEmailManager extends CComponent
     public function init()
     {
         $this->registerSwiftMailerAutoloader();
+        $this->registerMustacheAutoloader();
     }
 
     /**
@@ -273,7 +279,9 @@ class EEmailManager extends CComponent
 
         // parse template
         $message = array();
-        $mustache = new EmailMustache();
+        Yii::setPathOfAlias('mustache', realpath($this->mustachePath));
+        Yii::import('mustache.Mustache');
+        $mustache = new Mustache_Engine();
         foreach ($this->templateFields as $field) {
             $viewParams['contents'] = $mustache->render($emailTemplate->$field, $viewParams);
             $viewParams[$field] = $message[$field] = $mustache->render($emailLayout->$field, $viewParams);
@@ -287,12 +295,29 @@ class EEmailManager extends CComponent
      */
     private function registerSwiftMailerAutoloader()
     {
+        if ($this->swiftMailerPath === null)
+            $this->swiftMailerPath = Yii::getPathOfAlias('vendor.swiftmailer.swiftmailer.lib');
         $path = realpath($this->swiftMailerPath);
-        if (!$path)
+        if (!$this->swiftMailerPath || !$path)
             throw new CException('The EmailManager.swiftMailerPath is invalid.');
         require_once($path . '/classes/Swift.php');
-        Yii::registerAutoloader(array('Swift', 'autoload'));
+        Yii::registerAutoloader(array('Swift', 'autoload'), true);
         require_once($path . '/swift_init.php');
+    }
+
+    /**
+     * Registers the Mustache autoloader
+     */
+    private function registerMustacheAutoloader()
+    {
+        if ($this->mustachePath === null)
+            $this->mustachePath = Yii::getPathOfAlias('vendor.mustache.mustache.src');
+        $path = realpath($this->mustachePath);
+        if (!$this->mustachePath || !$path)
+            throw new CException('The EmailManager.mustachePath is invalid.');
+        require_once($path . '/Mustache/Autoloader.php');
+        $autoloader = new Mustache_Autoloader;
+        Yii::registerAutoloader(array($autoloader, 'autoload'), true);
     }
 
     /**
