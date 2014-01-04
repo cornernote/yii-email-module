@@ -7,7 +7,6 @@ Easily configurable and powerful email system with templates and email queuing.
 
 - [Features](#features)
 - [Screenshots](#screenshots)
-- [Requirements](#requirements)
 - [Installation](#installation)
 	- [Composer Installation](#composer-installation)
 	- [Manual Installation](#manual-installation)
@@ -61,18 +60,6 @@ Template Preview
 ![Request](https://raw.github.com/cornernote/yii-email-module/master/screenshot/template-preview.png)
 
 
-## Requirements
-
-This is a Yii module, which requires the [Yii Framework](http://www.yiiframework.com).
-
-In addition the following are required:
-* [YiiStrap](http://www.getyiistrap.com) for the interface elements.  Please follow their Getting Started giude to setup the aliases and components for your application.
-* [SwiftMailer](http://swiftmailer.org/) to send emails.  Please download and setup the path as per the swiftMailer section in the Configuration below.
-* [MustachePHP](https://github.com/bobthecow/mustache.php) to render database templates.  Please download and setup the path as per the mustache section in the Configuration below.
-
-**Please Note**: All requirements are automatically downloaded into the correct location when using composer.  There is no need to download additional files or set paths to third party files.
-
-
 ## Installation
 
 Please download using ONE of the following methods:
@@ -80,9 +67,19 @@ Please download using ONE of the following methods:
 
 ### Composer Installation
 
+All requirements are automatically downloaded into the correct location when using composer.  There is no need to download additional files or set paths to third party files.
+
+Get composer:
+
 ```
 curl http://getcomposer.org/installer | php
-php composer.phar require cornernote/yii-email-module
+```
+
+Install latest release OR development version:
+
+```
+php composer.phar require cornernote/yii-email-module:*           // latest release
+php composer.phar require cornernote/yii-email-module:dev-master  // development version
 ```
 
 
@@ -90,6 +87,10 @@ php composer.phar require cornernote/yii-email-module
 
 Download the [latest version](https://github.com/cornernote/yii-email-module/archive/master.zip) and move the `email` folder into your `protected/modules` folder.
 
+In addition the following are required:
+* [YiiStrap](http://www.getyiistrap.com) for the interface elements.  Please follow their Getting Started giude to setup the aliases and components for your application.
+* [SwiftMailer](http://swiftmailer.org/) to send emails.  Please download and setup the path as per the swiftMailer section in the Configuration below.
+* [MustachePHP](https://github.com/bobthecow/mustache.php) to render database templates.  Please download and setup the path as per the mustache section in the Configuration below.
 
 
 ## Configuration
