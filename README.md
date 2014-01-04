@@ -5,15 +5,15 @@ Easily configurable and powerful email system with templates and email queuing.
 
 ### Contents
 
-[Features](#features)  
-[Screenshots](#screenshots)  
-[Requirements](#requirements)
-[Installation](#installation)
-[Configuration](#configuration)  
-[Usage](#usage)  
-[FAQ](#faq)  
-[Resources](#resources)
-[License](#license)
+- [Features](#features)
+- [Screenshots](#screenshots)
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Usage](#usage)
+- [FAQ](#faq)
+- [Resources](#resources)
+- [License](#license)
 
 
 ## Features
