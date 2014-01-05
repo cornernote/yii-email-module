@@ -14,48 +14,67 @@ class EEmailManager extends CComponent
 {
 
     /**
-     * @var string
+     * @var string Path to the SwiftMailer lib folder.
+     * Only required if you did not install using composer.
      */
     public $swiftMailerPath;
 
     /**
-     * @var string
+     * @var string Path to the Mustache src folder.
+     * Only required then templateType is set to "db".
+     * Only required if you did not install using composer.
      */
     public $mustachePath;
 
     /**
-     * @var string
+     * @var string Default from email address.
      */
     public $fromEmail = 'webmaster@localhost';
 
     /**
-     * @var string If unset the application name is used.
+     * @var string Default from name.
+     * If unset the application name is used.
      * @see setFromName
      */
     private $_fromName;
 
     /**
-     * @var string Template type, can be one of: php, db
+     * @var string Template type, can be one of: php, db.
      */
     public $templateType = 'php';
 
     /**
-     * @var string when templateType=php this is the path to the email views
+     * @var string When templateType=php this is the path to the email views.
+     * You may copy the default templates from email/views/emails.
      */
     public $templatePath = 'email.views.emails';
 
     /**
-     * @var array
+     * @var array List of template parts that will be rendered.
      */
     public $templateFields = array('subject', 'heading', 'message');
 
     /**
-     * @var string
+     * @var string The default transport to use.
      */
     public $defaultTransport = 'mail';
 
     /**
-     * @var array
+     * @var array A list of email transport methods, for example:
+     * <pre>
+     * array(
+     *     'transport_name_or_id' => array(
+     *         // the class name of the Swift_Transport subclass
+     *         'class' => 'Swift_Transport',
+     *         // set Swift_Transport::property1 to "my value"
+     *         'property1' => 'my value',
+     *         // call Swift_Transport::setProperty2("my value")
+     *         'setters' => array(
+     *             'property2' => 'my value',
+     *         ),
+     *     ),
+     * )
+     * </pre>
      */
     public $transports = array(
         'mail' => array(

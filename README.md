@@ -153,33 +153,49 @@ return array(
 			// path to the EEmailManager class
 			'class' => 'email.components.EEmailManager',
 
-			// path to the SwiftMailer lib folder
-			// only required if you did not install using composer
+			// Path to the SwiftMailer lib folder.
+			// Only required if you did not install using composer.
 			'swiftMailerPath' => '/path/to/vendor/swiftmailer/swiftmailer/lib',
 
-			// path to the Mustache src folder
-			// only required then templateType is set to "db"
-			// only required if you did not install using composer
+			// Path to the Mustache src folder.
+			// Only required then templateType is set to "db".
+			// Only required if you did not install using composer.
 			'mustachePath' => '/path/to/vendor/mustache/mustache/src',
 
-			// set this to false in production to improve performance
+			// Default from email address.
 			'fromEmail' => 'webmaster@your.dom.ain',
 
-			// set this to false in production to improve performance
-			'fromName' => 'Your Name',
+			// Default from name.
+			// If unset the application name is used.
+			'fromName' => null,
 
-			// can be one of: php, db
+			// Template type, can be one of: php, db.
 			'templateType' => 'php',
 
-			// when templateType=php this is the path to the email views
-			// you may copy the default templates from email/views/emails
+			// When templateType=php this is the path to the email views.
+			// You may copy the default templates from email/views/emails.
 			'templatePath' => 'application.views.emails',
 
-			// the default transport to use, for this example you can use "mail" or "smtp"
-			// see below for defining new transports
+			// List of template parts that will be rendered.
+			'templateFields' => array('subject', 'heading', 'message'),
+
+			// The default transport to use.
+			// For this example you can use "mail", "smtp" or "anotherSmtp".
 			'defaultTransport' => 'mail',
 
-			// email transport methods
+			// A list of email transport methods, for example:
+			//	array(
+			// 		'transport_name_or_id' => array(
+			//			// the class name of the Swift_Transport subclass
+			//			'class' => 'Swift_Transport',
+			//			// set Swift_Transport::property1 to "my value"
+			//			'property1' => 'my value',
+			//			// call Swift_Transport::setProperty2("my value")
+			//			'setters' => array(
+			//				'property2' => 'my value',
+			//			),
+			//		),
+			//	)
 			'transports' => array(
 
 				// mail transport
