@@ -146,6 +146,7 @@ return array(
 			'swiftMailerPath' => '/path/to/vendor/swiftmailer/swiftmailer/lib',
 
 			// path to the Mustache src folder
+			// only required then templateType is set to "db"
 			'mustachePath' => '/path/to/vendor/mustache/mustache/src',
 
 			// set this to false in production to improve performance
@@ -184,6 +185,18 @@ return array(
 					'setters' => array(
 						'username' => 'your_username',
 						'password' => 'your_password',
+					),
+				),
+
+				// another smtp transport
+				'anotherSmtp' => array(
+					'class' => 'Swift_SmtpTransport',
+					'host' => 'localhost',
+					'port' => 25,
+					'security' => null,
+					'setters' => array(
+						'username' => 'another_username',
+						'password' => 'another_password',
 					),
 				),
 			),

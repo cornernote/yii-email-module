@@ -310,6 +310,8 @@ class EEmailManager extends CComponent
      */
     private function registerMustacheAutoloader()
     {
+        if ($this->templateType != 'db')
+            return;
         if ($this->mustachePath === null)
             $this->mustachePath = Yii::getPathOfAlias('vendor.mustache.mustache.src');
         $path = realpath($this->mustachePath);
