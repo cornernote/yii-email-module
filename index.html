@@ -1,626 +1,614 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>yii-email-module</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-    <link rel="stylesheet" type="text/css" href="css/screen.css">
+    <title>Yii Email Module</title>
 
+    <link href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+    <link href="css/bootstrap-flatly.css" rel="stylesheet">
+    <link href="css/prettify.css" rel="stylesheet" type="text/css">
+    <link href="css/main.css" rel="stylesheet" type="text/css">
 
-    <!-- Typekit -->
-
-    <script type="text/javascript">
-        (function () {
-            var config = {
-                kitId: 'hjp0pft',
-                scriptTimeout: 3000
-            };
-            var h = document.getElementsByTagName("html")[0];
-            h.className += " wf-loading";
-            var t = setTimeout(function () {
-                h.className = h.className.replace(/( |^)wf-loading( |$)/g, "");
-                h.className += " wf-inactive"
-            }, config.scriptTimeout);
-            var tk = document.createElement("script");
-            tk.src = '//use.typekit.net/' + config.kitId + '.js';
-            tk.type = "text/javascript";
-            tk.async = "true";
-            tk.onload = tk.onreadystatechange = function () {
-                var a = this.readyState;
-                if (a && a != "complete" && a != "loaded")return;
-                clearTimeout(t);
-                try {
-                    Typekit.load(config)
-                } catch (b) {
-                }
-            };
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(tk, s)
-        })();
-    </script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+    <script src="//google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+    <script src="js/main.js"></script>
 
 </head>
 <body>
-<div id="container">
-<div id="nav">
 
-    <div id="header">
-        <a href="#" id="logo">yii-email-module</a>
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <a href="https://github.com/cornernote/yii-email-module"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="./">Yii Email Module</a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Features <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#features">Features</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#features/screenshots">Screenshots</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Installation <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#installation">Installation</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#installation/composer-installation">Composer Installation</a>
+                        </li>
+                        <li>
+                            <a href="#installation/manual-installation">Manual Installation</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Configuration <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#configuration">Configuration</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#configuration/emailmodule">EmailModule</a>
+                        </li>
+                        <li>
+                            <a href="#configuration/eemailmanager">EEmailManager</a>
+                        </li>
+                        <li>
+                            <a href="#configuration/commandmap">Command Map</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Usage <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#usage">Usage</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#usage/simple-usage">Simple Usage</a>
+                        </li>
+                        <li>
+                            <a href="#usage/using-templates">Using Templates</a>
+                        </li>
+                        <li>
+                            <a href="#usage/sending-spooled-emails">Sending Spooled Emails</a>
+                        </li>
+                        <li>
+                            <a href="#usage/automatically-sending">Automatically Sending</a>
+                        </li>
+                        <li>
+                            <a href="#usage/extending-eemailmanager">Extending EEmailManager</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Resources <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#resources">Resources</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#resources/faq">FAQ</a>
+                        </li>
+                        <li>
+                            <a href="#resources/support">Support</a>
+                        </li>
+                        <li>
+                            <a href="#resources/license">License</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
     </div>
+</nav>
 
-    <ul id="sections">
+<div class="container">
+<div class="row">
+<div class="col-lg-12">
 
-        <li>
-            <a href="#features">Features</a>
 
-        </li>
+<div class="jumbotron">
+    <h1>Yii Email Module</h1>
 
-        <li>
-            <a href="#screenshots">Screenshots</a>
+    <p>Email system with templates and email queuing.</p>
 
-        </li>
+    <p>
+        <a class="btn btn-primary btn-lg" role="button" href="#installation">Installation</a>
+        <a class="btn btn-default btn-lg" role="button" href="#configuration">Configuration</a>
+        <a class="btn btn-default btn-lg" role="button" href="#usage">Usage</a>
+        <a class="btn btn-default btn-lg" role="button" href="#resources">Resources</a>
+    </p>
+</div>
 
-        <li>
-            <a href="#installation">Installation</a>
-
-            <ul>
-
-                <li>
-                    <a href="#installation/composer-installation">Composer Installation</a>
-                </li>
-
-                <li>
-                    <a href="#installation/manual-installation">Manual Installation</a>
-                </li>
-
-            </ul>
-
-        </li>
-
-        <li>
-            <a href="#configuration">Configuration</a>
-
-        </li>
-
-        <li>
-            <a href="#usage">Usage</a>
-
-            <ul>
-
-                <li>
-                    <a href="#usage/simple-usage">Simple Usage</a>
-                </li>
-
-                <li>
-                    <a href="#usage/using-templates">Using Templates</a>
-                </li>
-
-                <li>
-                    <a href="#usage/sending-spooled-emails">Sending Spooled Emails</a>
-                </li>
-
-                <li>
-                    <a href="#usage/automatically-sending">Automatically Sending</a>
-                </li>
-
-                <li>
-                    <a href="#usage/extending-eemailmanager">Extending EEmailManager</a>
-                </li>
-
-            </ul>
-
-        </li>
-
-        <li>
-            <a href="#faq">FAQ</a>
-
-            <ul>
-
-                <li>
-                    <a href="#faq/what-is-the-difference-between-a-template-and-a-layout">What is the difference between a template and a layout?</a>
-                </li>
-
-                <li>
-                    <a href="#faq/do-layout-variables-subject-heading-and-message-need-to-be-defined-when-calling-buildtemplatemessage-function">Do layout variables `subject`, `heading` and `message` need to be defined when calling `buildTemplateMessage()` function?</a>
-                </li>
-
-                <li>
-                    <a href="#faq/why-does-html-code-get-replaced-htmlencoded-output-when-using-db-templates-rendered-with-mustache">Why does HTML code get replaced htmlencoded output when using db templates rendered with Mustache?</a>
-                </li>
-
-            </ul>
-
-        </li>
-
-        <li>
-            <a href="#resources">Resources</a>
-
-        </li>
-
-        <li>
-            <a href="#support">Support</a>
-
-        </li>
-
-        <li>
-            <a href="#license">License</a>
-
-        </li>
-
+<div class="section">
+    <h2 id="features">Features</h2>
+    <ul>
+        <li>Emails can be sent directly, or saved into a spool to be sent later.</li>
+        <li>Templates can be normal php files, or stored in the database and rendered with Mustache</li>
+        <li>Emails are built and send using SwiftMailer</li>
     </ul>
 
-    <div class="extra" id="github">
-        <a href="https://github.com/cornernote/yii-email-module">Source on GitHub</a>
+    <h3 id="features/screenshots">Screenshots</h3>
+
+    <div class="row">
+        <div class="col-xs-6 col-md-3">
+            <div class="thumbnail">
+                <a href="https://raw.github.com/cornernote/yii-email-module/master/screenshot/home.png" class="fancybox" rel="screenshots"><img src="https://raw.github.com/cornernote/yii-email-module/master/screenshot/home.png" alt="Module Homepage"></a>
+            </div>
+            <div class="caption text-center">Module Homepage</div>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <div class="thumbnail">
+                <a href="https://raw.github.com/cornernote/yii-email-module/master/screenshot/spools.png" class="fancybox" rel="screenshots"><img src="https://raw.github.com/cornernote/yii-email-module/master/screenshot/spools.png" alt="Spool List"></a>
+            </div>
+            <div class="caption text-center">Spool List</div>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <div class="thumbnail">
+                <a href="https://raw.github.com/cornernote/yii-email-module/master/screenshot/spool.png" class="fancybox" rel="screenshots"><img src="https://raw.github.com/cornernote/yii-email-module/master/screenshot/spool.png" alt="Spool View"></a>
+            </div>
+            <div class="caption text-center">Spool View</div>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <div class="thumbnail">
+                <a href="https://raw.github.com/cornernote/yii-email-module/master/screenshot/spool-preview.png" class="fancybox" rel="screenshots"><img src="https://raw.github.com/cornernote/yii-email-module/master/screenshot/spool-preview.png" alt="Spool Preview"></a>
+            </div>
+            <div class="caption text-center">Spool Preview</div>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <div class="thumbnail">
+                <a href="https://raw.github.com/cornernote/yii-email-module/master/screenshot/templates.png" class="fancybox" rel="screenshots"><img src="https://raw.github.com/cornernote/yii-email-module/master/screenshot/templates.png" alt="Template List"></a>
+            </div>
+            <div class="caption text-center">Template List</div>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <div class="thumbnail">
+                <a href="https://raw.github.com/cornernote/yii-email-module/master/screenshot/template.png" class="fancybox" rel="screenshots"><img src="https://raw.github.com/cornernote/yii-email-module/master/screenshot/template.png" alt="Template View"></a>
+            </div>
+            <div class="caption text-center">Template View</div>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <div class="thumbnail">
+                <a href="https://raw.github.com/cornernote/yii-email-module/master/screenshot/template-preview.png" class="fancybox" rel="screenshots"><img src="https://raw.github.com/cornernote/yii-email-module/master/screenshot/template-preview.png" alt="Template Preview"></a>
+            </div>
+            <div class="caption text-center">Template Preview</div>
+        </div>
     </div>
-
-    <div class="extra" id="github-issues">
-        <a href="https://github.com/cornernote/yii-email-module/issues">Issues</a>
-    </div>
-
-
 </div>
-<div id="content">
-
-<a href="https://github.com/cornernote/yii-email-module" id="github-ribbon"><img src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
-
-<h1>Yii Email Module</h1>
-
-<p>Easily configurable and powerful email system with templates and email queuing.</p>
-
-<h3 id='null/contents'>Contents</h3 id='null/contents'>
-<ul>
-    <li><a href="#features">Features</a></li>
-    <li><a href="#screenshots">Screenshots</a></li>
-    <li><a href="#installation">Installation</a>
-        <ul>
-            <li><a href="#composer-installation">Composer Installation</a></li>
-            <li><a href="#manual-installation">Manual Installation</a></li>
-        </ul>
-    </li>
-    <li><a href="#configuration">Configuration</a></li>
-    <li><a href="#usage">Usage</a>
-        <ul>
-            <li><a href="#simple-usage">Simple Usage</a></li>
-            <li><a href="#using-templates">Using Templates</a>
-                <ul>
-                    <li><a href="#component">Component</a></li>
-                    <li><a href="#php-templates">PHP Templates</a></li>
-                    <li><a href="#db-templates">DB Templates</a></li>
-                    <li><a href="#sending-the-email">Sending the Email</a></li>
-                </ul>
-            </li>
-            <li><a href="#sending-spooled-emails">Sending Spooled Emails</a></li>
-            <li><a href="#automatically-sending">Automatically Sending</a></li>
-            <li><a href="#extending-eemailmanager">Extending EEmailManager</a></li>
-        </ul>
-    </li>
-    <li><a href="#faq">FAQ</a>
-        <ul>
-            <li>
-                <a href="#what-is-the-difference-between-a-template-and-a-layout">What is the difference between a template and a layout?</a>
-            </li>
-            <li>
-                <a href="#do-layout-variables-subject-heading-and-message-need-to-be-defined-when-calling-buildtemplatemessage-function">Do layout variables subject, heading and message need to be defined when calling buildTemplateMessage() function?</a>
-            </li>
-            <li>
-                <a href="#why-does-html-code-get-replaced-htmlencoded-output-when-using-db-templates-rendered-with-mustache">Why does HTML code get replaced htmlencoded output when using db templates rendered with Mustache?</a>
-            </li>
-        </ul>
-    </li>
-    <li><a href="#resources">Resources</a></li>
-    <li><a href="#support">Support</a></li>
-    <li><a href="#license">License</a></li>
-</ul>
-<h2 id='features'>Features</h2 id='features'>
-<ul>
-    <li>Emails can be sent directly, or saved into a spool to be sent later.</li>
-    <li>Templates can be normal php files, or stored in the database and rendered with Mustache</li>
-    <li>Emails are built and send using SwiftMailer</li>
-</ul>
-<h2 id='screenshots'>Screenshots</h2 id='screenshots'>
-
-<p>Yii Email Module Homepage:
-    <img src="https://raw.github.com/cornernote/yii-email-module/master/screenshot/home.png" alt="home"></p>
-
-<p>Spool List
-    <img src="https://raw.github.com/cornernote/yii-email-module/master/screenshot/spools.png" alt="Requests"></p>
-
-<p>Spool View
-    <img src="https://raw.github.com/cornernote/yii-email-module/master/screenshot/spool.png" alt="Request"></p>
-
-<p>Spool Preview
-    <img src="https://raw.github.com/cornernote/yii-email-module/master/screenshot/spool-preview.png" alt="Request"></p>
-
-<p>Template List
-    <img src="https://raw.github.com/cornernote/yii-email-module/master/screenshot/templates.png" alt="Requests"></p>
-
-<p>Template View
-    <img src="https://raw.github.com/cornernote/yii-email-module/master/screenshot/template.png" alt="Request"></p>
-
-<p>Template Preview
-    <img src="https://raw.github.com/cornernote/yii-email-module/master/screenshot/template-preview.png" alt="Request">
-</p>
-
-<h2 id='installation'>Installation</h2 id='installation'>
-
-<p>Please download using ONE of the following methods:</p>
-
-<h3 id='installation/composer-installation'>Composer Installation</h3 id='installation/composer-installation'>
-
-<p>All requirements are automatically downloaded into the correct location when using composer. There is no need to download additional files or set paths to third party files.</p>
-
-<p>Get composer:</p>
-<pre><code><span class="title">curl</span> <span class="url">http://getcomposer.org/installer</span> | php</code></pre>
-<p>Install latest release OR development version:</p>
-<pre><code>php composer.phar
-    <span class="keyword">require</span> cornernote/yii-email-<span class="symbol">module:</span>*
-    <span class="regexp">//</span> latest release
-    php composer.phar
-    <span class="keyword">require</span> cornernote/yii-email-<span class="symbol">module:</span>dev-master /<span class="regexp">/ development version</code></pre>
-<p>Add the <code>vendor</code> folder to the <code>aliases</code> in your yii configuration:</p>
-<pre><code class="lang-php"><span class="keyword">return</span> <span class="keyword">array</span>(
-    <span class="string">'aliases'</span> =&gt; <span class="keyword">array</span>(
-    <span class="string">'vendor'</span> =&gt; <span class="string">'/path/to/vendor'</span>,
-    ),
-    );</code></pre>
-<h3 id='installation/manual-installation'>Manual Installation</h3 id='installation/manual-installation'>
-
-<p>Download the <a href="https://github.com/cornernote/yii-email-module/releases/latest">latest release</a> or
-    <a href="https://github.com/cornernote/yii-email-module/archive/master.zip">development version</a> and move the
-    <code>email</code> folder into your <code>protected/modules</code> folder.</p>
-
-<p>In addition the following are required:
-    <em>
-        <a href="http://www.getyiistrap.com">YiiStrap</a> for the interface elements. Please follow their Getting Started guide to setup the aliases and components for your application.
-    </em>
-    <a href="http://swiftmailer.org/">SwiftMailer</a> to send emails. Please download and setup the swiftMailerPath as per the Configuration below.
-    *
-    <a href="https://github.com/bobthecow/mustache.php">MustachePHP</a> to render database templates. Please download and setup the mustachePath as per the Configuration below.
-</p>
-
-<h2 id='configuration'>Configuration</h2 id='configuration'>
-
-<p>Add yii-email-module to the <code>modules</code> in your yii configuration:</p>
-<pre><code class="lang-php"><span class="keyword">return</span> <span class="keyword">array</span>(
-    <span class="string">'modules'</span> =&gt; <span class="keyword">array</span>(
-    <span class="string">'email'</span> =&gt; <span class="keyword">array</span>(
-    <span class="comment">// path to the EmailModule class</span>
-    <span class="string">'class'</span> =&gt;
-    <span class="string">'/path/to/vendor/cornernote/yii-email-module/email/EmailModule'</span>,
-
-    <span class="comment">// The ID of the CDbConnection application component. If not set, a SQLite3</span>
-    <span class="comment">// database will be automatically created in protected/runtime/email-EmailVersion.db.</span>
-    <span class="string">'connectionID'</span> =&gt; <span class="string">'db'</span>,
-
-    <span class="comment">// Whether the DB tables should be created automatically if they do not exist. Defaults to true.</span>
-    <span class="comment">// If you already have the table created, it is recommended you set this property to be false to improve performance.</span>
-    <span class="string">'autoCreateTables'</span> =&gt; <span class="keyword">true</span>,
-
-    <span class="comment">// The layout used for module controllers.</span>
-    <span class="string">'layout'</span> =&gt; <span class="string">'email.views.layouts.column1'</span>,
-
-    <span class="comment">// Defines the access filters for the module.</span>
-    <span class="comment">// The default is EmailAccessFilter which will allow any user listed in EmailModule::adminUsers to have access.</span>
-    <span class="string">'controllerFilters'</span> =&gt; <span class="keyword">array</span>(
-    <span class="string">'emailAccess'</span> =&gt;
-    <span class="keyword">array</span>(<span class="string">'email.components.EmailAccessFilter'</span>),
-    ),
-
-    <span class="comment">// A list of users who can access this module.</span>
-    <span class="string">'adminUsers'</span> =&gt;
-    <span class="keyword">array</span>(<span class="string">'admin'</span>),
-
-    <span class="comment">// The path to YiiStrap.</span>
-    <span class="comment">// Only required if you do not want YiiStrap in your app config, for example, if you are running YiiBooster.</span>
-    <span class="comment">// Only required if you did not install using composer.</span>
-    <span class="string">'yiiStrapPath'</span> =&gt; <span class="string">'/path/to/vendor/crisu83/yiistrap'</span>,
-    ),
-    ),
-    );</code></pre>
-<p>Add <code>EEmailManager</code> to the <code>components</code> section in your yii configuration:</p>
-<pre><code class="lang-php"><span class="keyword">return</span> <span class="keyword">array</span>(
-    <span class="string">'components'</span> =&gt; <span class="keyword">array</span>(
-    <span class="string">'emailManager'</span> =&gt; <span class="keyword">array</span>(
-    <span class="comment">// path to the EEmailManager class</span>
-    <span class="string">'class'</span> =&gt; <span class="string">'email.components.EEmailManager'</span>,
-
-    <span class="comment">// Path to the SwiftMailer lib folder.</span>
-    <span class="comment">// Only required if you did not install using composer.</span>
-    <span class="string">'swiftMailerPath'</span> =&gt;
-    <span class="string">'/path/to/vendor/swiftmailer/swiftmailer/lib'</span>,
-
-    <span class="comment">// Path to the Mustache src folder.</span>
-    <span class="comment">// Only required then templateType is set to "db".</span>
-    <span class="comment">// Only required if you did not install using composer.</span>
-    <span class="string">'mustachePath'</span> =&gt; <span class="string">'/path/to/vendor/mustache/mustache/src'</span>,
-
-    <span class="comment">// Default from email address.</span>
-    <span class="string">'fromEmail'</span> =&gt; <span class="string">'webmaster@your.dom.ain'</span>,
-
-    <span class="comment">// Default from name.</span>
-    <span class="comment">// If unset the application name is used.</span>
-    <span class="string">'fromName'</span> =&gt; <span class="keyword">null</span>,
-
-    <span class="comment">// Template type, can be one of: php, db.</span>
-    <span class="string">'templateType'</span> =&gt; <span class="string">'php'</span>,
-
-    <span class="comment">// When templateType=php this is the path to the email views.</span>
-    <span class="comment">// You may copy the default templates from email/views/emails.</span>
-    <span class="string">'templatePath'</span> =&gt; <span class="string">'application.views.emails'</span>,
-
-    <span class="comment">// List of template parts that will be rendered.</span>
-    <span class="string">'templateFields'</span> =&gt;
-    <span class="keyword">array</span>(<span class="string">'subject'</span>, <span class="string">'heading'</span>,
-    <span class="string">'message'</span>),
-
-    <span class="comment">// The default transport to use.</span>
-    <span class="comment">// For this example you can use "mail", "smtp" or "anotherSmtp".</span>
-    <span class="string">'defaultTransport'</span> =&gt; <span class="string">'mail'</span>,
-
-    <span class="comment">// A list of email transport methods, for example:</span>
-    <span class="comment">//    array(</span>
-    <span class="comment">//         'transport_name_or_id' =&gt; array(</span>
-    <span class="comment">//            // the class name of the Swift_Transport subclass</span>
-    <span class="comment">//            'class' =&gt; 'Swift_Transport',</span>
-    <span class="comment">//            // set Swift_Transport::property1 to "my value"</span>
-    <span class="comment">//            'property1' =&gt; 'my value',</span>
-    <span class="comment">//            // call Swift_Transport::setProperty2("my value")</span>
-    <span class="comment">//            'setters' =&gt; array(</span>
-    <span class="comment">//                'property2' =&gt; 'my value',</span>
-    <span class="comment">//            ),</span>
-    <span class="comment">//        ),</span>
-    <span class="comment">//    )</span>
-    <span class="string">'transports'</span> =&gt; <span class="keyword">array</span>(
-
-    <span class="comment">// mail transport</span>
-    <span class="string">'mail'</span> =&gt; <span class="keyword">array</span>(
-    <span class="comment">// can be Swift_MailTransport or Swift_SmtpTransport</span>
-    <span class="string">'class'</span> =&gt; <span class="string">'Swift_MailTransport'</span>,
-    ),
-
-    <span class="comment">// smtp transport</span>
-    <span class="string">'smtp'</span> =&gt; <span class="keyword">array</span>(
-    <span class="comment">// if you use smtp you may need to define the host, port, security and setters</span>
-    <span class="string">'class'</span> =&gt; <span class="string">'Swift_SmtpTransport'</span>,
-    <span class="string">'host'</span> =&gt; <span class="string">'localhost'</span>,
-    <span class="string">'port'</span> =&gt; <span class="number">25</span>,
-    <span class="string">'security'</span> =&gt; <span class="keyword">null</span>,
-    <span class="string">'setters'</span> =&gt; <span class="keyword">array</span>(
-    <span class="string">'username'</span> =&gt; <span class="string">'your_username'</span>,
-    <span class="string">'password'</span> =&gt; <span class="string">'your_password'</span>,
-    ),
-    ),
-
-    <span class="comment">// another smtp transport</span>
-    <span class="string">'anotherSmtp'</span> =&gt; <span class="keyword">array</span>(
-    <span class="string">'class'</span> =&gt; <span class="string">'Swift_SmtpTransport'</span>,
-    <span class="string">'host'</span> =&gt; <span class="string">'localhost'</span>,
-    <span class="string">'port'</span> =&gt; <span class="number">25</span>,
-    <span class="string">'security'</span> =&gt; <span class="keyword">null</span>,
-    <span class="string">'setters'</span> =&gt; <span class="keyword">array</span>(
-    <span class="string">'username'</span> =&gt; <span class="string">'another_username'</span>,
-    <span class="string">'password'</span> =&gt; <span class="string">'another_password'</span>,
-    ),
-    ),
-    ),
-
-    ),
-    ),
-    );</code></pre>
-<p>To use the commands that are included with yii-email-manager, add the following to the
-    <code>commandMap</code> section of your yiic configuration:</p>
-<pre><code class="lang-php"><span class="keyword">return</span> <span class="keyword">array</span>(
-    <span class="string">'commandMap'</span> =&gt; <span class="keyword">array</span>(
-    <span class="string">'emailSpool'</span> =&gt; <span class="string">'email.commands.EmailSpoolCommand'</span>,
-    ),
-    );</code></pre>
-<h2 id='usage'>Usage</h2 id='usage'>
-
-<h3 id='usage/simple-usage'>Simple Usage</h3 id='usage/simple-usage'>
-<pre><code class="lang-php">Yii::app()-&gt;emailManager-&gt;email(<span class="string">'user@dom.ain'</span>,
-    <span class="string">'test email'</span>,
-    <span class="string">'&lt;b&gt;Hello&lt;/b&gt; &lt;i&gt;World&lt;i&gt;!'</span>);</code></pre>
-<h3 id='usage/using-templates'>Using Templates</h3 id='usage/using-templates'>
-
-<p>To send more complex emails you will need to use Email Templates.</p>
-<h4>Component</h4>
-
-<p>Create a new component in <code>components/Email.php</code>:</p>
-<pre><code class="lang-php"><span class="class"><span class="keyword">class</span> <span class="title">Email</span> {</span>
-    <span class="keyword">public</span> <span class="keyword">static</span>
-    <span class="function"><span class="keyword">function</span> <span class="title">sendUserWelcome</span><span class="params">(<span class="variable">$user</span>)</span> {</span>
-    <span class="variable">$emailManager</span> = Yii::app()-&gt;emailManager;
-
-    <span class="comment">// build the templates</span>
-    <span class="variable">$template</span> = <span class="string">'user_welcome'</span>;
-    <span class="variable">$message</span> =
-    <span class="variable">$emailManager</span>-&gt;buildTemplateMessage(<span class="variable">$template</span>,
-    <span class="keyword">array</span>(
-    <span class="string">'user'</span> =&gt; <span class="variable">$user</span>,
-    ));
-
-    <span class="comment">// get the message</span>
-    <span class="variable">$swiftMessage</span> = Swift_Message::newInstance(<span class="variable">$message</span>[<span class="string">'subject'</span>]);
-    <span class="variable">$swiftMessage</span>-&gt;setBody(<span class="variable">$message</span>[<span class="string">'message'</span>],
-    <span class="string">'text/html'</span>);
-    <span class="comment">//$swiftMessage-&gt;addPart($message['text'], 'text/plain');</span>
-    <span class="variable">$swiftMessage</span>-&gt;setFrom(<span class="variable">$emailManager</span>-&gt;fromEmail,
-    <span class="variable">$emailManager</span>-&gt;fromName);
-    <span class="variable">$swiftMessage</span>-&gt;setTo(<span class="variable">$user</span>-&gt;email,
-    <span class="variable">$user</span>-&gt;name);
-
-    <span class="comment">// spool the email</span>
-    <span class="variable">$emailSpool</span> =
-    <span class="variable">$emailManager</span>-&gt;getEmailSpool(<span class="variable">$swiftMessage</span>,
-    <span class="variable">$user</span>);
-    <span class="variable">$emailSpool</span>-&gt;priority = <span class="number">10</span>;
-    <span class="variable">$emailSpool</span>-&gt;template = <span class="variable">$template</span>;
-    <span class="variable">$emailSpool</span>-&gt;transport = <span class="string">'smtp'</span>;
-    <span class="comment">// send using smtp</span>
-    <span class="keyword">return</span>
-    <span class="variable">$emailSpool</span>-&gt;save(<span class="keyword">false</span>);
-
-    <span class="comment">// or send the email</span>
-    <span class="comment">//return echo Yii::app()-&gt;emailManager-&gt;deliver($swiftMessage, 'mySmtpTransport');</span>
-    }
-    }</code></pre>
-<h4>PHP Templates</h4>
-
-<p>Subject <code>views/emails/example/subject.php</code>:</p>
-<pre><code class="lang-php"><span class="preprocessor">&lt;?php</span> <span class="keyword">echo</span>
-    <span class="string">'hello'</span> . <span class="variable">$user</span>-&gt;name;</code></pre>
-<p>Heading <code>views/emails/example/heading.php</code>:</p>
-<pre><code class="lang-php"><span class="preprocessor">&lt;?php</span> <span class="keyword">echo</span>
-    <span class="string">'Hi there '</span> . <span class="variable">$user</span>-&gt;name .
-    <span class="string">', Welcome to My Application'</span>;</code></pre>
-<p>Message <code>views/emails/example/message.php</code>:</p>
-<pre><code class="lang-php"><span class="preprocessor">&lt;?php</span> <span class="keyword">echo</span>
-    <span class="string">'Here is an &lt;b&gt;awesome&lt;/b&gt; email!'</span>;</code></pre>
-<h4>DB Templates</h4>
-
-<p>Subject</p>
-<pre><code><span class="title">hello</span> {{user.name}}</code></pre>
-<p>Heading</p>
-<pre><code>Hi there {{user.<span class="property">name</span>}}, Welcome <span class="keyword">to</span> My Application</code></pre>
-<p>Message</p>
-<pre><code>Here is an
-    <span class="tag">&lt;<span class="title">b</span>&gt;</span>awesome<span class="tag">&lt;/<span class="title">b</span>&gt;</span> email!</code></pre>
-<h4>Sending the Email</h4>
-
-<p>Now you can send an email like this:</p>
-<pre><code class="lang-php"><span class="variable">$user</span> = User::model()-&gt;findByPk(<span class="number">123</span>);
-    Email::sendUserWelcome(<span class="variable">$user</span>);</code></pre>
-<h3 id='usage/sending-spooled-emails'>Sending Spooled Emails</h3 id='usage/sending-spooled-emails'>
-
-<p>You can send the spooled emails using the yiic command:</p>
-<pre><code><span class="title">yiic</span> emailSpool</code></pre>
-<h3 id='usage/automatically-sending'>Automatically Sending</h3 id='usage/automatically-sending'>
-
-<p>Setup
-    <a href="https://github.com/pushcx/lockrun">lockrun</a> for overlap protection. This allows us to setup a cron job that will run every minute, with no risk of a new process starting if an existing process is running.
-</p>
-
-<p>Add the following to your crontab:</p>
-<pre><code>* * * * *
-    <span class="regexp">/usr/local</span><span class="regexp">/bin/lockrun</span> --idempotent --lockfile=<span class="regexp">/path/to</span><span class="regexp">/app/runtime</span><span class="regexp">/emailSpool.lock -- /path</span><span class="regexp">/to/yiic</span> emailSpool loop &gt;
-    <span class="regexp">/dev/null</span>
-    <span class="number">2</span>&gt;&amp;<span class="number">1</span></code></pre>
-<h3 id='usage/extending-eemailmanager'>Extending EEmailManager</h3 id='usage/extending-eemailmanager'>
-
-<p>Before extending you should check the available configuration options. In many occasions you can configure the
-    <code>EEmailManager</code> class to behave as you require.</p>
-
-<p>If you wish to extend for more complex functionality, you can simply update the class path in your yii config to point to your own
-    <code>EmailManager</code> class, all the other configuration options will still be available:</p>
-<pre><code class="lang-php"><span class="keyword">return</span> <span class="keyword">array</span>(
-    <span class="string">'components'</span> =&gt; <span class="keyword">array</span>(
-    <span class="string">'emailManager'</span> =&gt; <span class="keyword">array</span>(
-    <span class="comment">// path to the EmailManager class</span>
-    <span class="string">'class'</span> =&gt; <span class="string">'application.components.EmailManager'</span>,
-    ),
-    ),
-    ),</code></pre>
-<p>For example, to make the app available to all templates and layouts, you can override
-    <code>buildTemplateMessage()</code>:</p>
-<pre><code class="lang-php"><span class="class"><span class="keyword">class</span> <span class="title">EmailManager</span> <span class="keyword">extends</span> <span class="title">EEmailManager</span> {</span>
-    <span class="keyword">public</span>
-    <span class="function"><span class="keyword">function</span> <span class="title">buildTemplateMessage</span><span class="params">(<span class="variable">$template</span>, <span class="variable">$viewParams</span> = array<span class="params">()</span>, <span class="variable">$layout</span> = <span class="string">'layout_default'</span>)</span> {</span>
-    <span class="variable">$viewParams</span>[<span class="string">'app'</span>] = Yii::app();
-    <span class="keyword">return</span>
-    <span class="keyword">parent</span>::buildTemplateMessage(<span class="variable">$template</span>,
-    <span class="variable">$viewParams</span>, <span class="variable">$layout</span>);
-    }
-    }</code></pre>
-<p>In your PHP templates, you can use:</p>
-<pre><code class="lang-php"><span class="preprocessor">&lt;?php</span> <span class="keyword">echo</span>
-    <span class="string">'My app, with ID='</span> . <span class="variable">$app</span>-&gt;id .
-    <span class="string">' is named '</span> . <span class="variable">$app</span>-&gt;name .
-    <span class="string">'!'</span>;</code></pre>
-<p>In your DB mustache templates, you can use:</p>
-<pre><code>My app, <span class="keyword">with</span> ID={{app.<span class="property">id</span>}}
-    <span class="keyword">is</span> named {{app.<span class="property">name</span>}}!</code></pre>
-<h2 id='faq'>FAQ</h2 id='faq'>
-
-<h3 id='faq/what-is-the-difference-between-a-template-and-a-layout'>What is the difference between a template and a layout?</h3 id='faq/what-is-the-difference-between-a-template-and-a-layout'>
-
-<p>Each of the <strong>template</strong> parts is rendered (<code>subject</code>, <code>heading</code> and
-    <code>message</code>), and then those parts become variables in the <strong>layout</strong>. </p>
-
-<p>This allows features such as:
-    - Consistent pretty message layouts
-    - Your templates remain light with no need for any layout code
-    - Easily change email layouts, for example, send the same email template in December with an xmas layout
-    - Ability to prepend/append to the subject or heading at a more global level (for example if you want your site name in every email subject, you can set your layout subject to &quot;{{subject}} - My Awesome Site&quot;</p>
-
-<p>For an example, let&#39;s take a look at a layout and template for a <code>subject</code> part:</p>
-
-<p><strong>TEMPLATE SUBJECT</strong></p>
-<pre><code>Welcome {{user<span class="variable">.username</span>}}</code></pre>
-<p><strong>LAYOUT SUBJECT</strong></p>
-<pre><code><span class="comment">{{subject}}</span> <span class="literal">-</span> <span class="comment">My</span>
-    <span class="comment">Awesome</span> <span class="comment">Site</code></pre>
-<p><strong>GENERATED SUBJECT</strong></p>
-<pre><code><span class="title">Welcome</span> cornernote - My Awesome Site</code></pre>
-<p>As you can see, the <code>subject</code> in the <strong>layout</strong> gets replaced by the parsed
-    <code>subject</code> from the <strong>template</strong>.</p>
-
-<h3 id='faq/do-layout-variables-subject-heading-and-message-need-to-be-defined-when-calling-buildtemplatemessage-function'>Do layout variables
-    <code>subject</code>, <code>heading</code> and <code>message</code> need to be defined when calling
-    <code>buildTemplateMessage()</code> function?
-</h3 id='faq/do-layout-variables-subject-heading-and-message-need-to-be-defined-when-calling-buildtemplatemessage-function'>
-
-<p>No, these variables will be created internally based on your the 3 parts of the
-    <strong>template</strong> (<code>subject</code>, <code>heading</code> and
-    <code>message</code>), which will be passed into the <strong>layout</strong>.</p>
-
-<h3 id='faq/why-does-html-code-get-replaced-htmlencoded-output-when-using-db-templates-rendered-with-mustache'>Why does HTML code get replaced htmlencoded output when using db templates rendered with Mustache?</h3 id='faq/why-does-html-code-get-replaced-htmlencoded-output-when-using-db-templates-rendered-with-mustache'>
-
-<p>Mustache replaces <code>{{variables}}</code> with the htmlencoded value of the variable, unless you use
-    <code>{{{tripple_culry_braces}}}</code>.<br>- <code>{{double_curly_braces}}</code> will be htmlencoded
-    - <code>{{{tripple_culry_braces}}}</code> will allow html</p>
-
-<h2 id='resources'>Resources</h2 id='resources'>
-
-<p>
-    <a href="http://mrphp.com.au"><img src="https://raw.github.com/cornernote/mrphp-assets/master/img/code-banner.png" alt="Mr PHP"></a>
-    <a href="https://github.com/cornernote/yii-email-module#yii-email-module"><img src="https://raw.github.com/cornernote/mrphp-assets/master/vendor/github/github-latest-sourcecode-16.png" alt="Github Project"></a>
-    <a href="http://www.yiiframework.com/extension/yii-email-module"><img src="https://raw.github.com/cornernote/mrphp-assets/master/vendor/yii/yii-extension-16.png" alt="Yii Extension"></a>
-    <a href="https://www.ohloh.net/p/yii-email-module"><img src="https://www.ohloh.net/p/yii-email-module/widgets/project_thin_badge.gif" alt="Project Stats"></a>
-</p>
-
-<p>
-    <a href="https://packagist.org/packages/cornernote/yii-email-module"><img src="https://poser.pugx.org/cornernote/yii-email-module/v/stable.png" alt="Latest Stable Version"></a>
-    <a href="https://travis-ci.org/cornernote/yii-email-module"><img src="https://travis-ci.org/cornernote/yii-email-module.png?branch=master" alt="Build Status"></a>
-    <a href="https://depending.in/cornernote/yii-email-module"><img src="https://depending.in/cornernote/yii-email-module.png" alt="Dependencies Check"></a>
-</p>
-<ul>
-    <li><a href="http://getyiistrap.com/">YiiStrap</a></li>
-    <li><a href="http://swiftmailer.org/">SwiftMailer</a></li>
-    <li><a href="https://github.com/bobthecow/mustache.php">MustachePHP</a></li>
-    <li><a href="https://github.com/pushcx/lockrun">Lockrun</a></li>
-    <li><a href="http://codeception.com/12-15-2013/testing-emails-in-php">Email Tests</a></li>
-    <li>Disposable Emails: <a href="http://mailinator.com/">Mailinator</a> <a href="http://maildrop.cc/">MailDrop</a>
-        <a href="http://www.yopmail.com/en/">YopMail</a> <a href="http://10minutemail.com/">10MinuteMail</a></li>
-    <li>Email Trappers: <a href="http://mailtrap.io/">MailTrap</a> <a href="http://mailcatcher.me/">MailCatcher</a></li>
-</ul>
-<h2 id='support'>Support</h2 id='support'>
-<ul>
-    <li>Does this README need improvement? Go ahead and
-        <a href="https://github.com/cornernote/yii-email-module/edit/master/README.md">suggest a change</a>.
-    </li>
-    <li>Found a bug, or need help using this project? Check the
-        <a href="https://github.com/cornernote/yii-email-module/issues">open issues</a> or
-        <a href="https://github.com/cornernote/yii-email-module/issues/new">create an issue</a>.
-    </li>
-</ul>
-<h2 id='license'>License</h2 id='license'>
-
-<p><a href="https://raw.github.com/cornernote/yii-email-module/master/LICENSE">BSD-3-Clause</a>, Copyright © 2013-2014
-    <a href="mailto:info@mrphp.com.au">Mr PHP</a></p>
+
+<div class="section">
+    <h2 id="installation">Installation</h2>
+
+    <p>Please download using ONE of the following methods:</p>
+
+    <h3 id="installation/composer-installation">Composer Installation</h3>
+
+    <p>All requirements are automatically downloaded into the correct location when using composer. There is no need to download additional files or set paths to third party files.</p>
+
+    <p>Get composer:</p>
+    <pre class="prettyprint">curl http://getcomposer.org/installer | php</pre>
+    <p>Install latest release OR development version:</p>
+<pre class="prettyprint">php composer.phar require cornernote/yii-email-module:*			// latest release
+php composer.phar require cornernote/yii-email-module:dev-master	// development version
+</pre>
+    <p>Add the <code>vendor</code> folder to the <code>aliases</code> in your yii configuration:</p>
+<pre class="prettyprint linenums lang-php">return array(
+	'aliases' => array(
+		'vendor' => '/path/to/vendor',
+	),
+);</pre>
+    <h3 id="installation/manual-installation">Manual Installation</h3>
+
+    <p>Download the <a href="https://github.com/cornernote/yii-email-module/releases/latest">latest release</a> or
+        <a href="https://github.com/cornernote/yii-email-module/archive/master.zip">development version</a> and move the
+        <code>email</code> folder into your <code>protected/modules</code> folder.</p>
+
+    <p>In addition the following are required:</p>
+    <ul>
+        <li>
+            <a href="http://www.getyiistrap.com">YiiStrap</a> for the interface elements. Please follow their Getting Started guide to setup the aliases and components for your application.
+        </li>
+        <li>
+            <a href="http://swiftmailer.org/">SwiftMailer</a> to send emails. Please download and setup the swiftMailerPath as per the Configuration below.
+        </li>
+        <li>
+            <a href="https://github.com/bobthecow/mustache.php">MustachePHP</a> to render database templates. Please download and setup the mustachePath as per the Configuration below.
+        </li>
+    </ul>
+</div>
+
+<div class="section">
+    <h2 id="configuration">Configuration</h2>
+
+    <h3 id="configuration/emailmodule">EmailModule</h3>
+
+    <p>Add <code>EmailModule</code> to the <code>modules</code> in your yii configuration:</p>
+<pre class="prettyprint linenums lang-php">return array(
+	'modules' => array(
+		'email' => array(
+			// path to the EmailModule class
+			'class' => '/path/to/vendor/cornernote/yii-email-module/email/EmailModule',
+
+			// The ID of the CDbConnection application component. If not set, a SQLite3
+			// database will be automatically created in protected/runtime/email-EmailVersion.db.
+			'connectionID' => 'db',
+
+			// Whether the DB tables should be created automatically if they do not exist. Defaults to true.
+			// If you already have the table created, it is recommended you set this property to be false to improve performance.
+			'autoCreateTables' => true,
+
+			// The layout used for module controllers.
+			'layout' => 'email.views.layouts.column1',
+
+			// Defines the access filters for the module.
+			// The default is EmailAccessFilter which will allow any user listed in EmailModule::adminUsers to have access.
+			'controllerFilters' => array(
+				'emailAccess' => array('email.components.EmailAccessFilter'),
+			),
+
+			// A list of users who can access this module.
+			'adminUsers' => array('admin'),
+
+			// The path to YiiStrap.
+			// Only required if you do not want YiiStrap in your app config, for example, if you are running YiiBooster.
+			// Only required if you did not install using composer.
+			'yiiStrapPath' => '/path/to/vendor/crisu83/yiistrap',
+		),
+	),
+);</pre>
+
+    <h3 id="configuration/eemailmanager">EEmailManager</h3>
+
+    <p>Add <code>EEmailManager</code> to the <code>components</code> section in your yii configuration:</p>
+<pre class="prettyprint linenums lang-php">return array(
+	'components' => array(
+		'emailManager' => array(
+			// path to the EEmailManager class
+			'class' => 'email.components.EEmailManager',
+
+			// Path to the SwiftMailer lib folder.
+			// Only required if you did not install using composer.
+			'swiftMailerPath' => '/path/to/vendor/swiftmailer/swiftmailer/lib',
+
+			// Path to the Mustache src folder.
+			// Only required then templateType is set to "db".
+			// Only required if you did not install using composer.
+			'mustachePath' => '/path/to/vendor/mustache/mustache/src',
+
+			// Default from email address.
+			'fromEmail' => 'webmaster@your.dom.ain',
+
+			// Default from name.
+			// If unset the application name is used.
+			'fromName' => null,
+
+			// Template type, can be one of: php, db.
+			'templateType' => 'php',
+
+			// When templateType=php this is the path to the email views.
+			// You may copy the default templates from email/views/emails.
+			'templatePath' => 'application.views.emails',
+
+			// List of template parts that will be rendered.
+			'templateFields' => array('subject', 'heading', 'message'),
+
+			// The default transport to use.
+			// For this example you can use "mail", "smtp" or "anotherSmtp".
+			'defaultTransport' => 'mail',
+
+			// A list of email transport methods, for example:
+			//	array(
+			// 		'transport_name_or_id' => array(
+			//			// the class name of the Swift_Transport subclass
+			//			'class' => 'Swift_Transport',
+			//			// set Swift_Transport::property1 to "my value"
+			//			'property1' => 'my value',
+			//			// call Swift_Transport::setProperty2("my value")
+			//			'setters' => array(
+			//				'property2' => 'my value',
+			//			),
+			//		),
+			//	)
+			'transports' => array(
+
+				// mail transport
+				'mail' => array(
+					// can be Swift_MailTransport or Swift_SmtpTransport
+					'class' => 'Swift_MailTransport',
+				),
+
+				// smtp transport
+				'smtp' => array(
+					// if you use smtp you may need to define the host, port, security and setters
+					'class' => 'Swift_SmtpTransport',
+					'host' => 'localhost',
+					'port' => 25,
+					'security' => null,
+					'setters' => array(
+						'username' => 'your_username',
+						'password' => 'your_password',
+					),
+				),
+
+				// another smtp transport
+				'anotherSmtp' => array(
+					'class' => 'Swift_SmtpTransport',
+					'host' => 'localhost',
+					'port' => 25,
+					'security' => null,
+					'setters' => array(
+						'username' => 'another_username',
+						'password' => 'another_password',
+					),
+				),
+			),
+
+		),
+	),
+);</pre>
+
+    <h3 id="configuration/commandmap">Command Map</h3>
+
+    <p>To use the commands that are included with yii-email-manager, add the following to the
+        <code>commandMap</code> section of your yiic configuration:</p>
+<pre class="prettyprint linenums lang-php">return array(
+	'commandMap' => array(
+		'emailSpool' => 'email.commands.EmailSpoolCommand',
+	),
+);
+</pre>
+</div>
+
+<div class="section">
+    <h2 id="usage">Usage</h2>
+
+    <h3 id="usage/simple-usage">Simple Usage</h3>
+    <pre class="prettyprint linenums lang-php">Yii::app()->emailManager->email('user@dom.ain', 'test email', '&lt;b>Hello&lt;/b> &lt;i>World&lt;i>!');</pre>
+    <h3 id="usage/using-templates">Using Templates</h3>
+
+    <p>To send more complex emails you will need to use Email Templates.</p>
+    <h4>Component</h4>
+
+    <p>Create a new component in <code>components/Email.php</code>:</p>
+<pre class="prettyprint linenums lang-php">class Email {
+	public static function sendUserWelcome($user) {
+		$emailManager = Yii::app()->emailManager;
+
+		// build the templates
+		$template = 'user_welcome';
+		$message = $emailManager->buildTemplateMessage($template, array(
+			'user' => $user,
+		));
+
+		// get the message
+		$swiftMessage = Swift_Message::newInstance($message['subject']);
+		$swiftMessage->setBody($message['message'], 'text/html');
+		//$swiftMessage->addPart($message['text'], 'text/plain');
+		$swiftMessage->setFrom($emailManager->fromEmail, $emailManager->fromName);
+		$swiftMessage->setTo($user->email, $user->name);
+
+		// spool the email
+		$emailSpool = $emailManager->getEmailSpool($swiftMessage, $user);
+		$emailSpool->priority = 10;
+		$emailSpool->template = $template;
+		$emailSpool->transport = 'smtp'; // send using smtp
+		return $emailSpool->save(false);
+
+		// or send the email
+		//return echo Yii::app()->emailManager->deliver($swiftMessage, 'mySmtpTransport');
+	}
+}</pre>
+    <h4>PHP Templates</h4>
+
+    <p>Subject <code>views/emails/example/subject.php</code>:</p>
+    <pre class="prettyprint lang-php">&lt;?php echo 'hello' . $user->name;</pre>
+    <p>Heading <code>views/emails/example/heading.php</code>:</p>
+    <pre class="prettyprint lang-php">&lt;?php echo 'Hi there ' . $user->name . ', Welcome to My Application';</pre>
+    <p>Message <code>views/emails/example/message.php</code>:</p>
+    <pre class="prettyprint lang-php">&lt;?php echo 'Here is an <b>awesome</b> email!';</pre>
+    <h4>DB Templates</h4>
+
+    <p>Subject</p>
+    <pre class="prettyprint lang-html">hello {{user.name}}</pre>
+    <p>Heading</p>
+    <pre class="prettyprint lang-html">Hi there {{user.name}}, Welcome to My Application</pre>
+    <p>Message</p>
+    <pre class="prettyprint lang-html">Here is an <b>awesome</b> email!</pre>
+    <h4>Sending the Email</h4>
+
+    <p>Now you can send an email like this:</p>
+<pre class="prettyprint linenums lang-php">$user = User::model()->findByPk(123);
+Email::sendUserWelcome($user);</pre>
+    <h3 id="usage/sending-spooled-emails">Sending Spooled Emails</h3>
+
+    <p>You can send the spooled emails using the yiic command:</p>
+    <pre class="prettyprint">yiic emailSpool</pre>
+    <h3 id="usage/automatically-sending">Automatically Sending</h3>
+
+    <p>Setup
+        <a href="https://github.com/pushcx/lockrun">lockrun</a> for overlap protection. This allows us to setup a cron job that will run every minute, with no risk of a new process starting if an existing process is running.
+    </p>
+
+    <p>Add the following to your crontab:</p>
+    <pre class="prettyprint">* * * * * /usr/local/bin/lockrun --idempotent --lockfile=/path/to/app/runtime/emailSpool.lock -- /path/to/yiic emailSpool loop > /dev/null 2>&1</pre>
+    <h3 id="usage/extending-eemailmanager">Extending EEmailManager</h3>
+
+    <p>Before extending you should check the available configuration options. In many occasions you can configure the
+        <code>EEmailManager</code> class to behave as you require.</p>
+
+    <p>If you wish to extend for more complex functionality, you can simply update the class path in your yii config to point to your own
+        <code>EmailManager</code> class, all the other configuration options will still be available:</p>
+<pre class="prettyprint linenums lang-php">return array(
+	'components' => array(
+		'emailManager' => array(
+			// path to the EmailManager class
+			'class' => 'application.components.EmailManager',
+		),
+	),
+);</pre>
+    <p>For example, to make the app available to all templates and layouts, you can override
+        <code>buildTemplateMessage()</code>:</p>
+<pre class="prettyprint linenums lang-php">class EmailManager extends EEmailManager {
+	public function buildTemplateMessage($template, $viewParams = array(), $layout = 'layout_default') {
+		$viewParams['app'] = Yii::app();
+		return parent::buildTemplateMessage($template, $viewParams, $layout);
+	}
+}</pre>
+    <p>In your PHP templates, you can use:</p>
+    <pre class="prettyprint lang-php">&lt;?php echo 'My app, with ID=' . $app->id . ' is named ' . $app->name . '!';</pre>
+    <p>In your DB mustache templates, you can use:</p>
+    <pre class="prettyprint lang-html">My app, with ID={{app.id}} is named {{app.name}}!</pre>
+</div>
+
+<div class="section">
+    <h2 id="resources">Resources</h2>
+
+    <p>
+        <a href="http://mrphp.com.au"><img src="https://raw.github.com/cornernote/mrphp-assets/master/img/code-banner.png" alt="Mr PHP"></a>
+        <a href="https://github.com/cornernote/yii-email-module#yii-email-module"><img src="https://raw.github.com/cornernote/mrphp-assets/master/vendor/github/github-latest-sourcecode-16.png" alt="Github Project"></a>
+        <a href="http://www.yiiframework.com/extension/yii-email-module"><img src="https://raw.github.com/cornernote/mrphp-assets/master/vendor/yii/yii-extension-16.png" alt="Yii Extension"></a>
+        <a href="https://www.ohloh.net/p/yii-email-module"><img src="https://www.ohloh.net/p/yii-email-module/widgets/project_thin_badge.gif" alt="Project Stats"></a>
+    </p>
+
+    <p>
+        <a href="https://packagist.org/packages/cornernote/yii-email-module"><img src="https://poser.pugx.org/cornernote/yii-email-module/v/stable.png" alt="Latest Stable Version"></a>
+        <a href="https://travis-ci.org/cornernote/yii-email-module"><img src="https://travis-ci.org/cornernote/yii-email-module.png?branch=master" alt="Build Status"></a>
+        <a href="https://depending.in/cornernote/yii-email-module"><img src="https://depending.in/cornernote/yii-email-module.png" alt="Dependencies Check"></a>
+    </p>
+    <ul>
+        <li><a href="http://getyiistrap.com/">YiiStrap</a></li>
+        <li><a href="http://swiftmailer.org/">SwiftMailer</a></li>
+        <li><a href="https://github.com/bobthecow/mustache.php">MustachePHP</a></li>
+        <li><a href="https://github.com/pushcx/lockrun">Lockrun</a></li>
+        <li><a href="http://codeception.com/12-15-2013/testing-emails-in-php">Email Tests</a></li>
+        <li>Disposable Emails: <a href="http://mailinator.com/">Mailinator</a>
+            <a href="http://maildrop.cc/">MailDrop</a>
+            <a href="http://www.yopmail.com/en/">YopMail</a> <a href="http://10minutemail.com/">10MinuteMail</a></li>
+        <li>Email Trappers: <a href="http://mailtrap.io/">MailTrap</a> <a href="http://mailcatcher.me/">MailCatcher</a>
+        </li>
+    </ul>
+
+    <h3 id="resources/faq">FAQ</h3>
+
+    <h4>What is the difference between a template and a layout?</h4>
+
+    <p>Each of the <strong>template</strong> parts is rendered (<code>subject</code>, <code>heading</code> and
+        <code>message</code>), and then those parts become variables in the <strong>layout</strong>. </p>
+
+    <p>This allows features such as:
+        - Consistent pretty message layouts
+        - Your templates remain light with no need for any layout code
+        - Easily change email layouts, for example, send the same email template in December with an xmas layout
+        - Ability to prepend/append to the subject or heading at a more global level (for example if you want your site name in every email subject, you can set your layout subject to &quot;{{subject}} - My Awesome Site&quot;</p>
+
+    <p>For an example, let&#39;s take a look at a layout and template for a <code>subject</code> part:</p>
+
+    <p><strong>TEMPLATE SUBJECT</strong></p>
+    <pre class="prettyprint lang-html">Welcome {{user.username}}</pre>
+    <p><strong>LAYOUT SUBJECT</strong></p>
+    <pre class="prettyprint lang-html">{{subject}} - My Awesome Site</pre>
+    <p><strong>GENERATED SUBJECT</strong></p>
+    <pre class="prettyprint lang-html">Welcome cornernote - My Awesome Site</pre>
+    <p>As you can see, the <code>subject</code> in the <strong>layout</strong> gets replaced by the parsed
+        <code>subject</code> from the <strong>template</strong>.</p>
+
+    <h4>Do layout variables
+        <code>subject</code>, <code>heading</code> and <code>message</code> need to be defined when calling
+        <code>buildTemplateMessage()</code> function?
+    </h4>
+
+    <p>No, these variables will be created internally based on your the 3 parts of the
+        <strong>template</strong> (<code>subject</code>, <code>heading</code> and
+        <code>message</code>), which will be passed into the <strong>layout</strong>.</p>
+
+    <h4>Why does HTML code get replaced htmlencoded output when using db templates rendered with Mustache?</h4>
+
+    <p>Mustache replaces <code>{{variables}}</code> with the htmlencoded value of the variable, unless you use
+        <code>{{{tripple_culry_braces}}}</code>.<br>- <code>{{double_curly_braces}}</code> will be htmlencoded
+        - <code>{{{tripple_culry_braces}}}</code> will allow html</p>
+
+    <h3 id="resources/support">Support</h3>
+    <ul>
+        <li>Does this site need improvement? Go ahead and
+            <a href="https://github.com/cornernote/yii-email-module/edit/gh-pages/index.html">suggest a change</a>.
+        </li>
+        <li>Found a bug, or need help using this project? Check the
+            <a href="https://github.com/cornernote/yii-email-module/issues">open issues</a> or
+            <a href="https://github.com/cornernote/yii-email-module/issues/new">create an issue</a>.
+        </li>
+    </ul>
+
+    <h3 id="resources/license">License</h3>
+
+    <p>
+        <a href="https://raw.github.com/cornernote/yii-email-module/master/LICENSE">BSD-3-Clause</a>, Copyright © 2013-2014
+        <a href="mailto:info@mrphp.com.au">Mr PHP</a></p>
+
+    <pre>Copyright (c) 2013, Mr PHP &lt;info@mrphp.com.au>
+All rights reserved.
+ _____     _____ _____ _____
+|     |___|  _  |  |  |  _  |
+| | | |  _|   __|     |   __|
+|_|_|_|_| |__|  |__|__|__|
+
+
+Redistribution and use in source and binary forms, with or without modification,
+are permitted provided that the following conditions are met:
+
+* Redistributions of source code must retain the above copyright notice, this
+  list of conditions and the following disclaimer.
+
+* Redistributions in binary form must reproduce the above copyright notice, this
+  list of conditions and the following disclaimer in the documentation and/or
+  other materials provided with the distribution.
+
+* Neither the name of the organization nor the names of its
+  contributors may be used to endorse or promote products derived from
+  this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</pre>
+</div>
 
 </div>
 </div>
+</div>
+
+
 </body>
 </html>

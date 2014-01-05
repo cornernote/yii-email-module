@@ -1,0 +1,28 @@
+/* body margin for bootstrap nav */
+
+body {
+    margin-top: 80px;
+}
+
+/* extra 20px top padding */
+
+h2, h3, h4 {
+    padding-top: 20px;
+}
+
+/* force the anchors to go to the right position */
+
+h2[id], h3[id], h4[id] {
+    padding-top: 100px; /* extra 20px top padding */
+    margin-top: -60px;
+}
+
+/* put the margin-bottom on the caption instead of the thumbnail */
+
+.thumbnail {
+    margin-bottom: 0;
+}
+
+.caption {
+    margin-bottom: 20px;
+}
