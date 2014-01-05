@@ -376,7 +376,7 @@ return array(
 			'class' => 'application.components.EmailManager',
 		),
 	),
-),
+);
 ```
 
 For example, to make the app available to all templates and layouts, you can override `buildTemplateMessage()`:
