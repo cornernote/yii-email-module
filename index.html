@@ -433,7 +433,7 @@ php composer.phar require cornernote/yii-email-module:dev-master	// development 
     <p>Heading <code>views/emails/example/heading.php</code>:</p>
     <pre class="prettyprint lang-php">&lt;?php echo 'Hi there ' . $user->name . ', Welcome to My Application';</pre>
     <p>Message <code>views/emails/example/message.php</code>:</p>
-    <pre class="prettyprint lang-php">&lt;?php echo 'Here is an <b>awesome</b> email!';</pre>
+    <pre class="prettyprint lang-php">&lt;?php echo 'Here is an &lt;b>awesome&lt;/b> email!';</pre>
     <h4>DB Templates</h4>
 
     <p>Subject</p>
@@ -441,7 +441,7 @@ php composer.phar require cornernote/yii-email-module:dev-master	// development 
     <p>Heading</p>
     <pre class="prettyprint lang-html">Hi there {{user.name}}, Welcome to My Application</pre>
     <p>Message</p>
-    <pre class="prettyprint lang-html">Here is an <b>awesome</b> email!</pre>
+    <pre class="prettyprint lang-html">Here is an &lt;b>awesome&lt;/b> email!</pre>
     <h4>Sending the Email</h4>
 
     <p>Now you can send an email like this:</p>
@@ -527,16 +527,16 @@ Email::sendUserWelcome($user);</pre>
         - Consistent pretty message layouts
         - Your templates remain light with no need for any layout code
         - Easily change email layouts, for example, send the same email template in December with an xmas layout
-        - Ability to prepend/append to the subject or heading at a more global level (for example if you want your site name in every email subject, you can set your layout subject to &quot;{{subject}} - My Awesome Site&quot;</p>
+        - Ability to prepend/append to the subject or heading at a more global level (for example if you want your site name in every email subject, you can set your layout subject to &quot;{{subject}} - My Application&quot;</p>
 
     <p>For an example, let&#39;s take a look at a layout and template for a <code>subject</code> part:</p>
 
     <p><strong>TEMPLATE SUBJECT</strong></p>
     <pre class="prettyprint lang-html">Welcome {{user.username}}</pre>
     <p><strong>LAYOUT SUBJECT</strong></p>
-    <pre class="prettyprint lang-html">{{subject}} - My Awesome Site</pre>
+    <pre class="prettyprint lang-html">{{subject}} - My Application</pre>
     <p><strong>GENERATED SUBJECT</strong></p>
-    <pre class="prettyprint lang-html">Welcome cornernote - My Awesome Site</pre>
+    <pre class="prettyprint lang-html">Welcome cornernote - My Application</pre>
     <p>As you can see, the <code>subject</code> in the <strong>layout</strong> gets replaced by the parsed
         <code>subject</code> from the <strong>template</strong>.</p>
 
