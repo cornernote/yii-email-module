@@ -459,16 +459,8 @@ Mustache replaces `{{variables}}` with the htmlencoded value of the variable, un
 - [MustachePHP](https://github.com/bobthecow/mustache.php)
 - [Lockrun](https://github.com/pushcx/lockrun)
 - [Email Tests](http://codeception.com/12-15-2013/testing-emails-in-php)
-
-**Disposable Email Services**
-- [Mailinator](http://mailinator.com/)
-- [MailDrop](http://maildrop.cc/)
-- [YopMail](http://www.yopmail.com/en/)
-- [10MinuteMail](http://10minutemail.com/)
-
-**Email Trapping Services**
-- [MailTrap](http://mailtrap.io/) - Fake SMTP server for development teams to test, view and share emails sent from the development and staging environments without spamming real customers.
-- [MailCatcher](http://mailcatcher.me/) - Catches mail and serves it through a dream.  MailCatcher is a super simple SMTP server which catches any message sent to it to display in a it's interface.
+- Disposable Emails: [Mailinator](http://mailinator.com/) [MailDrop](http://maildrop.cc/) [YopMail](http://www.yopmail.com/en/) [10MinuteMail](http://10minutemail.com/)
+- Email Trappers: [MailTrap](http://mailtrap.io/) [MailCatcher](http://mailcatcher.me/)
 
 
 ## Support
