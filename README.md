@@ -306,7 +306,7 @@ Subject `views/emails/example/subject.php`:
 
 Heading `views/emails/example/heading.php`:
 ```php
-<?php echo 'Hi there ' . $user->name . ', Welcome to '. Yii::app()->name;
+<?php echo 'Hi there ' . $user->name . ', Welcome to My Application';
 ```
 
 Message `views/emails/example/message.php`:
@@ -324,7 +324,7 @@ hello {{user.name}}
 
 Heading
 ```
-Hi there {{user.name}}, Welcome to {{appName}}
+Hi there {{user.name}}, Welcome to My Application
 ```
 
 Message
@@ -379,15 +379,27 @@ return array(
 ),
 ```
 
-For example, to make the app name available to all templates and layouts, you can override `buildTemplateMessage()`:
+For example, to make the app available to all templates and layouts, you can override `buildTemplateMessage()`:
 
 ```php
 class EmailManager extends EEmailManager {
 	public function buildTemplateMessage($template, $viewParams = array(), $layout = 'layout_default') {
-		$viewParams['appName'] = Yii::app()->name;
+		$viewParams['app'] = Yii::app();
 		return parent::buildTemplateMessage($template, $viewParams, $layout);
 	}
 }
+```
+
+In your PHP templates, you can use:
+
+```php
+<?php echo 'My app, with ID=' . $app->id . ' is named ' . $app->name . '!';
+```
+
+In your DB mustache templates, you can use:
+
+```
+My app, with ID={{app.id}} is named {{app.name}}!
 ```
 
 
