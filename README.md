@@ -79,8 +79,8 @@ curl http://getcomposer.org/installer | php
 Install latest release OR development version:
 
 ```
-php composer.phar require cornernote/yii-email-module:*           // latest release
-php composer.phar require cornernote/yii-email-module:dev-master  // development version
+php composer.phar require cornernote/yii-email-module:*				// latest release
+php composer.phar require cornernote/yii-email-module:dev-master	// development version
 ```
 
 Add the `vendor` folder to the `aliases` in your yii configuration:
@@ -125,9 +125,10 @@ return array(
 			// set this to false in production to improve performance
 			'autoCreateTables' => true,
 
-			// this is only required if you do not want YiiStrap in your app config
-			// for example, if you are running YiiBooster
-			'yiiStrapPath' => '/path/to/yiistrap',
+			// path to YiiStrap
+			// only required if you do not want YiiStrap in your app config, for example, if you are running YiiBooster
+			// only required if you did not install using composer
+			'yiiStrapPath' => '/path/to/vendor/crisu83/yiistrap',
 		),
 	),
 );
@@ -143,10 +144,12 @@ return array(
 			'class' => 'email.components.EEmailManager',
 
 			// path to the SwiftMailer lib folder
+			// only required if you did not install using composer
 			'swiftMailerPath' => '/path/to/vendor/swiftmailer/swiftmailer/lib',
 
 			// path to the Mustache src folder
 			// only required then templateType is set to "db"
+			// only required if you did not install using composer
 			'mustachePath' => '/path/to/vendor/mustache/mustache/src',
 
 			// set this to false in production to improve performance
