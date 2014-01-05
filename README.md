@@ -26,6 +26,7 @@ Easily configurable and powerful email system with templates and email queuing.
 	- [Do layout variables subject, heading and message need to be defined when calling buildTemplateMessage() function?](#do-layout-variables-subject-heading-and-message-need-to-be-defined-when-calling-buildtemplatemessage-function)
 	- [Why does HTML code get replaced htmlencoded output when using db templates rendered with Mustache?](#why-does-html-code-get-replaced-htmlencoded-output-when-using-db-templates-rendered-with-mustache)
 - [Resources](#resources)
+- [Support](#support)
 - [License](#license)
 
 
@@ -95,7 +96,7 @@ return array(
 
 ### Manual Installation
 
-Download the [latest version](https://github.com/cornernote/yii-email-module/archive/master.zip) and move the `email` folder into your `protected/modules` folder.
+Download the [latest release](https://github.com/cornernote/yii-email-module/releases/latest) or [development version](https://github.com/cornernote/yii-email-module/archive/master.zip) and move the `email` folder into your `protected/modules` folder.
 
 In addition the following are required:
 * [YiiStrap](http://www.getyiistrap.com) for the interface elements.  Please follow their Getting Started guide to setup the aliases and components for your application.
@@ -403,6 +404,12 @@ Mustache replaces `{{variables}}` with the htmlencoded value of the variable, un
 - [SwiftMailer](http://swiftmailer.org/)
 - [MustachePHP](https://github.com/bobthecow/mustache.php)
 - [Lockrun](https://github.com/pushcx/lockrun)
+
+
+## Support
+
+- Does this README need improvement?  Go ahead and [suggest a change](https://github.com/cornernote/yii-email-module/edit/master/README.md).
+- Found a bug, or need help using this project?  Check the [open issues](https://github.com/cornernote/yii-email-module/issues) or [create an issue](https://github.com/cornernote/yii-email-module/issues/new).
 
 
 ## License
