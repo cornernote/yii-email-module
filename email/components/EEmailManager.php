@@ -273,7 +273,7 @@ class EEmailManager extends CComponent
         $controller = Yii::app()->controller;
         foreach ($this->templateFields as $field) {
             $viewParams['contents'] = $controller->renderPartial($this->templatePath . '.' . $template . '.' . $field, $viewParams, true);
-            if ($layout)
+            if (!$layout)
                 $viewParams[$field] = $message[$field] = $viewParams['contents'];
             else
                 $viewParams[$field] = $message[$field] = $controller->renderPartial($this->templatePath . '.' . $layout . '.' . $field, $viewParams, true);
@@ -297,11 +297,9 @@ class EEmailManager extends CComponent
             throw new CException('missing EmailTemplate - ' . $template);
 
         // load layout
-        if ($layout) {
-            $emailLayout = EmailTemplate::model()->findByAttributes(array('name' => $layout));
-            if (!$emailLayout)
-                throw new CException('missing EmailTemplate - ' . $layout);
-        }
+        $emailLayout = $layout ? EmailTemplate::model()->findByAttributes(array('name' => $layout)) : false;
+        if ($layout && !$emailLayout)
+            throw new CException('missing EmailTemplate - ' . $layout);
 
         // parse template
         $message = array();
@@ -310,7 +308,7 @@ class EEmailManager extends CComponent
         $mustache = new Mustache_Engine();
         foreach ($this->templateFields as $field) {
             $viewParams['contents'] = $mustache->render($emailTemplate->$field, $viewParams);
-            if ($layout)
+            if (!$layout)
                 $viewParams[$field] = $message[$field] = $viewParams['contents'];
             else
                 $viewParams[$field] = $message[$field] = $mustache->render($emailLayout->$field, $viewParams);
