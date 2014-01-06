@@ -4,12 +4,19 @@ body {
     margin-top: 80px;
 }
 
+/* pretty h2 */
+h2 {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
 /* extra 20px top padding */
 
 h2, h3, h4 {
     padding-top: 20px;
 }
 
+/* no padding on panels */
 h4.panel-title {
     padding-top: 0;
 }
@@ -17,7 +24,7 @@ h4.panel-title {
 /* force the anchors to go to the right position - http://stackoverflow.com/questions/9047703/fixed-position-navbar-obscures-anchors */
 
 h2[id], h3[id], h4[id] {
-    padding-top: 100px; /* extra 20px top padding */
+    padding-top: 80px; /* extra 20px top padding */
     margin-top: -60px;
 }
 
