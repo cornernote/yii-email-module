@@ -437,7 +437,7 @@ Email::sendUserWelcome($user);</pre>
     <h3 id="usage/automatically-sending">Automatically Sending</h3>
 
     <p>Setup
-        <a href="https://github.com/pushcx/lockrun">lockrun</a> for overlap protection. This allows us to setup a cron job that will run every minute, with no risk of a new process starting if an existing process is running.
+        <a href="https://github.com/pushcx/lockrun">lockrun</a> for overlap protection. This allows a cron job that will run every minute, with no risk of a new process starting if an existing process is running.
     </p>
 
     <p>Add the following to your crontab:</p>
@@ -491,13 +491,15 @@ Email::sendUserWelcome($user);</pre>
                         <code>message</code>), and then those parts become variables in the <strong>layout</strong>.
                     </p>
 
-                    <p>This allows features such as:
-                        - Consistent pretty message layouts
-                        - Your templates remain light with no need for any layout code
-                        - Easily change email layouts, for example, send the same email template in December with an xmas layout
-                        - Ability to prepend/append to the subject or heading at a more global level (for example if you want your site name in every email subject, you can set your layout subject to &quot;{{subject}} - My Application&quot;</p>
+                    <p>This allows features such as:</p>
+                    <ul>
+                        <li>Consistent pretty message layouts</li>
+                        <li>Your templates remain light with no need for any layout code</li>
+                        <li>Easily change email layouts, for example, send the same email template in December with an xmas layout</li>
+                        <li>Ability to prepend/append to the subject or heading at a more global level (for example if you want your site name in every email subject, you can set your layout subject to <code>{{subject}} - My Application</code></li>
+                    </ul>
 
-                    <p>For an example, let&#39;s take a look at a layout and template for a <code>subject</code> part:
+                    <p>For an example, let's take a look at a layout and template for a <code>subject</code> part:
                     </p>
 
                     <p><strong>TEMPLATE SUBJECT</strong></p>
