@@ -13,9 +13,9 @@ Email system with templates and email queuing.
 
 ## Resources
 
-**[Documentation](http://cornernote.github.io/yii-email-module)**
-**[GitHub Project](https://github.com/cornernote/yii-email-module)**
-**[Yii Extension](http://www.yiiframework.com/extension/yii-email-module)**
+- **[Documentation](http://cornernote.github.io/yii-email-module)**
+- **[GitHub Project](https://github.com/cornernote/yii-email-module)**
+- **[Yii Extension](http://www.yiiframework.com/extension/yii-email-module)**
 
 [![Mr PHP](https://raw.github.com/cornernote/mrphp-assets/master/img/code-banner.png)](http://mrphp.com.au) [![Project Stats](https://www.ohloh.net/p/yii-email-module/widgets/project_thin_badge.gif)](https://www.ohloh.net/p/yii-email-module)
 
