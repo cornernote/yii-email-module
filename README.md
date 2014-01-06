@@ -1,6 +1,6 @@
 # Yii Email Module
 
-Easily configurable and powerful email system with templates and email queuing.
+Email system with templates and email queuing.
 
 
 ## Features
@@ -13,9 +13,11 @@ Easily configurable and powerful email system with templates and email queuing.
 
 ## Resources
 
-**[Yii Email Module Documentation](http://cornernote.github.io/yii-email-module/)**
+**[Documentation](http://cornernote.github.io/yii-email-module)**
+**[GitHub Project](https://github.com/cornernote/yii-email-module)**
+**[Yii Extension](http://www.yiiframework.com/extension/yii-email-module)**
 
-[![Mr PHP](https://raw.github.com/cornernote/mrphp-assets/master/img/code-banner.png)](http://mrphp.com.au) [![Github Project](https://raw.github.com/cornernote/mrphp-assets/master/vendor/github/github-latest-sourcecode-16.png)](https://github.com/cornernote/yii-email-module#yii-email-module) [![Yii Extension](https://raw.github.com/cornernote/mrphp-assets/master/vendor/yii/yii-extension-16.png)](http://www.yiiframework.com/extension/yii-email-module) [![Project Stats](https://www.ohloh.net/p/yii-email-module/widgets/project_thin_badge.gif)](https://www.ohloh.net/p/yii-email-module)
+[![Mr PHP](https://raw.github.com/cornernote/mrphp-assets/master/img/code-banner.png)](http://mrphp.com.au) [![Project Stats](https://www.ohloh.net/p/yii-email-module/widgets/project_thin_badge.gif)](https://www.ohloh.net/p/yii-email-module)
 
 [![Latest Stable Version](https://poser.pugx.org/cornernote/yii-email-module/v/stable.png)](https://packagist.org/packages/cornernote/yii-email-module) [![Build Status](https://travis-ci.org/cornernote/yii-email-module.png?branch=master)](https://travis-ci.org/cornernote/yii-email-module) [![Dependencies Check](https://depending.in/cornernote/yii-email-module.png)](https://depending.in/cornernote/yii-email-module)
 
