@@ -542,10 +542,8 @@ Email::sendUserWelcome($user);</pre>
             <div id="faq-mustachehtmlencode" class="panel-collapse collapse">
                 <div class="panel-body">
                     <p>Mustache replaces
-                        <code>{{variables}}</code> with the htmlencoded value of the variable, unless you use
-                        <code>{{{tripple_culry_braces}}}</code>.<br>-
-                        <code>{{double_curly_braces}}</code> will be htmlencoded
-                        - <code>{{{tripple_culry_braces}}}</code> will allow html</p>
+                        <code>{{double_curly_braces}}</code> with the htmlencoded value of the variable.  You should use
+                        <code>{{{tripple_culry_braces}}}</code> if your variable contains HTML code.</p>
                 </div>
             </div>
         </div>
