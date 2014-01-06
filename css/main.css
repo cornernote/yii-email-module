@@ -10,11 +10,32 @@ h2, h3, h4 {
     padding-top: 20px;
 }
 
+h4.panel-title {
+    padding-top: 0;
+}
+
 /* force the anchors to go to the right position */
 
 h2[id], h3[id], h4[id] {
     padding-top: 100px; /* extra 20px top padding */
     margin-top: -60px;
+}
+
+/* fancy footer */
+
+#footer {
+    border-top: 1px solid #ccc;
+    background: #ddd;
+    margin-top: 80px;
+    padding: 0 0 20px 0;
+}
+
+/* project icons */
+
+#project-icons {
+    border-bottom: 1px solid #ccc;
+    background: #eee;
+    padding: 20px 0;
 }
 
 /* put the margin-bottom on the caption instead of the thumbnail */
@@ -26,3 +47,4 @@ h2[id], h3[id], h4[id] {
 .caption {
     margin-bottom: 20px;
 }
+
