@@ -236,8 +236,22 @@ php composer.phar require cornernote/yii-email-module:dev-master    // developme
 
     <h3 id="configuration/emailmodule">EmailModule</h3>
 
-    <p>Add <code>EmailModule</code> to the <code>modules</code> in your yii configuration:</p>
-<pre class="prettyprint linenums lang-php">return array(
+    <p>Add <code>EmailModule</code> to the <code>modules</code> in your yii configuration.</p>
+
+    <p>Minimum configuration:</p>
+
+    <pre class="prettyprint linenums lang-php">return array(
+    'modules' => array(
+        'email' => array(
+            'class' => '/path/to/vendor/cornernote/yii-email-module/email/EmailModule',
+            'adminUsers' => array('admin'),
+        ),
+    ),
+);</pre>
+
+    <p>Full configuration:</p>
+
+    <pre class="prettyprint linenums lang-php">return array(
     'modules' => array(
         'email' => array(
             // path to the EmailModule class
@@ -273,8 +287,20 @@ php composer.phar require cornernote/yii-email-module:dev-master    // developme
 
     <h3 id="configuration/eemailmanager">EEmailManager</h3>
 
-    <p>Add <code>EEmailManager</code> to the <code>components</code> section in your yii configuration:</p>
+    <p>Add <code>EEmailManager</code> to the <code>components</code> section in your yii configuration.</p>
+
+    <p>Minimum configuration:</p>
 <pre class="prettyprint linenums lang-php">return array(
+    'components' => array(
+        'emailManager' => array(
+            'class' => 'email.components.EEmailManager',
+            'fromEmail' => 'webmaster@your.dom.ain',
+        ),
+    ),
+);</pre>
+
+    <p>Full configuration:</p>
+    <pre class="prettyprint linenums lang-php">return array(
     'components' => array(
         'emailManager' => array(
             // path to the EEmailManager class
@@ -305,6 +331,9 @@ php composer.phar require cornernote/yii-email-module:dev-master    // developme
 
             // List of template parts that will be rendered.
             'templateFields' => array('subject', 'heading', 'message'),
+
+            // The default layout to use for template emails.
+            'defaultLayout' => 'layout_default',
 
             // The default transport to use.
             // For this example you can use "mail", "smtp" or "anotherSmtp".
@@ -388,11 +417,12 @@ php composer.phar require cornernote/yii-email-module:dev-master    // developme
     public static function sendUserWelcome($user) {
         $emailManager = Yii::app()->emailManager;
 
-        // build the templates
+        // build the message from the templates and layouts
         $template = 'user_welcome';
-        $message = $emailManager->buildTemplateMessage($template, array(
+        $templateParams = array(
             'user' => $user,
-        ));
+        );
+        $message = $emailManager->buildTemplateMessage($template, $templateParams);
 
         // get the message
         $swiftMessage = Swift_Message::newInstance($message['subject']);
@@ -404,7 +434,7 @@ php composer.phar require cornernote/yii-email-module:dev-master    // developme
         // spool the email
         $emailSpool = $emailManager->getEmailSpool($swiftMessage, $user);
         $emailSpool->priority = 10;
-        $emailSpool->template = $template;
+        $emailSpool->template = $template; // save template for logging and debugging purposes
         $emailSpool->transport = 'smtp'; // send using smtp
         return $emailSpool->save(false);
 
