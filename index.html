@@ -472,8 +472,7 @@ Email::sendUserWelcome($user);</pre>
 </div>
 
 <div class="section">
-    <h2 id="faq">FAQ</h2>
-
+    <h2 id="faq">Frequently Asked Questions</h2>
 
     <div class="panel-group" id="accordion">
         <div class="panel panel-default">
@@ -496,7 +495,8 @@ Email::sendUserWelcome($user);</pre>
                         <li>Consistent pretty message layouts</li>
                         <li>Your templates remain light with no need for any layout code</li>
                         <li>Easily change email layouts, for example, send the same email template in December with an xmas layout</li>
-                        <li>Ability to prepend/append to the subject or heading at a more global level (for example if you want your site name in every email subject, you can set your layout subject to <code>{{subject}} - My Application</code></li>
+                        <li>Ability to prepend/append to the subject or heading at a more global level (for example if you want your site name in every email subject, you can set your layout subject to
+                            <code>{{subject}} - My Application</code></li>
                     </ul>
 
                     <p>For an example, let's take a look at a layout and template for a <code>subject</code> part:
@@ -544,7 +544,7 @@ Email::sendUserWelcome($user);</pre>
             <div id="faq-mustachehtmlencode" class="panel-collapse collapse">
                 <div class="panel-body">
                     <p>Mustache replaces
-                        <code>{{double_curly_braces}}</code> with the htmlencoded value of the variable.  You should use
+                        <code>{{double_curly_braces}}</code> with the htmlencoded value of the variable. You should use
                         <code>{{{tripple_culry_braces}}}</code> if your variable contains HTML code.</p>
                 </div>
             </div>
