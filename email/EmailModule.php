@@ -78,7 +78,7 @@ class EmailModule extends CWebModule
      */
     public static function powered()
     {
-        return Yii::t('email', 'Powered by {yii-email-module}.', array('{yii-email-module}' => '<a href="https://github.com/cornernote/yii-email-module#yii-email-module" rel="external">Yii Email Module</a>'));
+        return Yii::t('email', 'Powered by {yii-email-module}.', array('{yii-email-module}' => '<a href="http://cornernote.github.io/yii-email-module/" rel="external">Yii Email Module</a>'));
     }
 
     /**
