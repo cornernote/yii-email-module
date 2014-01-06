@@ -1,7 +1,7 @@
 /* body margin for bootstrap nav */
 
 body {
-    margin-top: 80px;
+    margin-top: 60px;
 }
 
 /* pretty h2 */
@@ -29,15 +29,20 @@ h2[id], h3[id], h4[id] {
 }
 
 /* fix navbar disappearing - http://stackoverflow.com/questions/14493533/really-weird-redraw-behavior-with-anchor-links-twitter-bootstrap-fixed-navbar */
-.affix,.navbar-fixed-top{
-    -webkit-transform: scale3d(1,1,1);
+.affix, .navbar-fixed-top {
+    -webkit-transform: scale3d(1, 1, 1);
+}
+
+/* fancy header */
+#header {
+    padding-top: 20px;
 }
 
 /* fancy footer */
 
 #footer {
     border-top: 1px solid #ccc;
-    background: #eee;
+    background: #eee url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAO0lEQVQYV2NkIADS0tIkGbGpAUnAxGfNmvUcRRFMEiSBrBmuCKQAXRKmkHhF+EwBmQY2iTqKCJkCsgkApEUhVTyetCMAAAAASUVORK5CYII=);
     margin-top: 80px;
 }
 
@@ -60,3 +65,7 @@ h2[id], h3[id], h4[id] {
     margin-bottom: 20px;
 }
 
+/* more button margin for smaller devices */
+.jumbotron a.btn {
+    margin-bottom: 5px;
+}
