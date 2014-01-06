@@ -50,6 +50,11 @@ class EEmailManager extends CComponent
     public $templatePath = 'email.views.emails';
 
     /**
+     * @var string The default layout to use for template emails.
+     */
+    public $defaultLayout = 'layout_default';
+
+    /**
      * @var array List of template parts that will be rendered.
      */
     public $templateFields = array('subject', 'heading', 'message');
@@ -246,8 +251,10 @@ class EEmailManager extends CComponent
      * @param string $layout
      * @return array
      */
-    public function buildTemplateMessage($template, $viewParams = array(), $layout = 'layout_default')
+    public function buildTemplateMessage($template, $viewParams = array(), $layout = null)
     {
+        if ($layout === null)
+            $layout = $this->defaultLayout;
         $method = 'buildTemplateMessage_' . $this->templateType;
         if (!method_exists($this, $method))
             $this->templateType = 'php';
@@ -260,18 +267,16 @@ class EEmailManager extends CComponent
      * @param string $layout
      * @return array
      */
-    private function buildTemplateMessage_php($template, $viewParams = array(), $layout = 'layout_default')
+    private function buildTemplateMessage_php($template, $viewParams = array(), $layout = null)
     {
-        // setup path to layout and template
-        $emailTemplate = $this->templatePath . '.' . $template;
-        $emailLayout = $this->templatePath . '.' . $layout;
-
-        // parse template
         $message = array();
         $controller = Yii::app()->controller;
         foreach ($this->templateFields as $field) {
-            $viewParams['contents'] = $controller->renderPartial($emailTemplate . '.' . $field, $viewParams, true);
-            $viewParams[$field] = $message[$field] = $controller->renderPartial($emailLayout . '.' . $field, $viewParams, true);
+            $viewParams['contents'] = $controller->renderPartial($this->templatePath . '.' . $template . '.' . $field, $viewParams, true);
+            if ($layout)
+                $viewParams[$field] = $message[$field] = $viewParams['contents'];
+            else
+                $viewParams[$field] = $message[$field] = $controller->renderPartial($this->templatePath . '.' . $layout . '.' . $field, $viewParams, true);
             unset($viewParams['contents']);
         }
         return $message;
@@ -284,7 +289,7 @@ class EEmailManager extends CComponent
      * @throws CException
      * @return array
      */
-    private function buildTemplateMessage_db($template, $viewParams = array(), $layout = 'layout_default')
+    private function buildTemplateMessage_db($template, $viewParams = array(), $layout = null)
     {
         // load template
         $emailTemplate = EmailTemplate::model()->findByAttributes(array('name' => $template));
@@ -292,9 +297,11 @@ class EEmailManager extends CComponent
             throw new CException('missing EmailTemplate - ' . $template);
 
         // load layout
-        $emailLayout = EmailTemplate::model()->findByAttributes(array('name' => $layout));
-        if (!$emailLayout)
-            throw new CException('missing EmailTemplate - ' . $layout);
+        if ($layout) {
+            $emailLayout = EmailTemplate::model()->findByAttributes(array('name' => $layout));
+            if (!$emailLayout)
+                throw new CException('missing EmailTemplate - ' . $layout);
+        }
 
         // parse template
         $message = array();
@@ -303,7 +310,10 @@ class EEmailManager extends CComponent
         $mustache = new Mustache_Engine();
         foreach ($this->templateFields as $field) {
             $viewParams['contents'] = $mustache->render($emailTemplate->$field, $viewParams);
-            $viewParams[$field] = $message[$field] = $mustache->render($emailLayout->$field, $viewParams);
+            if ($layout)
+                $viewParams[$field] = $message[$field] = $viewParams['contents'];
+            else
+                $viewParams[$field] = $message[$field] = $mustache->render($emailLayout->$field, $viewParams);
             unset($viewParams['contents']);
         }
         return $message;
