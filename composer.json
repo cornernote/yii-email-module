@@ -1,6 +1,6 @@
 {
     "name": "cornernote/yii-email-module",
-    "description": "Easily configurable and powerful email system with templates and email queuing.",
+    "description": "Email system with templates and email queuing.",
     "type": "library",
     "license": "BSD-3-Clause",
     "keywords": ["yii", "email", "email templates", "email queuing", "email spool", "email handler", "mrphp"],
