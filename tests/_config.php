@@ -38,7 +38,7 @@ return array(
             'connectionString' => 'sqlite:' . realpath(BASE_PATH . '/_runtime') . '/test.db',
         ),
         'emailManager' => array(
-            'class' => 'email.components.EmailManager',
+            'class' => 'email.components.EEmailManager',
             'swiftMailerPath' => realpath(BASE_PATH . '/../vendor/swiftmailer/swiftmailer/lib'),
         ),
         'urlManager' => array(
