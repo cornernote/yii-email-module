@@ -39,13 +39,14 @@ class EEmailManager extends CComponent
     private $_fromName;
 
     /**
-     * @var string Template type, can be one of: php, db.
+     * @var string Template type, can be "db" or "php".
      */
-    public $templateType = 'php';
+    public $templateType = 'db';
 
     /**
      * @var string When templateType=php this is the path to the email views.
-     * You may copy the default templates from email/views/emails.
+     * You may copy the default templates from email/views/emails to protected/views/emails
+     * and set this value to "application.views.emails".
      */
     public $templatePath = 'email.views.emails';
 
