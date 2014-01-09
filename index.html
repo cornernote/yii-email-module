@@ -538,12 +538,12 @@ Email::sendUserWelcome($user);</pre>
                     <p><strong>TEMPLATE SUBJECT</strong></p>
                     <pre class="prettyprint lang-html">Welcome {{user.username}}</pre>
                     <p><strong>LAYOUT SUBJECT</strong></p>
-                    <pre class="prettyprint lang-html">{{subject}} - My Application</pre>
+                    <pre class="prettyprint lang-html">{{content}} - My Application</pre>
                     <p><strong>GENERATED SUBJECT</strong></p>
                     <pre class="prettyprint lang-html">Welcome cornernote - My Application</pre>
-                    <p>As you can see, the <code>subject</code> in the
+                    <p>As you can see, the <code>content</code> in the
                         <strong>layout</strong> gets replaced by the parsed
-                        <code>subject</code> from the <strong>template</strong>.</p>
+                        <strong>template</strong> subject.</p>
                 </div>
             </div>
         </div>
