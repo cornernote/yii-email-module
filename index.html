@@ -566,6 +566,12 @@ Email::sendUserWelcome($user);</pre>
                     <p>No, these variables will be created internally based on your the 3 parts of the
                         <strong>template</strong> (<code>subject</code>, <code>heading</code> and
                         <code>message</code>), which will be passed into the <strong>layout</strong>.</p>
+                    <p>In your <strong>layout</strong> you should use the variable `{{content}}` or `$content` to refer to 
+                    the corresponding <strong>template</strong> output.</p>
+                    <p>Note: Due to the rendering order, `{{subject}}` and `{{header}}` are available in the <strong>message layout</strong>,
+                        `{{subject}}` is available in the <strong>header layout</strong>,
+                        no internal variables are available in the <strong>subject layout</strong>.
+                    </p>
                 </div>
             </div>
         </div>
