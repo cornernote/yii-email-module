@@ -568,9 +568,10 @@ Email::sendUserWelcome($user);</pre>
                         <code>message</code>), which will be passed into the <strong>layout</strong>.</p>
                     <p>In your <strong>layout</strong> you should use the variable <code>{{content}}</code> or <code>$content</code> to refer to 
                     the corresponding <strong>template</strong> output.</p>
-                    <p>Note: Due to the rendering order, <code>{{subject}}</code> and <code>{{header}}</code> are available in the <strong>message layout</strong>,
-                        <code>{{subject}}</code> is available in the <strong>header layout</strong>,
-                        no internal variables are available in the <strong>subject layout</strong>.
+                    <p>Note: Due to the rendering order, 
+                        <code>{{subject}}</code> and <code>{{header}}</code> are available in the <strong>layout message</strong>,
+                        <code>{{subject}}</code> is available in the <strong>layout header</strong>,
+                        no internal variables are available in the <strong>layout subject</strong>.
                     </p>
                 </div>
             </div>
