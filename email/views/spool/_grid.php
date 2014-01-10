@@ -15,7 +15,7 @@
 $columns = array();
 $columns[] = array(
     'name' => 'id',
-    'value' => 'CHtml::link($data->id, array("spool/view", "id" => $data->id))',
+    'value' => 'CHtml::link($data->id, array("/email/spool/view", "id" => $data->id))',
     'type' => 'raw',
 );
 //$columns[] = array(
