@@ -93,6 +93,7 @@ class EEmailManager extends CComponent
      */
     public function init()
     {
+        Yii::app()->getModule('email');
         $this->registerSwiftMailerAutoloader();
         $this->registerMustacheAutoloader();
     }
