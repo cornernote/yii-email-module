@@ -26,7 +26,7 @@ class EmailSpoolCommand extends CConsoleCommand
      */
     public function actionIndex($spoolLimit = 10)
     {
-        Yii::app()->emailManager->processSpool($spoolLimit);
+        Yii::app()->emailManager->spool($spoolLimit);
     }
 
     /**
@@ -35,7 +35,7 @@ class EmailSpoolCommand extends CConsoleCommand
     public function actionLoop($loopLimit = 1000, $spoolLimit = 10)
     {
         for ($i = 0; $i < $loopLimit; $i++) {
-            Yii::app()->emailManager->processSpool($spoolLimit);
+            Yii::app()->emailManager->spool($spoolLimit);
             sleep(1);
         }
     }

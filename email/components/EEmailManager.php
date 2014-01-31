@@ -205,7 +205,7 @@ class EEmailManager extends CComponent
         ));
         foreach ($emailSpools as $emailSpool) {
 
-            // update status to emailing
+            // update status to processing
             $emailSpool->status = 'processing';
             $emailSpool->save(false);
 
