@@ -42,19 +42,19 @@ class EmailManagerTest extends \Codeception\TestCase\Test
     protected function pack()
     {
         $string = 'hello world!';
-        $this->assertEquals(EmailSpool::unpack(EmailSpool::pack($string)), $string);
+        $this->assertEquals(EmailSpool::model()->unpack(EmailSpool::model()->pack($string)), $string);
     }
 
     protected function send()
     {
-        /** @var EmailManager $emailManager */
+        /** @var EEmailManager $emailManager */
         $emailManager = Yii::app()->emailManager;
         $emailManager->email($emailManager->fromEmail, 'EmailManager subject', 'EmailManager message');
         $this->codeGuy->seeInDatabase('email_spool', array(
             'subject' => 'EmailManager subject',
             //'message' => EmailSpool::pack('EmailManager message'),
         ));
-        $this->assertEquals(EmailSpool::unpack(EmailSpool::pack('EmailManager message')), 'EmailManager message');
+        $this->assertEquals(EmailSpool::model()->unpack(EmailSpool::model()->pack('EmailManager message')), 'EmailManager message');
     }
 
 }
