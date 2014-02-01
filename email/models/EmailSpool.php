@@ -123,8 +123,13 @@ class EmailSpool extends EmailActiveRecord
      * @param $value mixed
      * @return string
      */
-    public static function pack($value)
+    public function pack($value)
     {
+        // fix for postgres
+        // https://github.com/cornernote/yii-email-module/issues/6
+        if ($this->dbConnection->driverName == 'pgsql')
+            return pg_escape_bytea(serialize($value));
+
         return gzcompress(serialize($value));
     }
 
@@ -132,8 +137,13 @@ class EmailSpool extends EmailActiveRecord
      * @param $value string
      * @return mixed
      */
-    public static function unpack($value)
+    public function unpack($value)
     {
+        // fix for postgres
+        // https://github.com/cornernote/yii-email-module/issues/6
+        if ($this->dbConnection->driverName == 'pgsql')
+            return unserialize(pg_unescape_bytea($value));
+
         return unserialize(gzuncompress($value));
     }
 
