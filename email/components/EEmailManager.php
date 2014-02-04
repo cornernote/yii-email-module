@@ -1,4 +1,5 @@
 <?php
+
 /**
  * EEmailManager
  *
@@ -10,7 +11,7 @@
  *
  * @package yii-email-module
  */
-class EEmailManager extends CComponent
+class EEmailManager extends CApplicationComponent
 {
 
     /**
@@ -93,6 +94,7 @@ class EEmailManager extends CComponent
      */
     public function init()
     {
+        parent::init();
         Yii::app()->getModule('email');
         $this->registerSwiftMailerAutoloader();
         $this->registerMustacheAutoloader();
