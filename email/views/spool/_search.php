@@ -13,7 +13,7 @@
  */
 
 /** @var EmailActiveForm $form */
-$form = $this->beginWidget('email.widgets.EmailActiveForm', array(
+$form = $this->beginWidget('email.components.EmailActiveForm', array(
     'method' => 'get',
     'layout' => TbHtml::FORM_LAYOUT_HORIZONTAL,
     'htmlOptions' => array('style' => 'display:none;'),
