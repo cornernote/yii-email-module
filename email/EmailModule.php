@@ -89,7 +89,7 @@ class EmailModule extends CWebModule
      */
     public function getVersion()
     {
-        return trim(file_get_contents(dirname(__FILE__) . '/version.txt'));;
+        return trim(file_get_contents(dirname(__FILE__) . '/version.txt'));
     }
 
     /**
