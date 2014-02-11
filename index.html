@@ -553,7 +553,7 @@ Email::sendUserWelcome($user);</pre>
                     <p><strong>TEMPLATE SUBJECT</strong></p>
                     <pre class="prettyprint lang-html">Welcome {{user.username}}</pre>
                     <p><strong>LAYOUT SUBJECT</strong></p>
-                    <pre class="prettyprint lang-html">{{content}} - My Application</pre>
+                    <pre class="prettyprint lang-html">{{contents}} - My Application</pre>
                     <p><strong>GENERATED SUBJECT</strong></p>
                     <pre class="prettyprint lang-html">Welcome cornernote - My Application</pre>
                     <p>As you can see, the <code>content</code> in the
@@ -578,7 +578,7 @@ Email::sendUserWelcome($user);</pre>
                     <p>No, these variables will be created internally based on your the 3 parts of the
                         <strong>template</strong> (<code>subject</code>, <code>heading</code> and
                         <code>message</code>), which will be passed into the <strong>layout</strong>.</p>
-                    <p>In your <strong>layout</strong> you should use the variable <code>{{content}}</code> or <code>$content</code> to refer to 
+                    <p>In your <strong>layout</strong> you should use the variable <code>{{contents}}</code> or <code>$content</code> to refer to 
                     the corresponding <strong>template</strong> output.</p>
                     <p>Note: Due to the rendering order:</p>
                     <ul>
