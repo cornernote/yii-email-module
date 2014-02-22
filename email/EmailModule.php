@@ -108,7 +108,6 @@ class EmailModule extends CWebModule
         parent::init();
 
         // setup paths
-        Yii::setPathOfAlias('email', dirname(__FILE__));
         $this->setImport(array(
             'email.models.*',
             'email.components.*',
