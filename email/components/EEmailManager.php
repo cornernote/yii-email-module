@@ -132,8 +132,13 @@ class EEmailManager extends CApplicationComponent
             $swiftMessage->setFrom(is_array($from) ? $from : array($from));
 
         // attach files
-        foreach ($attachments as $attachment)
-            $swiftMessage->attach(Swift_Attachment::fromPath($attachment));
+        if ($attachments) {
+            if (is_array($attachments))
+                foreach ($attachments as $attachment)
+                    $swiftMessage->attach(Swift_Attachment::fromPath($attachment));
+            else
+                $swiftMessage->attach(Swift_Attachment::fromPath($attachments));
+        }
 
         // send the email
         if (!$spool)
