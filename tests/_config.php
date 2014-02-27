@@ -17,7 +17,6 @@ return array(
     'import' => array(
         'email.components.*',
         'email.models.*',
-        'bootstrap.helpers.TbHtml',
     ),
     'aliases' => array(
         'email' => realpath(BASE_PATH . '/../email'),
