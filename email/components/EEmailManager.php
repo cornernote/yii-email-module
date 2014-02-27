@@ -129,7 +129,7 @@ class EEmailManager extends CApplicationComponent
         if (!$from)
             $swiftMessage->setFrom($this->fromEmail, $this->fromName);
         else
-            $swiftMessage->setFrom($from);
+            $swiftMessage->setFrom(is_array($from) ? $from : array($from));
 
         // attach files
         foreach ($attachments as $attachment)
