@@ -4,7 +4,7 @@
  * EEmailManager
  *
  * @property string $fromName
- * 
+ *
  * @author Brett O'Donnell <cornernote@gmail.com>
  * @author Zain Ul abidin <zainengineer@gmail.com>
  * @copyright 2013 Mr PHP
@@ -122,7 +122,7 @@ class EEmailManager extends CApplicationComponent
     {
         // get the message
         $swiftMessage = Swift_Message::newInstance($subject);
-        $swiftMessage->setTo($to);
+        $swiftMessage->setTo(is_array($to) ? $to : array($to));
         $swiftMessage->setBody($message, 'text/html');
 
         // set the from
