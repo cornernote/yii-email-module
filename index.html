@@ -65,6 +65,9 @@
                         </li>
                         <li class="divider"></li>
                         <li>
+                            <a href="#configuration/alias">Alias</a>
+                        </li>
+                        <li>
                             <a href="#configuration/emailmodule">EmailModule</a>
                         </li>
                         <li>
@@ -234,6 +237,15 @@ php composer.phar require cornernote/yii-email-module:dev-master    // developme
 <div class="section">
     <h2 id="configuration">Configuration</h2>
 
+    <h3 id="configuration/alias">Alias</h3>
+
+    <p>Add the <code>email</code> folder to the <code>aliases</code> in your yii configuration:</p>
+    <pre class="prettyprint linenums lang-php">return array(
+    'aliases' => array(
+        'email' => '/path/to/vendor/cornernote/yii-email-module/email',
+    ),
+);</pre>
+
     <h3 id="configuration/emailmodule">EmailModule</h3>
 
     <p>Add <code>EmailModule</code> to the <code>modules</code> in your yii configuration.</p>
@@ -243,7 +255,7 @@ php composer.phar require cornernote/yii-email-module:dev-master    // developme
     <pre class="prettyprint linenums lang-php">return array(
     'modules' => array(
         'email' => array(
-            'class' => '/path/to/vendor/cornernote/yii-email-module/email/EmailModule',
+            'class' => 'email.EmailModule',
             'adminUsers' => array('admin'),
         ),
     ),
@@ -255,7 +267,7 @@ php composer.phar require cornernote/yii-email-module:dev-master    // developme
     'modules' => array(
         'email' => array(
             // path to the EmailModule class
-            'class' => '/path/to/vendor/cornernote/yii-email-module/email/EmailModule',
+            'class' => 'email.EmailModule',
 
             // The ID of the CDbConnection application component. If not set, a SQLite3
             // database will be automatically created in protected/runtime/email-EmailVersion.db.
@@ -535,7 +547,7 @@ Yii::app()->emailManager->sendUserWelcome($user);</pre>
                         <li>Your templates remain light with no need for any layout code</li>
                         <li>Easily change email layouts, for example, send the same email template in December with an xmas layout</li>
                         <li>Ability to prepend/append to the subject or heading at a more global level (for example if you want your site name in every email subject, you can set your layout subject to
-                            <code>{{subject}} - My Application</code></li>
+                            <code>{{contents}} - My Application</code></li>
                     </ul>
 
                     <p>For an example, let's take a look at a layout and template for a <code>subject</code> part:
@@ -544,10 +556,10 @@ Yii::app()->emailManager->sendUserWelcome($user);</pre>
                     <p><strong>TEMPLATE SUBJECT</strong></p>
                     <pre class="prettyprint lang-html">Welcome {{user.username}}</pre>
                     <p><strong>LAYOUT SUBJECT</strong></p>
-                    <pre class="prettyprint lang-html">{{content}} - My Application</pre>
+                    <pre class="prettyprint lang-html">{{contents}} - My Application</pre>
                     <p><strong>GENERATED SUBJECT</strong></p>
                     <pre class="prettyprint lang-html">Welcome cornernote - My Application</pre>
-                    <p>As you can see, the <code>content</code> in the
+                    <p>As you can see, the <code>contents</code> in the
                         <strong>layout</strong> gets replaced by the parsed
                         <strong>template</strong> subject.</p>
                 </div>
@@ -621,10 +633,11 @@ Yii::app()->emailManager->sendUserWelcome($user);</pre>
                     </li>
                 </ul>
                 <h4>License</h4>
-
                 <p>
                     <a href="license.html" class="fancybox" data-fancybox-type="ajax">BSD-3-Clause</a>, Copyright &copy; 2013-2014
                     <a href="mailto:info@mrphp.com.au">Mr PHP</a></p>
+                <h4>More from MrPHP</h4>
+                <p><a href="http://cornernote.github.io">cornernote.github.io</a> | <a href="http://mrphp.com.au">MrPHP.com.au</a></p>
             </div>
             <div class="col-lg-6">
                 <div class="row">
@@ -669,16 +682,24 @@ Yii::app()->emailManager->sendUserWelcome($user);</pre>
             </div>
         </div>
     </div>
-    <div id="project-icons" class="text-center">
-        <p>
-            <a href="http://mrphp.com.au"><img src="https://raw.github.com/cornernote/mrphp-assets/master/img/code-banner.png" alt="Mr PHP"></a>
-            <a href="https://www.ohloh.net/p/yii-email-module"><img src="https://www.ohloh.net/p/yii-email-module/widgets/project_thin_badge.gif" alt="Project Stats"></a>
-        </p>
-
-        <p>
-            <a href="https://packagist.org/packages/cornernote/yii-email-module"><img src="https://poser.pugx.org/cornernote/yii-email-module/v/stable.png" alt="Latest Stable Version"></a>
-            <a href="https://travis-ci.org/cornernote/yii-email-module"><img src="https://travis-ci.org/cornernote/yii-email-module.png?branch=master" alt="Build Status"></a>
-        </p>
+    <div id="project-icons">
+        <div class="container" id="contributors">
+            <h5></h5>
+            <ul class="text-center"></ul>
+        </div>
+        <div class="text-center">
+            <p>
+                <a href="http://mrphp.com.au"><img src="https://raw.github.com/cornernote/mrphp-assets/master/img/code-banner.png" alt="Mr PHP"></a>
+                <a href="https://www.ohloh.net/p/yii-email-module"><img src="https://www.ohloh.net/p/yii-email-module/widgets/project_thin_badge.gif" alt="Project Stats"></a>
+            </p>
+            <p>
+                <a href="https://github.com/cornernote/yii-email-module/releases/latest"><img src="https://poser.pugx.org/cornernote/yii-email-module/v/stable.png" alt="Latest Stable Version"></a>
+                <a href="https://packagist.org/packages/cornernote/yii-email-module"><img src="https://poser.pugx.org/cornernote/yii-email-module/downloads.png" alt="Total Downloads"></a>
+                <a href="https://packagist.org/packages/cornernote/yii-email-module"><img src="https://poser.pugx.org/cornernote/yii-email-module/d/monthly.png" alt="Monthly Downloads"></a>
+                <a href="https://travis-ci.org/cornernote/yii-email-module"><img src="https://travis-ci.org/cornernote/yii-email-module.png?branch=master" alt="Build Status"></a>
+                <a href="license.html" class="fancybox" data-fancybox-type="ajax"><img src="https://poser.pugx.org/cornernote/yii-email-module/license.png" alt="License"></a>
+            </p>
+        </div>
     </div>
 </div>
 
@@ -690,19 +711,28 @@ Yii::app()->emailManager->sendUserWelcome($user);</pre>
 <script src="js/main.js"></script>
 
 <script>
-    (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function () {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-    ga('create', 'UA-46879709-2', 'cornernote.github.io');
-    ga('send', 'pageview');
+$('document').ready(function() {
+    $.ajax({
+        type: 'GET',
+        url: 'https://api.github.com/repos/cornernote/yii-email-module/contributors',
+        dataType: 'json',
+        success: function(result) {
+            for(i in result) {
+                $('#contributors ul').append('<li class="thumbnail"><a href="' + result[i].html_url + '" target="_blank"><img src="' + result[i].avatar_url + 's=64" title="' + result[i].login + '"></a></li>');
+            }
+            $('#contributors h5').html(result.length + ' developer'+ (result.length>1 ? 's' : '') + ' contributed to this project:');
+        }
+    });
+});
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-46879709-8', 'cornernote.github.io');
+  ga('send', 'pageview');
 </script>
 
 </body>
