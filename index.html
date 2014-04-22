@@ -413,36 +413,39 @@ php composer.phar require cornernote/yii-email-module:dev-master    // developme
     <h3 id="usage/using-templates">Using Templates</h3>
 
     <p>To send more complex emails you will need to use Email Templates.</p>
+
+    <p>You will first need to follow the instructions in
+        <a href="#usage/extending-eemailmanager">extending EEmailManager</a>.</p>
+
     <h4>Component</h4>
 
-    <p>Create a new component in <code>components/Email.php</code>:</p>
-<pre class="prettyprint linenums lang-php">class Email {
+    <p>Create a new component in <code>components/EmailManager.php</code>:</p>
+<pre class="prettyprint linenums lang-php">class EmailManager extends EEmailManager {
     public static function sendUserWelcome($user) {
-        $emailManager = Yii::app()->emailManager;
-
         // build the message from the templates and layouts
         $template = 'user_welcome';
         $templateParams = array(
             'user' => $user,
         );
-        $message = $emailManager->buildTemplateMessage($template, $templateParams);
+        $message = $this->buildTemplateMessage($template, $templateParams);
 
         // get the message
         $swiftMessage = Swift_Message::newInstance($message['subject']);
         $swiftMessage->setBody($message['message'], 'text/html');
         //$swiftMessage->addPart($message['text'], 'text/plain');
-        $swiftMessage->setFrom($emailManager->fromEmail, $emailManager->fromName);
+        $swiftMessage->setFrom($this->fromEmail, $this->fromName);
         $swiftMessage->setTo($user->email, $user->name);
 
-        // spool the email
-        $emailSpool = $emailManager->getEmailSpool($swiftMessage, $user);
+        // send the email
+        if ($this->defaultSendNow)
+            return echo Yii::app()->emailManager->deliver($swiftMessage, 'mySmtpTransport');
+
+        // or spool the email
+        $emailSpool = $this->getEmailSpool($swiftMessage, $user);
         $emailSpool->priority = 10;
         $emailSpool->template = $template; // save template for logging and debugging purposes
         $emailSpool->transport = 'smtp'; // send using smtp
         return $emailSpool->save(false);
-
-        // or send the email
-        //return echo Yii::app()->emailManager->deliver($swiftMessage, 'mySmtpTransport');
     }
 }</pre>
     <h4>PHP Templates</h4>
@@ -465,7 +468,7 @@ php composer.phar require cornernote/yii-email-module:dev-master    // developme
 
     <p>Now you can send an email like this:</p>
 <pre class="prettyprint linenums lang-php">$user = User::model()->findByPk(123);
-Email::sendUserWelcome($user);</pre>
+Yii::app()->emailManager->sendUserWelcome($user);</pre>
     <h3 id="usage/sending-spooled-emails">Sending Spooled Emails</h3>
 
     <p>You can send the spooled emails using the yiic command:</p>
@@ -566,11 +569,16 @@ Email::sendUserWelcome($user);</pre>
                     <p>No, these variables will be created internally based on your the 3 parts of the
                         <strong>template</strong> (<code>subject</code>, <code>heading</code> and
                         <code>message</code>), which will be passed into the <strong>layout</strong>.</p>
-                    <p>In your <strong>layout</strong> you should use the variable <code>{{content}}</code> or <code>$content</code> to refer to 
-                    the corresponding <strong>template</strong> output.</p>
+
+                    <p>In your <strong>layout</strong> you should use the variable <code>{{content}}</code> or
+                        <code>$content</code> to refer to
+                        the corresponding <strong>template</strong> output.</p>
+
                     <p>Note: Due to the rendering order:</p>
                     <ul>
-                        <li><code>{{subject}}</code> and <code>{{heading}}</code> are available in the <strong>layout message</strong>,</li>
+                        <li><code>{{subject}}</code> and <code>{{heading}}</code> are available in the
+                            <strong>layout message</strong>,
+                        </li>
                         <li><code>{{subject}}</code> is available in the <strong>layout header</strong>,</li>
                         <li>no internal variables are available in the <strong>layout subject</strong>.</li>
                     </ul>
@@ -682,12 +690,19 @@ Email::sendUserWelcome($user);</pre>
 <script src="js/main.js"></script>
 
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-46879709-2', 'cornernote.github.io');
-  ga('send', 'pageview');
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-46879709-2', 'cornernote.github.io');
+    ga('send', 'pageview');
 </script>
 
 </body>
