@@ -46,6 +46,7 @@ foreach (array_keys($this->module->controllerMap) as $controllerName) {
 $this->widget('bootstrap.widgets.TbNavbar', array(
     'brandLabel' => $this->module->getName(),
     'brandUrl' => array('/' . $this->module->id),
+    'fluid' => true,
     'items' => array(
         array(
             'class' => 'bootstrap.widgets.TbNav',
@@ -59,7 +60,7 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
     ),
 ));
 
-echo CHtml::tag('div', array('class' => 'container'), $this->widget('bootstrap.widgets.TbBreadcrumb', array(
+echo CHtml::tag('div', array('class' => 'container-fluid'), $this->widget('bootstrap.widgets.TbBreadcrumb', array(
     'links' => array_merge($this->getBreadcrumbs(), array($this->pageTitle)),
 ), true));
 
