@@ -13,7 +13,7 @@
  */
 $this->beginContent('email.views.layouts.main');
 ?>
-    <div class="container">
+    <div class="container-fluid">
         <?php
         if ($this->pageHeading || $this->menu) {
             if ($this->menu)

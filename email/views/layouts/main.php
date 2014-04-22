@@ -67,7 +67,7 @@ echo $content;
 
 ?>
 
-<div id="footer" class="container small text-center">
+<div id="footer" class="container-fluid small text-center">
     <?php
     if (Yii::app()->hasModule('audit')) {
         $this->renderPartial('audit.views.request.__footer');
