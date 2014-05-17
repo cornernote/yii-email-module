@@ -399,6 +399,18 @@ php composer.phar require cornernote/yii-email-module:dev-master    // developme
                         'password' => 'another_password',
                     ),
                 ),
+                
+                // gmail smtp transport
+                'gmailSmtp' => array(
+                    'class' => 'Swift_SmtpTransport',
+                    'host' => 'smtp.gmail.com',
+                    'port' => 465,
+                    'security' => 'ssl',
+                    'setters' => array(
+                        'username' => 'username@gmail.com',
+                        'password' => 'password',
+                    ),
+                ),
             ),
 
         ),
