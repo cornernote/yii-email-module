@@ -44,7 +44,7 @@ $columns[] = array(
 );
 $columns[] = array(
     'name' => 'status',
-    'filter' => array('pending' => Yii::t('email', 'Pending'), 'emailed' => Yii::t('email', 'Emailed'), 'error' => Yii::t('email', 'Error')),
+    'filter' => array('pending' => Yii::t('email', 'Pending'), 'processing' => Yii::t('email', 'Processing'), 'emailed' => Yii::t('email', 'Emailed'), 'error' => Yii::t('email', 'Error')),
 );
 $columns[] = array(
     'name' => 'sent',
