@@ -140,6 +140,9 @@ class EEmailManager extends CApplicationComponent
                 $swiftMessage->attach(Swift_Attachment::fromPath($attachments));
         }
 
+        // set the transport
+        $transport = $transport ? $transport : $this->defaultTransport;
+
         // send the email
         if (!$spool)
             return $this->deliver($swiftMessage, $transport);
