@@ -98,11 +98,11 @@ class EmailSpool extends EmailActiveRecord
         $criteria = new CDbCriteria;
 
         $criteria->compare('t.id', $this->id);
-        $criteria->compare('t.transport', $this->transport, true);
-        $criteria->compare('t.template', $this->template, true);
+        $criteria->compare('t.transport', $this->transport);
+        $criteria->compare('t.template', $this->template);
         $criteria->compare('t.priority', $this->priority);
-        $criteria->compare('t.status', $this->status, true);
-        $criteria->compare('t.model_name', $this->model_name, true);
+        $criteria->compare('t.status', $this->status);
+        $criteria->compare('t.model_name', $this->model_name);
         $criteria->compare('t.model_id', $this->model_id);
         $criteria->compare('t.to_address', $this->to_address, true);
         $criteria->compare('t.from_address', $this->from_address, true);
