@@ -462,7 +462,7 @@ php composer.phar require cornernote/yii-email-module:dev-master    // developme
 
         // send the email
         if ($this->defaultSendNow)
-            return echo Yii::app()->emailManager->deliver($swiftMessage, 'mySmtpTransport');
+            return Yii::app()->emailManager->deliver($swiftMessage, 'mySmtpTransport');
 
         // or spool the email
         $emailSpool = $this->getEmailSpool($swiftMessage, $user);
