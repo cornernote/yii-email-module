@@ -444,7 +444,7 @@ php composer.phar require cornernote/yii-email-module:dev-master    // developme
     <h4>Component</h4>
 
     <p>Create a new component in <code>components/EmailManager.php</code>:</p>
-<pre class="prettyprint linenums lang-php"><?php
+<pre class="prettyprint linenums lang-php">&lt;?php
 Yii::import('email.components.EEmailManager');
 class EmailManager extends EEmailManager {
     public static function sendUserWelcome($user) {
