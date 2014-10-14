@@ -453,7 +453,7 @@ class EmailManager extends EEmailManager {
         $templateParams = array(
             'user' => $user,
         );
-        $message = $this->buildTemplateMessage($template, $templateParams);
+        $message = $this->buildTemplateMessage($template, $templateParams, 'layout_fancy');
 
         // get the message
         $swiftMessage = Swift_Message::newInstance($message['subject']);
