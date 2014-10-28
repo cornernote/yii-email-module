@@ -44,6 +44,28 @@ $attributes[] = array(
 $attributes[] = array(
     'name' => 'from_address',
 );
+$emails = array();
+foreach ($emailSpool->swiftMessage->getCc() as $k => $v) {
+    $email = $v ? $v : $k;
+    $name = $k == $email ? '' : $k;
+    $emails[] = $name . ' &lt;' . $email . '&gt;';
+}
+$attributes[] = array(
+    'name' => 'cc_address',
+    'value' => implode(', ', $emails),
+    'type' => 'raw',
+);
+$emails = array();
+foreach ($emailSpool->swiftMessage->getCc() as $k => $v) {
+    $email = $v ? $v : $k;
+    $name = $k == $email ? '' : $k;
+    $emails[] = $name . ' &lt;' . $email . '&gt;';
+}
+$attributes[] = array(
+    'name' => 'bcc_address',
+    'value' => implode(', ', $emails),
+    'type' => 'raw',
+);
 $attributes[] = array(
     'name' => 'subject',
 );
