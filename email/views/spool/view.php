@@ -45,7 +45,8 @@ $attributes[] = array(
     'name' => 'from_address',
 );
 $emails = array();
-foreach ($emailSpool->swiftMessage->getCc() as $k => $v) {
+$cc = $emailSpool->swiftMessage->getCc();
+if ($cc) foreach ($cc as $k => $v) {
     $email = $v ? $v : $k;
     $name = $k == $email ? '' : $k;
     $emails[] = $name . ' &lt;' . $email . '&gt;';
@@ -56,7 +57,8 @@ $attributes[] = array(
     'type' => 'raw',
 );
 $emails = array();
-foreach ($emailSpool->swiftMessage->getCc() as $k => $v) {
+$bcc = $emailSpool->swiftMessage->getBcc();
+if ($bcc) foreach ($bcc as $k => $v) {
     $email = $v ? $v : $k;
     $name = $k == $email ? '' : $k;
     $emails[] = $name . ' &lt;' . $email . '&gt;';
