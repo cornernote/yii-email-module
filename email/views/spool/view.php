@@ -55,7 +55,7 @@ $attributes[] = array(
     'name' => 'created',
     'value' => Yii::app()->format->formatDatetime($emailSpool->created),
 );
-$this->widget('zii.widgets.CDetailView', array(
+$this->widget(Yii::app()->getModule('email')->detailViewWidget, array(
     'data' => $emailSpool,
     'attributes' => $attributes,
     'htmlOptions' => array(

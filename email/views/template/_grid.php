@@ -29,7 +29,7 @@ $columns[] = array(
 );
 
 // grid
-$this->widget('bootstrap.widgets.TbGridView', array(
+$this->widget(Yii::app()->getModule('email')->gridViewWidget, array(
     'id' => 'emailTemplate-grid',
     'dataProvider' => $emailTemplate->search(),
     'filter' => $emailTemplate,
