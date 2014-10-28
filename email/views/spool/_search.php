@@ -25,7 +25,15 @@ echo $form->textFieldControlGroup($emailSpool, 'transport');
 echo $form->textFieldControlGroup($emailSpool, 'template');
 echo $form->textFieldControlGroup($emailSpool, 'priority');
 echo $form->textFieldControlGroup($emailSpool, 'status');
+$modelName = false;
+if (is_array($emailSpool->model_name)) {
+    $modelName = $emailSpool->model_name;
+    $emailSpool->model_name = '';
+}
 echo $form->textFieldControlGroup($emailSpool, 'model_name');
+if ($modelName) {
+    $emailSpool->model_name = $modelName;
+}
 echo $form->textFieldControlGroup($emailSpool, 'model_id');
 echo $form->textFieldControlGroup($emailSpool, 'to_address');
 echo $form->textFieldControlGroup($emailSpool, 'from_address');
