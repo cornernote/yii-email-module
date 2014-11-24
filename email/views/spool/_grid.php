@@ -56,7 +56,7 @@ $columns[] = array(
 );
 
 // grid
-$this->widget('bootstrap.widgets.TbGridView', array(
+$this->widget(Yii::app()->getModule('email')->gridViewWidget, array(
     'id' => 'emailSpool-grid',
     'dataProvider' => $emailSpool->search(),
     'filter' => $emailSpool,

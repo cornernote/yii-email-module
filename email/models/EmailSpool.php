@@ -102,7 +102,6 @@ class EmailSpool extends EmailActiveRecord
         $criteria->compare('t.template', $this->template);
         $criteria->compare('t.priority', $this->priority);
         $criteria->compare('t.status', $this->status);
-        $criteria->compare('t.model_name', $this->model_name);
         $criteria->compare('t.model_id', $this->model_id);
         $criteria->compare('t.to_address', $this->to_address, true);
         $criteria->compare('t.from_address', $this->from_address, true);
@@ -110,6 +109,13 @@ class EmailSpool extends EmailActiveRecord
         $criteria->compare('t.message', $this->message, true);
         $criteria->compare('t.sent', $this->sent);
         $criteria->compare('t.created', $this->created);
+
+        if (is_array($this->model_name)) {
+            $criteria->addInCondition('t.model_name', $this->model_name);
+        }
+        else {
+            $criteria->compare('t.model_name', $this->model_name);
+        }
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,

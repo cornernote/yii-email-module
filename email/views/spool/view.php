@@ -44,6 +44,30 @@ $attributes[] = array(
 $attributes[] = array(
     'name' => 'from_address',
 );
+$emails = array();
+$cc = $emailSpool->swiftMessage->getCc();
+if ($cc) foreach ($cc as $k => $v) {
+    $email = $v ? $v : $k;
+    $name = $k == $email ? '' : $k;
+    $emails[] = $name . ' &lt;' . $email . '&gt;';
+}
+$attributes[] = array(
+    'name' => 'cc_address',
+    'value' => implode(', ', $emails),
+    'type' => 'raw',
+);
+$emails = array();
+$bcc = $emailSpool->swiftMessage->getBcc();
+if ($bcc) foreach ($bcc as $k => $v) {
+    $email = $v ? $v : $k;
+    $name = $k == $email ? '' : $k;
+    $emails[] = $name . ' &lt;' . $email . '&gt;';
+}
+$attributes[] = array(
+    'name' => 'bcc_address',
+    'value' => implode(', ', $emails),
+    'type' => 'raw',
+);
 $attributes[] = array(
     'name' => 'subject',
 );
@@ -55,7 +79,7 @@ $attributes[] = array(
     'name' => 'created',
     'value' => Yii::app()->format->formatDatetime($emailSpool->created),
 );
-$this->widget('zii.widgets.CDetailView', array(
+$this->widget(Yii::app()->getModule('email')->detailViewWidget, array(
     'data' => $emailSpool,
     'attributes' => $attributes,
     'htmlOptions' => array(
