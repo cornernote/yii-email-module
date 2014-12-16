@@ -467,7 +467,7 @@ class EmailManager extends EEmailManager {
 
         // send the email
         if ($this->defaultSendNow)
-            return Yii::app()->emailManager->deliver($swiftMessage, 'mySmtpTransport');
+            return Yii::app()->emailManager->deliver($swiftMessage);
 
         // or spool the email
         $emailSpool = $this->getEmailSpool($swiftMessage, $user);
