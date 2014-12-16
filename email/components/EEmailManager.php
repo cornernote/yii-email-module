@@ -28,11 +28,6 @@ class EEmailManager extends CApplicationComponent
      * Only required if you did not install using composer.
      */
     public $mustachePath;
-    
-    /**
-     * @var string Set to true if you want to deliver the message now or false to spool into the table.
-     */
-    public $defaultSendNow;
 
     /**
      * @var string Default from email address.
