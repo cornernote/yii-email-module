@@ -1,4 +1,5 @@
 <?php
+
 /**
  * EmailSpoolCommand will send emails that are pending in the spool.
  *
@@ -35,7 +36,12 @@ class EmailSpoolCommand extends CConsoleCommand
     public function actionLoop($loopLimit = 1000, $spoolLimit = 10)
     {
         for ($i = 0; $i < $loopLimit; $i++) {
-            Yii::app()->emailManager->spool($spoolLimit);
+            $done = Yii::app()->emailManager->spool($spoolLimit);
+            if ($done) {
+                for ($i = 0; $i < $done; $i++) {
+                    echo '.';
+                }
+            }
             sleep(1);
         }
     }
