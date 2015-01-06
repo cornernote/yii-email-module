@@ -208,6 +208,7 @@ class EEmailManager extends CApplicationComponent
      */
     public function spool($limit = 10)
     {
+        $done = 0;
         // find all the spooled emails
         $emailSpools = EmailSpool::model()->findAll(array(
             'condition' => 't.status=:status',
@@ -231,8 +232,9 @@ class EEmailManager extends CApplicationComponent
             $emailSpool->status = $sent ? 'emailed' : 'error';
             $emailSpool->sent = time();
             $emailSpool->save(false);
-
+            $done++;
         }
+        return $done;
     }
 
     /**
