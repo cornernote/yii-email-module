@@ -116,9 +116,10 @@ class EEmailManager extends CApplicationComponent
      * @param array $attachments
      * @param string $transport
      * @param bool $spool
+     * @param int $priority
      * @return bool
      */
-    public function email($to, $subject, $message, $from = null, $attachments = array(), $transport = null, $spool = true)
+    public function email($to, $subject, $message, $from = null, $attachments = array(), $transport = null, $spool = true, $priority = 10)
     {
         // get the message
         $swiftMessage = Swift_Message::newInstance($subject);
@@ -150,6 +151,7 @@ class EEmailManager extends CApplicationComponent
         // or spool the email
         $emailSpool = $this->getEmailSpool($swiftMessage);
         $emailSpool->transport = $transport;
+        $emailSpool->priority = $priority;
         return $emailSpool->save(false);
     }
 
