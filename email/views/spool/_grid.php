@@ -29,7 +29,7 @@ $columns[] = array(
 );
 $columns[] = array(
     'name' => 'model_name',
-    'filter' => is_scalar($emailSpool->model_id) ? null : false,
+    'filter' => is_scalar($emailSpool->model_name) ? null : false,
 );
 $columns[] = array(
     'name' => 'model_id',
