@@ -18,9 +18,9 @@ $columns[] = array(
     'value' => 'CHtml::link($data->id, array("/email/spool/view", "id" => $data->id))',
     'type' => 'raw',
 );
-//$columns[] = array(
-//    'name' => 'transport',
-//);
+$columns[] = array(
+    'name' => 'transport',
+);
 $columns[] = array(
     'name' => 'template',
 );
@@ -32,6 +32,7 @@ $columns[] = array(
 );
 $columns[] = array(
     'name' => 'model_id',
+    'filter' => is_scalar($emailSpool->model_id) ? null : false,
 );
 $columns[] = array(
     'name' => 'to_address',
