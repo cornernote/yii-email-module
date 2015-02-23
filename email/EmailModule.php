@@ -67,6 +67,11 @@ class EmailModule extends CWebModule
     public $adminUsers = array();
 
     /**
+     * @var array|string The home url, eg "/admin".
+     */
+    public $homeUrl;
+
+    /**
      * @var string The path to YiiStrap.
      * Only required if you do not want YiiStrap in your app config, for example, if you are running YiiBooster.
      * Only required if you did not install using composer.
@@ -128,6 +133,10 @@ class EmailModule extends CWebModule
             foreach ($data as $name => $options)
                 if (empty($this->modelMap[$method][$name]))
                     $this->modelMap[$method][$name] = $options;
+
+        // set homeUrl
+        if ($this->homeUrl)
+            Yii::app()->homeUrl = $this->homeUrl;
 
         // init yiiStrap
         $this->initYiiStrap();
