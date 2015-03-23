@@ -16,7 +16,7 @@
         }
     ],
     "require": {
-        "crisu83/yiistrap": ">=1.0.0",
+        "crisu83/yiistrap": "dev-bs3",
         "swiftmailer/swiftmailer": ">=v5.0.0",
         "mustache/mustache": ">=v2.5.0"
     },
