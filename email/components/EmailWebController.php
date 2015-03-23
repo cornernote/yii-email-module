@@ -39,6 +39,18 @@ class EmailWebController extends CController
     /**
      *
      */
+    public function init()
+    {
+        /** @var EmailModule $audit */
+        $email = Yii::app()->getModule('email');
+        if ($email->homeUrl)
+            Yii::app()->homeUrl = $email->homeUrl;
+        parent::init();
+    }
+    
+    /**
+     *
+     */
     public function filters()
     {
         return $this->module->controllerFilters;
