@@ -94,6 +94,6 @@ echo CHtml::tag('pre', array(), CHtml::encode($emailSpool->swiftMessage->getBody
 // other parts
 foreach ($emailSpool->swiftMessage->getChildren() as $child) {
     /** @var Swift_MimePart $child */
-    echo CHtml::tag('h2', array(), $child->getContentType());
+    echo CHtml::tag('h2', array(), $child->getContentType() . ' <small>(length:' . strlen($child->getBody()) . ')</small>');
     echo CHtml::tag('pre', array(), CHtml::encode($child->getBody()));
 }
