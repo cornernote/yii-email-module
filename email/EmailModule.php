@@ -46,6 +46,7 @@ class EmailModule extends CWebModule
     public $controllerMap = array(
         'spool' => 'email.controllers.EmailSpoolController',
         'template' => 'email.controllers.EmailTemplateController',
+        'stats' => 'email.controllers.EmailStatsController',
     );
 
     /**

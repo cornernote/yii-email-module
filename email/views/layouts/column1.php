@@ -11,8 +11,9 @@
  *
  * @package yii-email-module
  */
-$this->beginContent('email.views.layouts.main');
 ?>
+
+<?php $this->beginContent('email.views.layouts.main'); ?>
     <div class="container-fluid">
         <?php
         if ($this->pageHeading || $this->menu) {
@@ -30,5 +31,4 @@ $this->beginContent('email.views.layouts.main');
             ?>
         </div>
     </div>
-<?php
-$this->endContent();
+<?php $this->endContent(); ?>
