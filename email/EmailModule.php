@@ -68,6 +68,11 @@ class EmailModule extends CWebModule
     public $adminUsers = array();
 
     /**
+     * @var array A list of IPs who can access this module.
+     */
+    public $ipFilters = array();
+
+    /**
      * @var array|string The home url, eg "/admin".
      */
     public $homeUrl;
