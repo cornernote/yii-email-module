@@ -22,7 +22,8 @@
                     'items' => $this->menu,
                     'htmlOptions' => array('class' => 'list-inline pull-right'),
                 ), true);
-            echo CHtml::tag('h1', array(), $this->pageHeading);
+            if ($this->pageHeading)
+                echo CHtml::tag('h1', array(), $this->pageHeading);
         }
         ?>
         <div id="content">
