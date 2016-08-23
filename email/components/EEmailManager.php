@@ -4,6 +4,7 @@
  * EEmailManager
  *
  * @property string $fromName
+ * @property array $transports
  *
  * @author Brett O'Donnell <cornernote@gmail.com>
  * @author Zain Ul abidin <zainengineer@gmail.com>
@@ -85,11 +86,27 @@ class EEmailManager extends CApplicationComponent
      * )
      * </pre>
      */
-    public $transports = array(
+    protected $_transports = array(
         'mail' => array(
             'class' => 'Swift_MailTransport',
         ),
     );
+
+    /**
+     * @return array
+     */
+    public function getTransports()
+    {
+        return $this->_transports;
+    }
+
+    /**
+     * @param array $transports
+     */
+    public function setTransports($transports)
+    {
+        $this->_transports = $transports;
+    }
 
     /**
      *
@@ -181,8 +198,7 @@ class EEmailManager extends CApplicationComponent
         if (isset($options['class'])) {
             $class = $options['class'];
             unset($options['class']);
-        }
-        else {
+        } else {
             throw new CException(Yii::t('email', 'Transport :transport does not have a class.', array(':transport' => $transport)));
         }
 
@@ -190,8 +206,7 @@ class EEmailManager extends CApplicationComponent
         if (isset($options['setters'])) {
             $setters = $options['setters'];
             unset($options['setters']);
-        }
-        else {
+        } else {
             $setters = array();
         }
 
