@@ -25,7 +25,8 @@ class EmailAccessFilter extends CFilter
         /** @var EmailModule $email */
         $email = $app->getModule('email');
         $user = $app->getUser();
-        $ip = isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : Yii::app()->request->userHostAddress;
+        //$ip = isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : Yii::app()->request->userHostAddress;
+        $ip = Yii::app()->request->userHostAddress;
         if (!$this->allowUser($email, $user) || !$this->allowIp($email, $ip)) {
             throw new CHttpException(403, 'You are not allowed to access this page.');
         }
